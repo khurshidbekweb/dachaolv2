@@ -1,4 +1,5 @@
-import custimAxios from "../configs/axios.config";
+import custimAxios from "@/config/axios.config";
+
 
 export const comfortUtils = {
   getComfort: async () => {
