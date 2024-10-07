@@ -2,7 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import { Input } from '@/components/ui/input';
 import { dachaType } from '@/constants';
-import { ListFilter, Minus } from 'lucide-react';
+import { Minus, Search } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -11,9 +11,9 @@ const GlobalFilter = () => {
         <Drawer>
             <DrawerTrigger>
                     <DrawerTitle>
-                    <div className='hover:bg-blue-400/20 cursor-pointer rounded-sm transition-colors flex items-center gap-1 px-3 py-2'>
-                        <span className='hidden md:flex'>Filter</span>
-                        <ListFilter type='icon'/>
+                    <div className='hover:bg-blue-400/20 cursor-pointer rounded-sm transition-colors flex items-center gap-2 px-3 py-2'>
+                        <span className='hidden md:flex'>Search</span>
+                        <Search type='icon'/>
                     </div>
                     </DrawerTitle>
             </DrawerTrigger>

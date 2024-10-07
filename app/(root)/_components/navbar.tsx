@@ -8,11 +8,12 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 import MobileNav from './mobile';
 import GlobalFilter from './global-filter';
+import ChangeLanguage from './change-language';
 
 const Navbar = () => {
     const pathname = usePathname()
     return (
-        <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-5 md:px-1">
+        <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
         <div className="container max-w-6xl mx-auto h-[10vh] w-full flex items-center justify-between">
             {/* Logo */}
             <Link href={'/'}>
@@ -36,6 +37,7 @@ const Navbar = () => {
                 <GlobalFilter/>
                 <ModeToggle/>
                 <MobileNav/> 
+                <ChangeLanguage/>
             </div>
         </div>
     </div>

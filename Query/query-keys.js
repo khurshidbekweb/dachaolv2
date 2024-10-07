@@ -1,0 +1,22 @@
+export const QUERY_KEYS = {
+  cottages: "cottages",
+  cottageTop: "CottageTop",
+  cottages_by_place: "cottages_by_place",
+  cottage_by_filter: "cottage_by_filter",
+  cottage_by_UserId: "user_cottage_single",
+  cottageType_by_Id: "cottage-taype-by-id",
+  languages: "languages",
+  places: "places",
+  regions: "regions",
+  cottageType: "cottagetypes",
+  comforts: "comforts",
+  users: "users",
+  notification: "notifications",
+  all_notification: "all_notification",
+  services: "services",
+  servicesId: "servicesId",
+  tariff: "tariffs",
+  cottageUserAllId: "cottageUserIdAll",
+  userCottageUser: "UserCottageUser",
+  order: "orders"
+};

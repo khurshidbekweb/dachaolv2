@@ -17,7 +17,19 @@ const workSans = Work_Sans({
   variable: '--font-workSans',
   subsets: ['latin']
 })
+// const [languageChange, setLanguageChange] = useState(
+//   localStorage.getItem("language")
+// );
 
+// const toggleLanguage = (e) => {
+//   e.preventDefault();
+//   localStorage.setItem("language", e.target.value);
+//   setLanguageChange(e.target.value);
+//   // queryClient.invalidateQueries({ type: "all" });
+// };
+
+
+// if (!localStorage.getItem("language")) localStorage.setItem("language", "uz");
 
 export const metadata: Metadata = {
   title: "DachaOL",
@@ -34,7 +46,9 @@ function RootLayout({children}: ChildProps) {
         className={`antialiased ${workSans.variable} ${creteRound.variable}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          {/* <LanguageContext.Provider value={{languageChange, toggleLanguage}}>
+          </LanguageContext.Provider> */}
+            {children}
         </ThemeProvider>
       </body>
     </html>
