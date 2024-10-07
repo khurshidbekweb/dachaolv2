@@ -7,3 +7,10 @@ export const navLinks = [
 	{ name: 'Archive', route: '/blogs/archive', icon: FolderArchive },
 	{ name: 'Contact', route: '/contact', icon: Contact2 },
 ]
+
+export const dachaType = [
+    {name: 'Dacha', id: 'fvdefv'},
+    {name: 'Picnik', id: 'eveve'},
+    {name: 'Baliq ovi', id: 'eveve4'},
+    {name: 'Sanatoriya', id: 'evev5e'}
+]
