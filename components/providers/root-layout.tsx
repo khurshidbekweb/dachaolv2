@@ -17,8 +17,9 @@ const creteRound = Crete_Round({
     variable: '--font-workSans',
     subsets: ['latin']
   })
-
-const RootLayoutClient = ({children}:ChildProps) => {
+  
+  const RootLayoutClient = ({children}:ChildProps) => {
+    if (!localStorage.getItem("language")) localStorage.setItem("language", "uz");
     const queryClient = new QueryClient()
     return (
         <html lang="en" suppressHydrationWarning>

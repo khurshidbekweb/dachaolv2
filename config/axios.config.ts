@@ -7,6 +7,7 @@ const custimAxios = axios.create({
   timeout: 10000,
 });
 
+
 custimAxios.interceptors.response.use(
   (res) => res,
   (err) => {

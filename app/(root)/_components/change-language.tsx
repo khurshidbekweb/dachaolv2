@@ -1,28 +1,43 @@
+
 import useLanguageStore from "@/components/providers/language-provider";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { ALL_DATA } from '@/Query/get_all'
+import { language } from "@/types";
+import { IMG_BASE_URL } from "@/constants/server";
 import Image from "next/image";
+import { useQueryClient } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
+const ChangeLanguage = () => {    
+    const languages:language[] = ALL_DATA.useLanguage()?.data
+    console.log(languages, 'lang');
+    const activeLang = languages && languages.find((lang: language) => lang.code == localStorage.getItem('language'))  
+    const {setLanguage} = useLanguageStore()
 
-const ChangeLanguage = () => {
-  const {language, setLanguage} = useLanguageStore()
+    console.log(activeLang);
+    const queryClient = useQueryClient();
 
-  const toggleLanguage = (e:React.ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault();
-    localStorage.setItem("language", e.target.value);
-    setLanguage(e.target.value);
-    // queryClient.invalidateQueries({ type: "all" });
+  const toggleLanguage = (code: string) => {
+    localStorage.setItem("language", code);
+    setLanguage(code);
+    queryClient.invalidateQueries({ type: "all" });
   };
+
     return (
         <div className="hidden md:block">
             <DropdownMenu>
             <DropdownMenuTrigger>
-                    <Image className="rounded-sm cursor-pointer" src={'data:image/png;base64,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'} alt="" width={40} height={60}/>
-
+                <Image src={`${IMG_BASE_URL}${activeLang?.image}`}  alt="active img" width={30} height={40}/>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-                <DropdownMenuItem>
-                    <Image className="rounded-sm cursor-pointer" src={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAACUCAMAAABV5TcGAAAA1VBMVEX///8BzAAzmf4um/9Ak/C2T3/7AADrAAD30c720dD7AAWmZQYPwQY0mfwzmP////w2mfj///f4//4wlf////I2l/Hm8/kdjvNxufRBm+wmlfYpl+1mqvdysvVvtPNOqfyOx/Cm1u3E3vLU5fd+vvJaqvKDv+yHwPlVo+9hrO6w1fXa6vT2//elzfBOnfQ3k+HG6vyu0uQAhO623PNesuuW0e6DyeyCteyNueV5vN9xsNZJo+DJ8PpCldA4lNsSh9lqqdro//rw++nY9/rC1uKmxNo7oefeGRW9AAAHAElEQVR4nO2bDXOjthZAVZS277WVuAgLjOh6HdZOwQTHjp3GadJtUm/z/3/Sk4TBaDtr502Trpm5ZzwZYwMDB33ce+UQD+lAvvYFnBaowwF1OLg6mP1j/3qcs/b9l6D6xWn9jnGzN9TH1ieyh7PdaXvB5zqYeTGVJj+/G47eKzh8J/prAApGCGPGH0sZcKOjdqSkduTRvurQ96dv66wYn2cfsvPJVN/ioYMBGKgLLrUHbu6bc/VLDqGxZJsLLdYHjz89PmsdktJ0OCsv/bJ6Nz/SNLgnGZNXZf6H6SJcS4A0XmzilFHTZbSpeHlzfQU96it/ax3qfhUFwXacK850UzlkhHPwilVGymztWR1efpNFZfartEMHJONVJLLzhB7Rekq0OupRL74tiS9WhekljB0ZSXVHSCZRQKrEdAlOOYzKwF/lzPYQBtNMBB+mcGw8PiVaHbqvA6jbiBB/lXgv7fIsjy79PGw24ywim3YrrIQ/u37Fi3179q0D9ERwJ8iAzOTLDqV69ognN3k1bgTw6ep+slTNDmrx2/3DC092InR0UHUvyJ8ik3YCPY7RwVMJ4e+0+SSRwCW0p5yHKoEvHH2adIZS/lEEYvBwFcILxz5jITTNqsGEGED3mxQk7a0OlREhLifx17uYr8++s/ChIMLP4n49zlem1QFqMSCBGIWowzLVEcSg/H8bBz2+S59odcSVECQYh+mRA6iJVGtnNnKjjO3yYB242SS4jVlYY6uHYZj6oOcVcn80+zQ5LNTBhAlbgUoAO6eAjuo5MJ3QgZ1U9Etvg5m0+6eDJ6XwSfTHkd115ErnI+nVeZkJ5NWw7V+MUTWaK2pSW2ZF5Dk1n77d5b82rY5p6RO/VAd31jB1XSzktYRaB6i0/BjHZkO3DXZ2vbi9lszWjsxWNdZbtIf1Dj6KfBIs4iNXzuRklj3NVoWyO8rhbOUvVxNlKj7AptVMlLPqo24P+utkXJVRdZOzF2dAX59GRzjSyZvWcfBRmpT/+VwMRCXr8YAm42gglu/t/VLtKgqCTznUFUFWlMFgu+5V0tLqGEa+0DoOVvI4B6mKyN+eNcOB+qgb1fPu6TMvnvn+bZvQhbMBqRT0cWbh70pfDD5dH752PWKoyepx+2h0mIYU3mb3i8oKMCNGWg5vFm2UHy/uNlt1tP58SrStIy99f/B0JGEBFsrnBNL7WgBQNpdMJs3X4Tz34jXQXduhCcT5POzPyNGJO+YfjI6rI0GpSVhDoLtI3oQWZmhon35IQx2FNT2JmZiEH64+nxj7qHRF/Evy6PUpSnh9Wh16LBUiyGLap4f56uxrpakOSwNx1aOY6Q3Y64g3vu8H1UtS2s5UQb1ezRzH6JR/ZBmIwTaXTcLaflMHmXsoNDtwm8XqPIbVG2ZBs60OMrMQ9ZbX/gbsyz88nujecrmSzEwHzccmf9dpaivALkTutsAkcnV0WuvgOq3lVge1yT3wvuqw6wqVHwyisequvZmHzebJ7hNT1PBkoT2YKro2RSms5b7CQaHYLWUyWxmZ5wfX8U6PfetglMtZ4PvRJO6Uw83txJMbGdN6Jy8Mp5UEE65xk7cquUpi20SYXZU9fwxt/YOZxhP/ojNa2aeZez92mCKG1DlHEF10sy4mR7dZubnL6yYAxbASm4lZeNO3qabDiz/HF+uzOr17Pxxul7e6udjKkBwOo+1okng9CsT2tVJb5EsqEfhiLEPW1PwA1g+CRHc2Etc3WWRCkKWsV2XZ8ywakDI3FS+t42ocEf9hXS88MXmr06Dt3RlnfdTh2YGCP2519DHLlVm0ZTpNqxduPzUNBqCIgnK30qYlXOlE2K7R2yaQrgL/sRktmNr4wUaFnXW5k+fzHzQkKtWPOBBVEod24uSgZqvlNjX3aHIzNVlUT0kzPobrcvP0W2g6DgPJ0+1s8ZdNA01+Gy+WywfVo/T+b63D5Kxxevfw5PuLTZHYWkXymKjh+3oHHUuMElkUu+YPMHoGNWH1e+CjIlaTM2+X0tKh3tIzTX/6ymetg7KQ6zEgjM+mF9V5dZF6kILpB2ETUJlREnjSVDio+aKedTweesrjwHeRGNMn04FJaCbcf/WW/glf+iFlaPlXL+UUwN+VOqAOB0KRDuQM6UC+RTqQ75AO5HukA/kP0oEgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIK8Pv9FOuC/9ziQH5AO5EekA/kJ6UC+QTqgDgfU4YA6HFCHA+pwQB0OqMMBdTigDgfU4YA6HFCHA+pwQB0OqMMBdTigDgfU4YA6HFCHA+pwQB0OqMMBdTigDgfU4YA6HFCHA+pwQB0OqMMBdTigDgfU4YA6HFCHA+pwQB0OqMMBdTigDgfU4YA6HFCHA+pw+B92GmE5QeIpJgAAAABJRU5ErkJggg=='} alt="" width={40} height={60}/>
-                </DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
+                {
+                    languages && languages.map((lang: language) => (
+                        <DropdownMenuItem  key={lang.id}>
+                            <Button onClick={() => toggleLanguage(lang.code)} variant={'ghost'} type="button">
+                                <Image src={`${IMG_BASE_URL}${lang.image}`} alt={lang.title} width={35} height={40}  />
+                            </Button>
+                        </DropdownMenuItem>
+                    ))
+                }
             </DropdownMenuContent>
         </DropdownMenu>
         </div>

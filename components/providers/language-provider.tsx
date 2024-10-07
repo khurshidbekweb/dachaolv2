@@ -10,7 +10,7 @@ const useLanguageStore = create<LanguageState>((set) => ({
   language: typeof window !== "undefined" ? localStorage.getItem("language") || "uz" : "uz",
   setLanguage: (language: string) => {
     localStorage.setItem("language", language);
-    set({ language });
+      set({ language });
   },
 }));
 

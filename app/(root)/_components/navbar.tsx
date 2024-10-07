@@ -9,12 +9,9 @@ import React from 'react';
 import MobileNav from './mobile';
 import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
-import {ALL_DATA} from '@/Query/get_all'
 
 const Navbar = () => {
     const pathname = usePathname()
-    const language = ALL_DATA.useLanguage()
-    console.log(language);
     
     return (
     <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">

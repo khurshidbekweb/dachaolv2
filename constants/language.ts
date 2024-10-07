@@ -1,3 +1,4 @@
+import { footerLang } from "@/types";
 import { v4 as uuidv4 } from "uuid";
 
 export const NavLeng = {
@@ -213,7 +214,7 @@ export const FooterLink3 = [
   },
 ];
 
-export const FooterHeadLeng = {
+export const FooterHeadLeng:footerLang = {
   uz: {
     link1: "Qo'llab-quvvatlash",
     link2: "Kompaniya",

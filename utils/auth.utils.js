@@ -16,7 +16,7 @@ export const authUtils = {
     custimAxios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${data?.accessToken}`;
-
+    
     return data;
   },
 
