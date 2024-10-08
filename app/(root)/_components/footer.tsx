@@ -3,11 +3,9 @@
 import useLanguageStore from '@/components/providers/language-provider';
 import { Separator } from '@/components/ui/separator';
 import {  FooterHeadLeng, FooterLink1, FooterLink2, FooterLink3, FooterMiniLang } from '@/constants/language';
-import { footerLang } from '@/types';
+import { langKey } from '@/types';
 import { Facebook, Instagram, Send, Youtube } from 'lucide-react';
 import Link from 'next/link';
-
-type langKey = keyof footerLang
 const Footer = () => {
     const store= useLanguageStore()
     const language: langKey = store.language 

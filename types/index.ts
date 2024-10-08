@@ -2,6 +2,8 @@ export interface ChildProps {
     children: React.ReactNode
 }
 
+export type langKey = keyof footerLang
+
 export interface language {
     image: string,
     id: string,
@@ -28,6 +30,66 @@ export type footerLang = {
 
 export interface cottage{
     id: string,
-    images: string[],
-    
+    name: string,
+    images: image[],
+    comforts: camfort[],
+    cottageStatus: "confirmed" | 'progress',
+    cottageType: cottageType[],
+    description: string,
+    latitude: string | null,
+    longitude: string | null,
+    place: place,
+    price: number,
+    priceWeekend: number,
+    rating: string,
+    status: string,
+    region: region,
+    user: user,
+} 
+ 
+export interface cottageTop {
+  id:string,
+  cottage: cottage,
+  cottageId: string,
+  createdAt: string,
+  expireAt:string,
+  priority: string,
+  serviceCode: 'top' | 'recommended'
+}
+
+export interface image{
+  id: string,
+  cottageId: string,
+  created_at: string,
+  image: string,
+  isMainImage: boolean,
+  status: "active" | "inactive"
+}
+interface camfort {
+  id: string,
+  image: string,
+  name: string,
+}
+interface cottageType{
+  id: string,
+  name: string,
+}
+export interface place {
+  id: string,
+  image: string,
+  name: string,
+  regionId: string,
+}
+interface region {
+  id: string,
+  name: string,
+}
+export interface user {
+  id: string,
+  username: string | null,
+  name: string | null,
+  email: string | null,
+  phone: string,
+  image: string | null,
+  password: string | null,
 }
