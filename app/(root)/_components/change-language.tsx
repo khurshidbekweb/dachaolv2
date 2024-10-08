@@ -9,11 +9,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 const ChangeLanguage = () => {    
     const languages:language[] = ALL_DATA.useLanguage()?.data
-    console.log(languages, 'lang');
     const activeLang = languages && languages.find((lang: language) => lang.code == localStorage.getItem('language'))  
     const {setLanguage} = useLanguageStore()
-
-    console.log(activeLang);
     const queryClient = useQueryClient();
 
   const toggleLanguage = (code: string) => {
@@ -25,7 +22,7 @@ const ChangeLanguage = () => {
     return (
         <div className="hidden md:block">
             <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger type="button">
                 <Image src={`${IMG_BASE_URL}${activeLang?.image}`}  alt="active img" width={30} height={40}/>
             </DropdownMenuTrigger>
             <DropdownMenuContent>

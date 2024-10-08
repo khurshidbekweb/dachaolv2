@@ -25,3 +25,9 @@ export type footerLang = {
       link3: string;
     };
   };
+
+export interface cottage{
+    id: string,
+    images: string[],
+    
+}
