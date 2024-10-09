@@ -18,8 +18,6 @@ const Place = () => {
     const prevPlaceElm = useRef(null);
     const nextPlaceElm = useRef(null);
 
-    console.log(places?.data);
-
 
     return (
         <div className="relative my-6 px-2">
