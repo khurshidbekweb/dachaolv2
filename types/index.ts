@@ -93,3 +93,8 @@ export interface user {
   image: string | null,
   password: string | null,
 }
+
+export interface breadcrambs {
+  title: string,
+  slug: string,
+}

@@ -50,7 +50,7 @@ const SwiperHero = () => {
               <div className="flex flex-col items-center justify-center z-0 w-full h-full space-y-3 bg-black/35">
                 <h1 className="header-text font-createRound text-2xl md:text-5xl text-white"> {el.cottage.name} </h1>
                 <h2 className="text-xl md:text-3xl text-white">${el.cottage.price}</h2>
-                <Link href={`/home/view/${el.cottage.id}`} className="bg-green-600 text-white text-xl md:text-2xl p-1 px-6 rounded-3xl font-createRound">
+                <Link href={`/view/${el.cottage.id}`} className="bg-green-600 text-white text-xl md:text-2xl p-1 px-6 rounded-3xl font-createRound">
                   {HeaderLang[language].btn}
                 </Link>
               </div>
