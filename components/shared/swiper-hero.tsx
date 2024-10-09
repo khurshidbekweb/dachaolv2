@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { IMG_BASE_URL } from "@/constants/server";
 import { HeaderLang } from "@/constants/language";
-import useLanguageStore from "../providers/language-provider";
+import useLanguageStore from "../../store/language-provider";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from 'swiper/react';
 

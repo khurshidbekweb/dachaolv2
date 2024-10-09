@@ -1,5 +1,5 @@
 
-import useLanguageStore from "@/components/providers/language-provider";
+import useLanguageStore from "@/store/language-provider";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ALL_DATA } from '@/Query/get_all'
 import { language } from "@/types";

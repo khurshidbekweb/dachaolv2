@@ -1,6 +1,6 @@
 'use client'
 import Dacha from "@/components/card/dacha";
-import useLanguageStore from "@/components/providers/language-provider";
+import useLanguageStore from "@/store/language-provider";
 import { RecamudetLeng } from "@/constants/language";
 import { ALL_DATA } from "@/Query/get_all";
 import { cottageTop } from "@/types";

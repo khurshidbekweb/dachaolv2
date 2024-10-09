@@ -1,6 +1,6 @@
 'use client'
 
-import useLanguageStore from '@/components/providers/language-provider';
+import useLanguageStore from '@/store/language-provider';
 import { Separator } from '@/components/ui/separator';
 import {  FooterHeadLeng, FooterLink1, FooterLink2, FooterLink3, FooterMiniLang } from '@/constants/language';
 import { langKey } from '@/types';

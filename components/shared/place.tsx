@@ -3,7 +3,7 @@ import { PlaseLeng } from "@/constants/language";
 import { ALL_DATA } from "@/Query/get_all";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import useLanguageStore from "../providers/language-provider";
+import useLanguageStore from "../../store/language-provider";
 import { Keyboard, Navigation } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
