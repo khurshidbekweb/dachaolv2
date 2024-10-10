@@ -7,7 +7,7 @@ const Layout = ({children}: ChildProps) => {
     return (
         <>
             <Navbar/>
-            <div className='container'>
+            <div className='container mx-auto'>
                 {children}
             </div>
             <Footer/>

@@ -27,8 +27,8 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
     const cottageView = props.cottageView
     const { language } = useLanguageStore();
     return (
-        <div className="imag-and-desc-wrap w-100 gap-3 d-flex">
-            <div className="cottage-images">
+        <div className="max-w-6xl  items-start">
+            <div className="">
                 <Swiper
                     style={{
                         "--swiper-navigation-color": "#fff",
@@ -43,13 +43,12 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                 >
                     {cottageView?.images &&
                         cottageView.images.map((img) => (
-                            <SwiperSlide key={img.id}>
+                            <SwiperSlide className="relative" key={img.id}>
                                 <Image
-                                    className="view-image"
+                                    className="view-image w-full h-[520px]"
                                     src={`${IMG_BASE_URL}${img?.image}`}
                                     alt="img"
-                                    width={1024}
-                                    height={560}
+                                    fill
                                 />
                             </SwiperSlide>
                         ))}
@@ -77,13 +76,12 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                         ))}
                 </Swiper>
             </div>
-            <div className="contact-me">
-                <div className="contactUSer">
+            <div className="w-[300px]">
+                <div className="flex flex-col">
                     <p>{ViewPageLanguage.contactUser[language]}</p>
                     <div className="contact__user">
                         {cottageView?.user?.image ? (
                             <Image
-
                                 src={`${IMG_BASE_URL}${cottageView?.user?.image}`}
                                 height={40}
                                 width={40} alt={""} />
@@ -96,7 +94,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                     </div>
                     <Link
                         href={`/home/view/cottage/${cottageView?.user?.id}`}
-                        className="announCementLink"
+                        className=""
                     >
                         <span>{ViewPageLanguage.announcement[language]}</span>
 
