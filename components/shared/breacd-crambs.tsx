@@ -10,7 +10,7 @@ interface Props{
 const BreacdCrambs = (props: Props) => {
 
     return (
-        <Breadcrumb>
+        <Breadcrumb className='mb-3'>
             <BreadcrumbList>
                 {props.data.map(el => (
                     <Fragment key={el.slug}>

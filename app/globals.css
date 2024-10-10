@@ -79,3 +79,6 @@
 .swiper{
   z-index: 0 !important;
 }
+.view-p::-webkit-scrollbar{
+  display: none;
+}

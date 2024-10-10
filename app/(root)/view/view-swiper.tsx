@@ -27,8 +27,8 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
     const cottageView = props.cottageView
     const { language } = useLanguageStore();
     return (
-        <div className="max-w-6xl  items-start">
-            <div className="">
+        <div className="grid grid-cols-12 gap-2 items-start" >
+            <div className="col-span-12 md:col-span-9">
                 <Swiper
                     style={{
                         "--swiper-navigation-color": "#fff",
@@ -43,12 +43,13 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                 >
                     {cottageView?.images &&
                         cottageView.images.map((img) => (
-                            <SwiperSlide className="relative" key={img.id}>
+                            <SwiperSlide key={img.id}>                       
                                 <Image
-                                    className="view-image w-full h-[520px]"
+                                    className=" md:w-[950px] h-[250px] md:h-[480px]"
                                     src={`${IMG_BASE_URL}${img?.image}`}
                                     alt="img"
-                                    fill
+                                    width={950}
+                                    height={480}
                                 />
                             </SwiperSlide>
                         ))}
@@ -66,7 +67,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                         cottageView.images.map((img) => (
                             <SwiperSlide key={img.id}>
                                 <Image
-                                    className="view-image-child"
+                                    className="w-[250] h-[90px] md:h-[150px]"
                                     src={`${IMG_BASE_URL}${img?.image}`}
                                     alt="img"
                                     width={250}
@@ -76,8 +77,8 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                         ))}
                 </Swiper>
             </div>
-            <div className="w-[300px]">
-                <div className="flex flex-col">
+            <div className="col-span-12 md:col-span-3 md:sticky md:top-[15vh] flex-none rounded-md flex flex-col space-y-2 border p-5">
+                <div className="flex flex-col space-y-2">
                     <p>{ViewPageLanguage.contactUser[language]}</p>
                     <div className="contact__user">
                         {cottageView?.user?.image ? (
@@ -94,7 +95,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                     </div>
                     <Link
                         href={`/home/view/cottage/${cottageView?.user?.id}`}
-                        className=""
+                        className="flex items-center underline text-blue-500"
                     >
                         <span>{ViewPageLanguage.announcement[language]}</span>
 
@@ -105,7 +106,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                 </div>
                 <Link
                     href={`tel:+998${cottageView?.user?.phone}`}
-                    className="btn btn-outline-success callLink p-0 call-me mt-3 text-center"
+                    className="btn flex gap-3 border border-green-500 justify-center items-center p-2 rounded-md text-green-500 text-[16px] font-medium outline-green-600"
                 >
                     <FiPhoneCall size={23} />
                     <span className="fs-5 fw-bold">

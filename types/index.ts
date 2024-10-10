@@ -32,7 +32,7 @@ export interface cottage{
     id: string,
     name: string,
     images: image[],
-    comforts: camfort[],
+    comforts: comfort[],
     cottageStatus: "confirmed" | 'progress',
     cottageType: cottageType[],
     description: string,
@@ -65,7 +65,7 @@ export interface image{
   isMainImage: boolean,
   status: "active" | "inactive"
 }
-interface camfort {
+export interface comfort {
   id: string,
   image: string,
   name: string,

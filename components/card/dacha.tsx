@@ -14,6 +14,7 @@ import { Button } from '../ui/button';
 import {FaHeart} from 'react-icons/fa'
 import { useLikeStore } from '@/store/like-card';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const Dacha = (dacha: cottageTop) => {
     console.log(dacha);
@@ -28,6 +29,7 @@ const Dacha = (dacha: cottageTop) => {
 
     return (
         <div className='relative max-w-[350px] mx-auto md:ml-0 md:max-w-[300px] border group shadow-lg rounded-md overflow-hidden'>
+            <Link href={`view/${dacha.cottage.id}`}>
             <Swiper
                 pagination={{
                     type: 'fraction',
@@ -54,8 +56,9 @@ const Dacha = (dacha: cottageTop) => {
                     <Badge variant='secondary' className=''>{dacha.cottage.place.name}</Badge>
                 </div>
             </div> 
-            <Button onClick={() => handleLikeClick(dacha.cottage.id)} variant='ghost' className='absolute top-0 right-0'>
-                <span className={cn('overflow-hidden', isLiked && 'transition-colors text-red-700')}><FaHeart  size={20}/></span>
+            </Link>
+            <Button onClick={() => handleLikeClick(dacha.cottage.id)} variant='link' className='absolute  top-0 right-0'>
+                <span className={cn('overflow-hidden text-white', isLiked && 'transition-colors text-red-700')}><FaHeart  size={20}/></span>
             </Button>
         </div>
     );
