@@ -11,7 +11,7 @@ const Footer = () => {
     const language: langKey = store.language 
 
     return (
-        <div className="footer mt-96 space-y-4">
+        <div className="footer mt-10 space-y-4">
             <Separator/>
             <div className="container max-w-6xl mx-auto">
             <h3 className="text-center md:text-start footer-header font-createRound text-3xl space-y-5">DachaOL</h3>

@@ -34,11 +34,14 @@ const Navbar = () => {
                     </Link>
                 ))}
             </div>
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-2 items-center">
                 <GlobalFilter/>
                 <ModeToggle/>
                 <MobileNav/> 
                 <ChangeLanguage/>
+                {pathname=='/login'?<></>:<Link href={'/login'} className='underline font-createRound text-xl px-2'>
+                    LogIn
+                </Link>}
             </div>
         </div>
     </div>
