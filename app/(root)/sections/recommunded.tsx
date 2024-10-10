@@ -8,7 +8,6 @@ import { cottageTop } from "@/types";
 const Recommunded = () => {
     const {language} = useLanguageStore()
     const cottages = ALL_DATA.useCottageRecommended()?.data
-    console.log(cottages);
     
     return (
         <div className="mt-5 px-3 md:px-1">

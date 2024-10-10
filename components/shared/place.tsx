@@ -55,7 +55,7 @@ const Place = () => {
                 {places.data?.length &&
                     places?.data.map((place: place) => (
                         <SwiperSlide key={place.id} className="">
-                            <Link href={`/home/vacation/${place.id}`} className="relative !w-[150px] !h-[150px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
+                            <Link href={`/place/${place.id}`} className="relative !w-[150px] !h-[150px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
                                 <Image
                                     width={150}
                                     height={150}

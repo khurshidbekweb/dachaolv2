@@ -19,9 +19,9 @@ const MiniNav = () => {
             </Link>
             
             {/* Plus Button */}
-            <div className="flex flex-col items-center">
+            <Link href={'/add-new'} className="flex flex-col items-center">
                 <PlusIcon className="w-6 h-6 text-black" />
-            </div>
+            </Link>
             
             {/* User Button */}
             <div className="flex flex-col items-center">

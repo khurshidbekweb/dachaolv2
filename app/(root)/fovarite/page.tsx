@@ -8,7 +8,7 @@ import { cottageTop } from "@/types";
 
 const data = [
     {slug: '/', title:'Home'},
-    {slug: '/cottage', title:'Cottage'},
+    {slug: 'cottage', title:'Cottage'},
 ]
 
 const Fovarite = () => {

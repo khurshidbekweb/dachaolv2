@@ -17,7 +17,6 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 const Dacha = (dacha: cottageTop) => {
-    console.log(dacha);
     const likedCards = useLikeStore(state => state.likedCards);
     const toggleLike = useLikeStore(state => state.toggleLike);
 
