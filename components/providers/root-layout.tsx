@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ChildProps } from '@/types';
 import {Crete_Round, Work_Sans} from 'next/font/google'
 import Head from 'next/head';
+import { Toaster } from 'sonner';
 
 const creteRound = Crete_Round({
     weight: ['400'],
@@ -33,6 +34,7 @@ const creteRound = Crete_Round({
               <QueryClientProvider client={queryClient}>
                 {children}
               </QueryClientProvider>
+              <Toaster position='top-center'/>
           </ThemeProvider>
         </body>
       </html>
