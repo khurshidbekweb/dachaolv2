@@ -10,6 +10,7 @@ import MobileNav from './mobile';
 import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
 import { CircleUser } from 'lucide-react';
+import User from './user';
 
 const Navbar = () => {
     const pathname = usePathname()    
@@ -44,7 +45,7 @@ const Navbar = () => {
                 <div className="hidden md:block">
                     <ChangeLanguage/>
                 </div>
-                {accessAToken && refreshToken ? <CircleUser className='' size={30}/> : 
+                {accessAToken && refreshToken ? <div className="hidden md:block"><User/></div> : 
                 pathname=='/login'?<></>:<Link href={'/login'} className='underline hidden lg:block font-createRound text-xl px-2'>
                     LogIn
                 </Link>

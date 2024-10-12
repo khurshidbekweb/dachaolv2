@@ -1,5 +1,6 @@
 'use client'
 import ChangeLanguage from "@/app/(root)/_components/change-language";
+import User from "@/app/(root)/_components/user";
 import { useLikeStore } from "@/store/like-card";
 import { HeartIcon, HomeIcon, PlusIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
@@ -29,7 +30,7 @@ const MiniNav = () => {
                             <PlusIcon className="w-6 h-6 text-black dark:text-white" />
                         </Link>
                         <div className="flex flex-col items-center">
-                            <UserIcon className="w-6 h-6 text-black dark:text-white" />
+                            <User/>
                         </div>
                     </> :
                     <Link href={'/login'} className='bg-green-600 dark:bg-green-400 text-white p-2 rounded-md font-createRound text-[16px]'>
