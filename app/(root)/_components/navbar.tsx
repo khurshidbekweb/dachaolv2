@@ -9,9 +9,12 @@ import React from 'react';
 import MobileNav from './mobile';
 import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
+import { CircleUser } from 'lucide-react';
 
 const Navbar = () => {
-    const pathname = usePathname()
+    const pathname = usePathname()    
+    const accessAToken = localStorage.getItem('accessToken')
+    const refreshToken = localStorage.getItem('refreshToken')
     
     return (
     <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
@@ -38,10 +41,14 @@ const Navbar = () => {
                 <GlobalFilter/>
                 <ModeToggle/>
                 <MobileNav/> 
-                <ChangeLanguage/>
-                {pathname=='/login'?<></>:<Link href={'/login'} className='underline font-createRound text-xl px-2'>
+                <div className="hidden md:block">
+                    <ChangeLanguage/>
+                </div>
+                {accessAToken && refreshToken ? <CircleUser className='' size={30}/> : 
+                pathname=='/login'?<></>:<Link href={'/login'} className='underline hidden lg:block font-createRound text-xl px-2'>
                     LogIn
-                </Link>}
+                </Link>
+                }
             </div>
         </div>
     </div>

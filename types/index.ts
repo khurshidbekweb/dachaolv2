@@ -70,7 +70,7 @@ export interface comfort {
   image: string,
   name: string,
 }
-interface cottageType{
+export interface cottageType{
   id: string,
   name: string,
 }
@@ -80,7 +80,7 @@ export interface place {
   name: string,
   regionId: string,
 }
-interface region {
+export interface region {
   id: string,
   name: string,
 }

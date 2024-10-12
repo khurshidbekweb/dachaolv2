@@ -14,8 +14,11 @@ import { IMG_BASE_URL } from '@/constants/server';
 import { toast } from 'sonner';
 import { authUtils } from '@/utils/auth.utils';
 import { QUERY_KEYS } from '@/Query/query-keys';
-import { cottage, langKey } from '@/types';
+import { comfort, cottage, cottageType, langKey, place, region } from '@/types';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 
 
 // Images transform getbase64Full
@@ -136,7 +139,7 @@ const AddNew = () => {
   
     const handleMainImage = async (e) => {
       const mainImgUrl = await getBase64Full(e.target.files[0]);
-      mainImage.current.classList.remove("d-none");
+      mainImage.current.classList.remove("hidden");
       mainImage.current.setAttribute("src", mainImgUrl);
     };
   
@@ -148,7 +151,7 @@ const AddNew = () => {
       for (const image of images) {
         childImagesWrapper.current.insertAdjacentHTML(
           "beforeend",
-          `<img src=${image} width="100" height="100" alt="child image" className="overflow-hidden"/>`
+          `<img src=${image} width="100" height="100" alt="child image" className="w-[120px] !h-[110px] overflow-hidden"/>`
         );
       }
     };
@@ -160,53 +163,54 @@ const AddNew = () => {
                 <h2 className='text-2xl md:text-3xl font-createRound'>Add new Cottage</h2>
             </div>
             <div className="addnew">
-          <h3 className="addnew-header">
+          <h3 className="text-2xl md:text-3xl font-createRound mt-5">
             {AddNewPageLanguage.maintitle[language]}
           </h3>
           <form onSubmit={handlCottage}>
-            <div className="addnew-imgs">
-              <div className="addnew-box">
-                <label className="addnew-img-bg label-input-file">
+            <div className="addnew-imgs grid grid-cols-4 gap-2">
+              <div className="addnew-box relative col-span-2 md:col-span-1">
+                <label className="absolute w-full flex items-center justify-center h-full bg-black/50 rounded-3xl overflow-hidden">
                   <Input
                     type="file"
                     accept="image/*"
                     name="mainImage"
-                    className="input-file"
+                    className="input-file w-1 h-1 opacity-0"
                     onChange={handleMainImage}
                   />
-                  <p className="addnew-img-text">
+                  <p className="text-white text-2xl md:text-3xl font-createRound">
                     {AddNewPageLanguage.mainPhoto[language]}
                   </p>
                 </label>
                 <Image
                   ref={mainImage}
-                  className="addnew-img"
+                  className="z-20"
                   src={Dacha3}
                   alt="add"
-                  
+                  width={250}
+                  height={250}
                 />
               </div>
-              <div className="addnew-add">
-                <label className="label-input-file">
+              <div className="addnew-add col-span-2 md:col-span-1 relative border rounded-3xl cursor-pointer">
+                <label className="label-input-file absolute w-full h-full flex items-center justify-center flex-col">
                   <Input
                     type="file"
                     name="childimg"
                     multiple
                     accept="image/*"
-                    className="input-file"
+                    className="w-1 h-1 opacity-0"
                     onChange={handlmultipleImg}
                   />
-                  <ImagePlus/>
-                  <p className="addnew-add-text">
+                  <ImagePlus size={30}/>
+                  <p className="addnew-add-text font-createRound text-xl">
                     {AddNewPageLanguage.addPhoto[language]}
                   </p>
                 </label>
               </div>
-              <div ref={childImagesWrapper} className="image-child-wrap "></div>
+              <div ref={childImagesWrapper} className="col-span-4 md:col-span-2 flex flex-wrap items-start gap-2"></div>
             </div>
 
             <div>
-              <h3 className="addnew-header">
+              <h3 className="pt-10 text-2xl md:text-3xl font-createRound">
                 {AddNewPageLanguage.typeCottage[language]}
               </h3>
               <h5>{AddNewPageLanguage.cottageName[language]}</h5>
@@ -216,115 +220,121 @@ const AddNew = () => {
                 className="add-new-title-main my-4 form-input"
                 placeholder={AddNewPageLanguage.name[language]}
               />
-              <div className="flex justify-between ">
+              <div className="w-full md:w-[40%] grid grid-cols-2 gap-2">
                 <div className="mini-wrap-select">
                   <h3 className="addnew-label mb-3">
                     {AddNewPageLanguage.region[language]}
                   </h3>
-                  <select
+                  <Select
                     name="region"
-                    className="addnew-select form-select w-100"
                   >
-                    {region.data?.length &&
-                      region.data.map((e) => (
-                        <option key={e.id} value={e.id}>
+                   <SelectTrigger className='w-full'>
+                      <SelectValue placeholder='Viloyat tanlang'/>
+                   </SelectTrigger>
+                   <SelectContent>
+                   {region.data?.length &&
+                      region.data.map((e:region) => (
+                        <SelectItem key={e.id} value={e.id}>
                           {e.name}
-                        </option>
+                        </SelectItem>
                       ))}
-                  </select>
+                   </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="mini-wrap-select">
                   <h3 className="addnew-label mb-3">
                     {AddNewPageLanguage.Place[language]}
                   </h3>
-                  <select
+                  <Select
                     name="place"
-                    className="addnew-select  d-block form-select w-100"
                   >
-                    {place.data?.length &&
-                      place.data.map((e) => (
-                        <option key={e.id} name="place" value={e.id}>
-                          {e.name}
-                        </option>
-                      ))}
-                  </select>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Joy nomini tanlang" />
+                    </SelectTrigger>
+                    <SelectContent className='p-2 rounded-md'>
+                      {place.data?.length &&
+                        place.data.map((e:place) => (
+                          <SelectItem key={e.id} value={e.id}>
+                            {e.name}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
-              <h5>{AddNewPageLanguage.Price[language]}</h5>
-              <div className="price-wrap  d-flex gap-2 mb-4">
-                <input
+              <h5 className='text-2xl md:text-3xl font-createRound my-4'>{AddNewPageLanguage.Price[language]}</h5>
+              <div className="w-full md:w-[40%] flex gap-2">
+                <Input
                   type="number"
                   name="price"
-                  className="form-control w-100"
                   placeholder={AddNewPageLanguage.Price[language]}
                 />
-                <input
+                <Input
                   type="number"
                   name="priceweekend"
-                  className="form-control w-100"
                   placeholder={AddNewPageLanguage.weekendPrice[language]}
                 />
               </div>
 
-              <h3 className="addnew-label mb-3">
+              <h3 className="text-2xl md:text-3xl font-createRound my-5">
                 {AddNewPageLanguage.dachaType[language]}
               </h3>
-              <div className="addnew-inner">
+              <div className="addnew-inner my-3">
                 {cottageType.data?.length &&
-                  cottageType.data.map((e) => (
-                    <label key={e.id} className="addnew-inner-check">
+                  cottageType.data.map((e:cottageType) => (
+                    <label key={e.id} className="flex items-center gap-2">
                       <input
-                        className="form-check-input checkboxComfort"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                         type="checkbox"
                         value={e.id}
                         name="cottagetype"
                         onChange={handlChoseCottageType}
                       />
-                      <span>{e.name}</span>
+                      <span className='text-xl'>{e.name}</span>
                     </label>
                   ))}
               </div>
             </div>
 
-            <h3 className="addnew-header">
+            <h3 className="addnew-header text-2xl md:text-3xl font-createRound my-3">
               {AddNewPageLanguage.comforts[language]}
             </h3>
 
-            <div className="addnew-objects">
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4">
               {comforts.data?.length &&
-                comforts.data.map((e) => (
-                  <label key={e.id} className="addnew-object">
+                comforts.data.map((e:comfort) => (
+                  <label key={e.id} className="flex items-center gap-2">
                     <input
-                      className="form-check-input checkboxComfort"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                       type="checkbox"
                       value={e.id}
                       onChange={handleCottageComforts}
                     />
                     <Image
-                      className="bg-white rounded-1"
+                      className="bg-white rounded-sm"
                       width={20}
                       height={20}
                       src={`${IMG_BASE_URL}${e.image}`}
                       alt="img"
                     />
-                    <p className="addnew-object-text">{e.name}</p>
+                    <p className="text-xl">{e.name}</p>
                   </label>
                 ))}
             </div>
 
-            <h3 className="addnew-header">
+            <h3 className="text-2xl md:text-3xl font-createRound my-5">
               {AddNewPageLanguage.description[language]}
             </h3>
-            <textarea
+            <Textarea
               name="description"
-              className="addnew-message"
+              className="w-full md:w-[70%] h-[150px] md:h-[250px]"
               placeholder={AddNewPageLanguage.shortDescription[language]}
             />
-            <button type="submit" className="soxranit">
+            <Button type="submit" className=" p-2 w-full md:w-[200px] mt-5 rounded-lg">
               {AddNewPageLanguage.save[language]}
-            </button>
+            </Button>
           </form>
         </div>
         </div>

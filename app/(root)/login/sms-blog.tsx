@@ -55,7 +55,7 @@ const SmsBlog = () => {
                             Qayta yuborish
                         </button>
                     </p>
-                </div>
+        </div>
     );
 };
 

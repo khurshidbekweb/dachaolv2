@@ -64,14 +64,14 @@ const Login = () => {
     });
 
 
-    const handleAuth = (e: { preventDefault: () => void; target: { phonenumber: { value: string; }; }; }) => {
+    const handleAuth = (e) => {
         e.preventDefault();
         phone.mutate({
             phone: e.target.phonenumber.value.replaceAll(" ", "").slice(4),
         });
     };
 
-    const handleLogin = (e: { preventDefault: () => void; target: { smsCode: { value: any; }; }; }) => {
+    const handleLogin = (e) => {
         e.preventDefault();
         const smsCode:string[] = []
         Object.values(e.target.smsCode).map(num => {
@@ -106,7 +106,7 @@ function authLOgin(step: number) {
                     Kirish
                 </h2>
                 <form onSubmit={handleAuth} >
-                    <label htmlFor="phone" className="block text-sm text-gray-700">
+                    <label htmlFor="phone" className="block text-gray-700 py-2 text-sm font-createRound">
                         Telefon raqami
                     </label>
                     <Cleave
@@ -117,7 +117,7 @@ function authLOgin(step: number) {
                             numericOnly: true,
                         }}
                         placeholder="Phone number"
-                        className="w-full p-2 border outline-blue-500  rounded-md"
+                        className="w-full p-2 dark:bg-slate-100 text-xl text-black  rounded-md"
                         name="phonenumber"
                         required
                     />
@@ -136,7 +136,7 @@ function authLOgin(step: number) {
                     SMS kodini kiriting
                 </h2>
                 <p className="text-center text-gray-600 mb-4">
-                    +998 90 123 45 67 raqamiga yuborilgan SMS kodini kiriting
+                    +998971082004 raqamiga yuborilgan SMS kodini kiriting
                 </p>
                 <form onSubmit={handleLogin}>
                     <div className="flex justify-between items-center mb-4">
@@ -149,7 +149,7 @@ function authLOgin(step: number) {
                                 maxLength={1} 
                                 onChange={(e) => handleChange(index, e.target.value)}
                                 onKeyDown={(e) => handleKeyDown(index, e)}
-                                className="w-12 h-12 text-center text-lg border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                className="w-12 h-12 text-center text-lg border font-createRound tet-xl dark:bg-slate-100 text-black border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                             />
                         ))}
                     </div>
