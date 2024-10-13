@@ -39,7 +39,7 @@ const Place = () => {
                     },
                     768: {
                         width: 768,
-                        slidesPerView: 3,
+                        slidesPerView: 4,
                     },
                     1024: {
                         width: 960,

@@ -12,6 +12,7 @@ custimAxios.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err?.response?.status === 406) {
+      window.location.reload()
       authUtils.refreshAuth();
     }
     return Promise.reject(err);

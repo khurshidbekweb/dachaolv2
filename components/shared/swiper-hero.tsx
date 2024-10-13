@@ -38,7 +38,7 @@ const SwiperHero = () => {
       >
         {cottageTop && cottageTop.map((el: cottageTop) => (
           <SwiperSlide key={el.id}>
-            <div className="min-w-[100%] mx-auto relative h-[35vh] md:h-[80vh]">
+            <div className="min-w-[100%] mx-auto relative h-[35vh] md:h-[50vh] lg:h-[80vh]">
               <Image
                 fill
                 src={`${IMG_BASE_URL}${
