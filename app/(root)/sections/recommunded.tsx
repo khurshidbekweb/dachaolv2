@@ -12,7 +12,7 @@ const Recommunded = () => {
     return (
         <div className="mt-5 px-3 md:px-1">
             <h2 className="text-2xl md:text-4xl font-createRound">{RecamudetLeng[language]}</h2>
-            <div className="w-full mt-5 flex flex-col md:flex-row md:flex-wrap gap-5">
+            <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                 {cottages && cottages.map((dacha: cottageTop) => (
                     <Dacha key={dacha.id} {...dacha}/>
                 ))}

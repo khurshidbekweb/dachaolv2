@@ -28,7 +28,7 @@ const User = () => {
                     <DropdownMenuItem>
                         <Link href={'/add-new'} className="w-full flex justify-between items-center">
                             <TfiAnnouncement className="mr-2 h-4 w-4" />
-                            <span>E'lonlan qoyish</span>
+                            <span>E`lonlan qoyish</span>
                             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                         </Link>
                     </DropdownMenuItem>
@@ -51,7 +51,7 @@ const User = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={clearUser} className="bg-destructive">
                     <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
+                    <span className="text-white">Log out</span>
                     <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                 </DropdownMenuItem>
             </DropdownMenuContent>

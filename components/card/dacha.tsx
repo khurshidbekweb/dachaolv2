@@ -27,7 +27,7 @@ const Dacha = (dacha: cottageTop) => {
     };
 
     return (
-        <div className='relative max-w-[350px] mx-auto md:ml-0 md:max-w-[300px] border group shadow-lg rounded-md overflow-hidden'>
+        <div className='relative max-w-[165px] mx-auto md:ml-0 md:max-w-[250px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`view/${dacha.cottage.id}`}>
             <Swiper
                 pagination={{
@@ -38,8 +38,8 @@ const Dacha = (dacha: cottageTop) => {
             >
                 {
                     dacha && dacha.cottage.images.map((img: image) => (
-                            <SwiperSlide className='!h-[220px]' key={img.id}>
-                                <Image className='w-full h-[220px]' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
+                            <SwiperSlide className='!h-[140px] !md:h-[190px]' key={img.id}>
+                                <Image className='w-full h-[140px] md:h-[190px]' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
                             </SwiperSlide>
                     ))
                 }
@@ -47,10 +47,10 @@ const Dacha = (dacha: cottageTop) => {
             </Swiper> 
             <div className="dacha-info p-2">
                 <div className="flex justify-between items-center">
-                    <h2 className='text-xl md:text-2xl font-createRound'>{dacha.cottage.name}</h2>
+                    <h2 className='text-[16px] md:text-xl font-createRound'>{dacha.cottage.name}</h2>
                     <p className='font-createRound text-xl text-yellow-400'>{dacha.cottage.price}$</p>
                 </div>
-                <div className="flex gap-x-4 items-center">
+                <div className="flex gap-x-4 items-start space-y-2 flex-col md:flex-row md:items-center">
                     <Badge variant='secondary'>{dacha.cottage.region.name}</Badge>
                     <Badge variant='secondary' className=''>{dacha.cottage.place.name}</Badge>
                 </div>
