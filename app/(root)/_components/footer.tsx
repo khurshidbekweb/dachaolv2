@@ -1,14 +1,15 @@
 'use client'
 
-import useLanguageStore from '@/store/language-provider';
-import { Separator } from '@/components/ui/separator';
-import {  FooterHeadLeng, FooterLink1, FooterLink2, FooterLink3, FooterMiniLang } from '@/constants/language';
-import { langKey } from '@/types';
-import { Facebook, Instagram, Send, Youtube } from 'lucide-react';
-import Link from 'next/link';
+import { Separator } from "@/components/ui/separator";
+import { FooterHeadLeng, FooterLink1, FooterLink2, FooterLink3, FooterMiniLang } from "@/constants/language";
+import useLanguageStore from "@/store/language-provider";
+import { footerLang, langKey } from "@/types";
+import { Facebook, Instagram, Send, Youtube } from "lucide-react";
+import Link from "next/link";
+
 const Footer = () => {
-    const store= useLanguageStore()
-    const language: langKey = store.language 
+    const store = useLanguageStore()
+    const language: langKey = store.language as keyof footerLang;
 
     return (
         <div className="footer mt-10 space-y-4">
@@ -62,7 +63,7 @@ const Footer = () => {
                             return (
                             <li key={el.id} className='mt-2'>
                                 <Link href="/" className="footer-link">
-                                {el.content[language]}
+                                    {el.content[language]}
                                 </Link>
                             </li>
                             );

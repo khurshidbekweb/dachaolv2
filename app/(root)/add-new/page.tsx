@@ -13,7 +13,7 @@ import { IMG_BASE_URL } from '@/constants/server';
 import { toast } from 'sonner';
 import { authUtils } from '@/utils/auth.utils';
 import { QUERY_KEYS } from '@/Query/query-keys';
-import { comfort, cottageType, langKey, place, region } from '@/types';
+import { comfort, cottageType, footerLang, langKey, place, region } from '@/types';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
@@ -33,10 +33,10 @@ async function getBase64Full(file: Blob) {
   }
 
 const AddNew = () => {
-    const mainImage:React.MutableRefObject<null> = useRef(null);
+    const mainImage = useRef<HTMLImageElement | null>(null);
     // get Language
     const store = useLanguageStore()
-    const language: langKey = store.language
+    const language: langKey = store.language as keyof footerLang;
 
     const childImagesWrapper = useRef(null);
   
@@ -69,9 +69,6 @@ const AddNew = () => {
       },
       onError: (err) => {
         console.log(err, "err");
-        if (err?.response?.status === 406) {
-          authUtils.refreshAuth();
-        }
         toast.error(AddNewPageLanguage.cottageError[language]);
       },
     });
@@ -127,8 +124,6 @@ const AddNew = () => {
         cottageType: cottageInfo.response,
         comforts: cottageComforts.response,
         description: e.target.description.value,
-        lattitude: "" || undefined,
-        longitude: "" || undefined,
       });
   
       childImagesWrapper.current.innerHTML = "";
@@ -136,9 +131,14 @@ const AddNew = () => {
     };
   
     const handleMainImage = async (e) => {
-      const mainImgUrl = await getBase64Full(e.target.files[0]);
-      mainImage.current.classList.remove("hidden");
-      mainImage.current.setAttribute("src", mainImgUrl);
+      const result = await getBase64Full(e.target.files[0]);
+      if (typeof result === 'string') { // Tekshirish
+        const mainImgUrl = result; // Endi bu 'string'
+        mainImage.current.classList.remove("hidden");
+        mainImage.current.setAttribute("src", mainImgUrl);
+    } else {
+        console.error("getBase64Full returned a non-string value.");
+    }
     };
   
     const handlmultipleImg = async (e) => {

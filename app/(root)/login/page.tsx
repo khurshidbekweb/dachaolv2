@@ -7,18 +7,18 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { signInLanguage } from '@/constants/language';
 import useLanguageStore from '@/store/language-provider';
-import { langKey } from '@/types';
+import { langKey, footerLang} from '@/types';
 import { authUtils } from '@/utils/auth.utils';
 import { useRouter } from 'next/navigation';
 
 const Login = () => {
     const [step, setStep] = useState<number>(0)
     const store = useLanguageStore()
-    const language: langKey = store.language
+    const language: langKey = store.language as keyof footerLang;
     const navigate = useRouter()
 
     const [code, setCode] = useState(["", "", "", "", ""]);
-    const inputRefs = useRef<HTMLInputElement[]>([]); // Ref massiv  
+    const inputRefs = useRef<HTMLInputElement[]| null>([]); // Ref massiv  
     // Kiritilgan qiymatni o'zgarishini boshqarish
     const handleChange = (index: number, value: string) => {
         const newCode = [...code];
@@ -74,7 +74,7 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         const smsCode:string[] = []
-        Object.values(e.target.smsCode).map(num => {
+        Object.values(e.target.smsCode).map((num: {value:string}) => {
             smsCode.push(num.value)
             
         })
@@ -140,10 +140,14 @@ function authLOgin(step: number) {
                 </p>
                 <form onSubmit={handleLogin}>
                     <div className="flex justify-between items-center mb-4">
-                        {code.map((digit: string | number | readonly string[] | undefined, index: React.Key | null | undefined) => (
+                        {code.map((digit, index: number) => (
                             <input
                                 key={index}
-                                ref={(el) => (inputRefs.current[index] = el!)} // Inputlar refga qo'shiladi
+                                ref={(el) => {
+                                    if (el) {
+                                        inputRefs.current[index] = el; // Bu yerda el null emasligini tekshiramiz
+                                    }
+                                }}  // Inputlar refga qo'shiladi
                                 type="text"
                                 name="smsCode"
                                 maxLength={1} 

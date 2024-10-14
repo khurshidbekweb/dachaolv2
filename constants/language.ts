@@ -214,7 +214,7 @@ export const FooterLink3 = [
   },
 ];
 
-export const FooterHeadLeng:footerLang = {
+export const FooterHeadLeng = {
   uz: {
     link1: "Qo'llab-quvvatlash",
     link2: "Kompaniya",
