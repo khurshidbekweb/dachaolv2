@@ -47,8 +47,10 @@ const Place = () => {
                     }
                 }}
                 onBeforeInit={(swiper) => {
-                    swiper.params.navigation.prevEl = prevPlaceElm.current;
-                    swiper.params.navigation.nextEl = nextPlaceElm.current;
+                    if (swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
+                        swiper.params.navigation.prevEl = prevPlaceElm.current;
+                        swiper.params.navigation.nextEl = nextPlaceElm.current;
+                    }
                 }}
                 modules={[Keyboard, Navigation]}
             >

@@ -14,14 +14,14 @@ import 'swiper/css/pagination';
 
 // import required modules
 import { A11y, Autoplay, Navigation, Pagination, Parallax, Scrollbar } from 'swiper/modules';
-import {cottageTop, langKey, } from "@/types";
+import {cottageTop, footerLang, langKey, } from "@/types";
 
 
 const SwiperHero = () => {
     const cottageTop = ALL_DATA.useCottageTop()?.data;
     // const {language} = useLanguageStore()
     const store= useLanguageStore()
-    const language: langKey = store.language 
+    const language: langKey = store.language as keyof footerLang;
     
     return (
       <Swiper

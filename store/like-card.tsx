@@ -1,6 +1,6 @@
 // src/store/likeStore.ts
-import {create} from 'zustand';
-import { persist, PersistOptions } from 'zustand/middleware';
+import { create } from 'zustand';
+import { persist, PersistStorage } from 'zustand/middleware';
 
 // Typing for the store state and actions
 interface LikeStoreState {
@@ -8,14 +8,23 @@ interface LikeStoreState {
   toggleLike: (cardId: string) => void;
 }
 
-// Define persist options typing
-type LikeStorePersist = (
-  Partial<LikeStoreState> & { likedCards: string[] }
-);
+// Create a custom storage to comply with PersistStorage interface
+const customStorage: PersistStorage<LikeStoreState> = {
+  getItem: (name) => {
+    const item = localStorage.getItem(name);
+    return Promise.resolve(item ? JSON.parse(item) : null); // or just return item if you don't need to parse
+  },
+  setItem: (name, value) => {
+    return Promise.resolve(localStorage.setItem(name, JSON.stringify(value)));
+  },
+  removeItem: (name) => {
+    return Promise.resolve(localStorage.removeItem(name));
+  },
+};
 
 // Creating Zustand store with persist
-export const useLikeStore = create<LikeStoreState>(
-  persist<LikeStoreState, PersistOptions<LikeStoreState, LikeStorePersist>>(
+export const useLikeStore = create(
+  persist<LikeStoreState>(
     (set) => ({
       likedCards: [],
       toggleLike: (cardId) =>
@@ -29,7 +38,8 @@ export const useLikeStore = create<LikeStoreState>(
     }),
     {
       name: 'likes', // LocalStorage kaliti
-      getStorage: () => localStorage, // localStorage-dan foydalanamiz
+      // Use the custom storage instead of the default localStorage
+      storage: customStorage, // localStorage-dan foydalanamiz
     }
   )
 );

@@ -143,7 +143,7 @@ function authLOgin(step: number) {
                         {code.map((digit, index: number) => (
                             <input
                                 key={index}
-                                ref={(el) => {
+                                ref={(el: HTMLInputElement | null) => {
                                     if (el) {
                                         inputRefs.current[index] = el; // Bu yerda el null emasligini tekshiramiz
                                     }
