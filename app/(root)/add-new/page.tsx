@@ -8,13 +8,12 @@ import { cottageUtils } from '@/utils/cottage.utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
-import Dacha3 from '../../../assets/dacha3.png'
 import { ImagePlus } from 'lucide-react';
 import { IMG_BASE_URL } from '@/constants/server';
 import { toast } from 'sonner';
 import { authUtils } from '@/utils/auth.utils';
 import { QUERY_KEYS } from '@/Query/query-keys';
-import { comfort, cottage, cottageType, langKey, place, region } from '@/types';
+import { comfort, cottageType, langKey, place, region } from '@/types';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';

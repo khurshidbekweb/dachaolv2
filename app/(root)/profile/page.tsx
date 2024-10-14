@@ -1,16 +1,10 @@
 'use client'
 
 import BreacdCrambs from '@/components/shared/breacd-crambs';
-import { AddNewPageLanguage, signInLanguage } from '@/constants/language';
-import { IMG_BASE_URL } from '@/constants/server';
 import { ALL_DATA } from '@/Query/get_all';
-import useLanguageStore from '@/store/language-provider';
-import { userUtils } from '@/utils/user.utils';
-import { useMutation } from '@tanstack/react-query';
-import { ImageDown, ImagePlus } from 'lucide-react';
+import { ImageDown } from 'lucide-react';
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
-import { toast } from 'sonner';
+import React, { useRef } from 'react';
 
 async function getBase64Full(file) {
     return new Promise((resolve, reject) => {
@@ -25,46 +19,46 @@ async function getBase64Full(file) {
 
 const Profile = () => {
     const userData = ALL_DATA.useSingleUser();
-    const user = JSON.parse(localStorage.getItem("user"));
+    // const user = JSON.parse(localStorage.getItem("user"));
     // User profile language
-    const { language } = useLanguageStore();
+    // const { language } = useLanguageStore();
     const userImg = userData?.data?.image;
     // const fovarite = JSON.parse(localStorage.getItem("liked"));
     const ismainImage = useRef(null);
-    const saveData = useRef(null);
-    const editImage = useRef(null);
-    const [edit, setEdit] = useState(true);
+    // const saveData = useRef(null);
+    // const editImage = useRef(null);
+    // const [edit, setEdit] = useState(true);
 
-    const userEdit = useMutation({
-        mutationFn: userUtils.editUser,
-        onSuccess: async () => {
-            toast.success(signInLanguage.successLogin[language]);
-            localStorage.setItem("user", JSON.stringify(userData?.data));
-            saveData.current.classList.add("hidden");
-            editImage.current.classList.add("hidden");
-            await userUtils.getSingleUser();
-            setEdit(true);
-        },
-        onError: (err) => {
-            toast.error(AddNewPageLanguage.cottageError[language]);
-            console.log(err);
-        },
-    });
+    // const userEdit = useMutation({
+    //     mutationFn: userUtils.editUser,
+    //     onSuccess: async () => {
+    //         toast.success(signInLanguage.successLogin[language]);
+    //         localStorage.setItem("user", JSON.stringify(userData?.data));
+    //         saveData.current.classList.add("hidden");
+    //         editImage.current.classList.add("hidden");
+    //         await userUtils.getSingleUser();
+    //         console.log(edit);            
+    //         setEdit(true);
+    //     },
+    //     onError: (err) => {
+    //         toast.error(AddNewPageLanguage.cottageError[language]);
+    //         console.log(err);
+    //     },
+    // });
 
-    const handleUser = (e) => {
-        e.preventDefault();
-        userEdit.mutate({
-            id: user.id,
-            phone:
-                e.target.phone.value.slice(4) === user.phone
-                    ? ""
-                    : e.target.phone.value.slice(4),
-            email: e.target.email.value || "",
-            name: e.target.name.value || "",
-            image: e.target.userImage.files[0],
-        });
-    };
-    console.log(userEdit, 'efv');
+    // const handleUser = (e) => {
+    //     e.preventDefault();
+    //     userEdit.mutate({
+    //         id: user.id,
+    //         phone:
+    //             e.target.phone.value.slice(4) === user.phone
+    //                 ? ""
+    //                 : e.target.phone.value.slice(4),
+    //         email: e.target.email.value || "",
+    //         name: e.target.name.value || "",
+    //         image: e.target.userImage.files[0],
+    //     });
+    // };
 
     const handleIsMianImage = async (e) => {
         ismainImage.current.src = await getBase64Full(e.target.files[0]);
@@ -96,7 +90,7 @@ const Profile = () => {
                                     name="userImage"
                                     className="w-1 h-1 opacity-0 absolute curson-pointer"
                                 />
-                                <ImageDown className='absolute bottom-1 right-0 cursor-pointer'/>                        
+                                <ImageDown className='absolute bottom-1 right-0 cursor-pointer bg-slate-400 p-2 rounded-fullnp,'/>                        
                             </label>
                         </div>
                     </div>

@@ -2,7 +2,7 @@
 import ChangeLanguage from "@/app/(root)/_components/change-language";
 import User from "@/app/(root)/_components/user";
 import { useLikeStore } from "@/store/like-card";
-import { HeartIcon, HomeIcon, PlusIcon, UserIcon } from "lucide-react";
+import { HeartIcon, HomeIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 const MiniNav = () => {

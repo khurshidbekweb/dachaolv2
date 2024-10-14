@@ -1,9 +1,7 @@
 'use client'
-import Dacha from '@/components/card/dacha';
 import BreacdCrambs from '@/components/shared/breacd-crambs';
 import { ALL_DATA } from '@/Query/get_all';
-import useLanguageStore from '@/store/language-provider';
-import { cottage, cottageTop, place } from '@/types';
+import { cottageTop, place } from '@/types';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
@@ -14,7 +12,6 @@ const PlaseId = () => {
     console.log(cottages);
 
     const placeName = place?.find((e) => e.id === id)?.name;
-    const { language } = useLanguageStore();
 
     return (
         <div className="max-w-6xl mx-auto px-3 md:px-1">

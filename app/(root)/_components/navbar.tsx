@@ -9,7 +9,6 @@ import React from 'react';
 import MobileNav from './mobile';
 import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
-import { CircleUser } from 'lucide-react';
 import User from './user';
 
 const Navbar = () => {
