@@ -1,4 +1,5 @@
 // src/store/likeStore.ts
+import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import { create } from 'zustand';
 import { persist, PersistStorage } from 'zustand/middleware';
 
@@ -11,14 +12,14 @@ interface LikeStoreState {
 // Create a custom storage to comply with PersistStorage interface
 const customStorage: PersistStorage<LikeStoreState> = {
   getItem: (name) => {
-    const item = localStorage.getItem(name);
+    const item = safeLocalStorage.getItem(name);
     return Promise.resolve(item ? JSON.parse(item) : null); // or just return item if you don't need to parse
   },
   setItem: (name, value) => {
-    return Promise.resolve(localStorage.setItem(name, JSON.stringify(value)));
+    return Promise.resolve(safeLocalStorage.setItem(name, JSON.stringify(value)));
   },
   removeItem: (name) => {
-    return Promise.resolve(localStorage.removeItem(name));
+    return Promise.resolve(safeLocalStorage.removeItem(name));
   },
 };
 
@@ -37,7 +38,7 @@ export const useLikeStore = create(
         }),
     }),
     {
-      name: 'likes', // LocalStorage kaliti
+      name: 'likes', // safeLocalStorage kaliti
       // Use the custom storage instead of the default localStorage
       storage: customStorage, // localStorage-dan foydalanamiz
     }

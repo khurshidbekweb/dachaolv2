@@ -7,14 +7,16 @@ import { IMG_BASE_URL } from "@/constants/server";
 import Image from "next/image";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-const ChangeLanguage = () => {    
+import {safeLocalStorage} from '@/utils/safeLocalstorge'
+const ChangeLanguage = () => {   
     const languages:language[] = ALL_DATA.useLanguage()?.data
-    const activeLang = languages && languages.find((lang: language) => lang.code == localStorage.getItem('language'))  
+    const activeLang = languages && languages.find((lang: language) => lang.code == safeLocalStorage.getItem('language'))  
+      
     const {setLanguage} = useLanguageStore()
     const queryClient = useQueryClient();
 
   const toggleLanguage = (code: string) => {
-    localStorage.setItem("language", code);
+        safeLocalStorage.setItem("language", code);
     setLanguage(code);
     queryClient.invalidateQueries({ type: "all" });
   };

@@ -10,11 +10,12 @@ import MobileNav from './mobile';
 import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
 import User from './user';
+import { safeLocalStorage } from '@/utils/safeLocalstorge';
 
 const Navbar = () => {
     const pathname = usePathname()    
-    const accessAToken = localStorage.getItem('accessToken')
-    const refreshToken = localStorage.getItem('refreshToken')
+    const accessAToken = safeLocalStorage.getItem('accessToken')
+    const refreshToken = safeLocalStorage.getItem('refreshToken')
     
     return (
     <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">

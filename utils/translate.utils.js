@@ -1,10 +1,11 @@
 import custimAxios from "@/config/axios.config";
+import {safeLocalStorage} from './safeLocalstorge'
 
 export const translateUtils = {
   getTranslate: async () => {
     const { data } = await custimAxios.get("translate", {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     });
     return data;
@@ -12,7 +13,7 @@ export const translateUtils = {
   getUnusedTranslates: async () => {
     const { data } = await custimAxios.get("translate/unused", {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     });
     return data;
@@ -20,7 +21,7 @@ export const translateUtils = {
   getTranslateId: async (id) => {
     const { data } = custimAxios.get(`translate/${id}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     });
     return data;

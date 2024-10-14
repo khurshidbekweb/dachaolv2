@@ -1,4 +1,5 @@
 import custimAxios from "@/config/axios.config";
+import { safeLocalStorage } from "./safeLocalstorge";
 
 export const userUtils = {
   getUsers: async () => {
@@ -6,13 +7,13 @@ export const userUtils = {
     return data;
   },
   getSingleUser: async () => {
-    if (!localStorage.getItem("accessToken")) return null;
+    if (!safeLocalStorage.getItem("accessToken")) return null;
     const { data } = await custimAxios.get("/user/me", {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     });
-    localStorage.setItem("user", JSON.stringify(data));
+    safeLocalStorage.setItem("user", JSON.stringify(data));
     return data;
   },
   getCottageUserById: async (userId) => {
@@ -37,7 +38,7 @@ export const userUtils = {
     // );
     const { data } = await custimAxios.patch(`user/edit/${id}`, formData, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     });
     return data;

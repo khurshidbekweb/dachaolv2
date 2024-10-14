@@ -11,6 +11,7 @@ import { notificationUtils } from "../utils/notification.utilis";
 import { ServiceUtils } from "../utils/service.utils";
 import { TariffUtils } from "../utils/tariff.utilis";
 import { OrderUtils } from "../utils/order.utils";
+import { safeLocalStorage } from "@/utils/safeLocalstorge";
 
 export const ALL_DATA = {
   useCottage: () => {
@@ -19,7 +20,7 @@ export const ALL_DATA = {
       queryFn: cottageUtils.getCottage,
     });
 
-    const likedCottages = JSON.parse(localStorage.getItem("liked"));
+    const likedCottages = JSON.parse(safeLocalStorage.getItem("liked"));
     if (cottages.data?.length) {
       const data = cottages.data.map((e) => {
         if (likedCottages?.includes(e.id)) {
@@ -50,7 +51,7 @@ export const ALL_DATA = {
       queryFn: async () => await cottageUtils.getCottageByPlace(placeId),
     });
 
-    const likedCottages = JSON.parse(localStorage.getItem("liked"));
+    const likedCottages = JSON.parse(safeLocalStorage.getItem("liked"));
     if (cottages.data?.length) {
       const data = cottages.data.map((e) => {
         if (likedCottages?.includes(e.id)) {
@@ -82,7 +83,7 @@ export const ALL_DATA = {
       },
     });
 
-    const likedCottages = JSON.parse(localStorage.getItem("liked"));
+    const likedCottages = JSON.parse(safeLocalStorage.getItem("liked"));
     if (filters.data?.length) {
       const data = filters.data.map((e) => {
         if (likedCottages?.includes(e.id)) {
@@ -119,7 +120,7 @@ export const ALL_DATA = {
       queryFn: async () => await cottageUtils.getCottageUserId(userId),
     });
 
-    const likedCottages = JSON.parse(localStorage.getItem("liked"));
+    const likedCottages = JSON.parse(safeLocalStorage.getItem("liked"));
 
     if (userCottage.data?.length) {
       const data = userCottage.data.map((e) => {

@@ -1,11 +1,12 @@
 import custimAxios from "@/config/axios.config";
+import { safeLocalStorage } from "./safeLocalstorge";
 
 export const ServiceUtils = {
   getService: async () => {
     const { data } = await custimAxios.get("/services", {
       headers: {
-        "accept-language": localStorage.getItem("language"),
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "accept-language": safeLocalStorage.getItem("language"),
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     });
     return data;
@@ -13,8 +14,8 @@ export const ServiceUtils = {
   getServiceId: async (id) => {
     const {data} = await custimAxios.get(`services/${id}`, {
       headers: {
-        "accept-language": localStorage.getItem("language"),
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "accept-language": safeLocalStorage.getItem("language"),
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     })
     return data

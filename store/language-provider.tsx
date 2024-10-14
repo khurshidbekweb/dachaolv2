@@ -1,4 +1,5 @@
 // store.ts (yangi fayl)
+import { safeLocalStorage } from "@/utils/safeLocalstorge";
 import { create } from "zustand";
 
 interface LanguageState {
@@ -7,9 +8,9 @@ interface LanguageState {
 }
 
 const useLanguageStore = create<LanguageState>((set) => ({
-  language: typeof window !== "undefined" ? localStorage.getItem("language") || "uz" : "uz",
+  language: typeof window !== "undefined" ? safeLocalStorage.getItem("language") || "uz" : "uz",
   setLanguage: (language: string) => {
-    localStorage.setItem("language", language);
+    safeLocalStorage.setItem("language", language);
       set({ language });
   },
 }));

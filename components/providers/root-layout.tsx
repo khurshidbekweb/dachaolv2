@@ -6,6 +6,7 @@ import { ChildProps } from '@/types';
 import {Crete_Round, Work_Sans} from 'next/font/google'
 import Head from 'next/head';
 import { Toaster } from 'sonner';
+import { safeLocalStorage } from '@/utils/safeLocalstorge';
 
 const creteRound = Crete_Round({
     weight: ['400'],
@@ -20,7 +21,7 @@ const creteRound = Crete_Round({
   })
   
   const RootLayoutClient = ({children}:ChildProps) => {
-    if (!localStorage.getItem("language")) localStorage.setItem("language", "uz");
+    if (!safeLocalStorage.getItem("language")) safeLocalStorage.setItem("language", "uz");
     const queryClient = new QueryClient()
     return (
         <html lang="en" suppressHydrationWarning>

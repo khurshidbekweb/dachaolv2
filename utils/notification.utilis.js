@@ -1,10 +1,11 @@
 import custimAxios from "@/config/axios.config";
+import { safeLocalStorage } from "./safeLocalstorge";
 
 export const notificationUtils = {
   getNotification: async () => {
     const { data } = await custimAxios.get("/notification/all", {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     });
     return data;
@@ -24,7 +25,7 @@ export const notificationUtils = {
       },
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
         },
       }
     );

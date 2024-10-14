@@ -1,4 +1,5 @@
 import custimAxios from "@/config/axios.config";
+import { safeLocalStorage } from "./safeLocalstorge";
 
 export const authUtils = {
   loginAuth: async ({ smsCode, userId }) => {
@@ -8,9 +9,9 @@ export const authUtils = {
       userId,
     });
 
-    localStorage.setItem("accessToken", data?.accessToken);
-    localStorage.setItem("refreshToken", data?.refreshToken);
-    localStorage.setItem("user", JSON.stringify(data?.user));
+    safeLocalStorage.setItem("accessToken", data?.accessToken);
+    safeLocalStorage.setItem("refreshToken", data?.refreshToken);
+    safeLocalStorage.setItem("user", JSON.stringify(data?.user));
 
     // rewrite axios token
     custimAxios.defaults.headers.common[
@@ -34,18 +35,18 @@ export const authUtils = {
       },
       {
         headers: {
-          refreshToken: localStorage.getItem("refreshToken"),
+          refreshToken: safeLocalStorage.getItem("refreshToken"),
         },
       }
     );
 
-    localStorage.setItem("accessToken", data?.accessToken);
-    localStorage.setItem("refreshToken", data?.refreshToken);
+    safeLocalStorage.setItem("accessToken", data?.accessToken);
+    safeLocalStorage.setItem("refreshToken", data?.refreshToken);
 
     // rewrite axios token
     custimAxios.defaults.headers.common[
       "Authorization"
-    ] = `Bearer ${localStorage.getItem("accessToken")}`;
+    ] = `Bearer ${safeLocalStorage.getItem("accessToken")}`;
 
     return data;
   },

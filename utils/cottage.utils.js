@@ -1,10 +1,11 @@
 import custimAxios from "@/config/axios.config";
+import { safeLocalStorage } from "./safeLocalstorge";
 
 export const cottageUtils = {
   getCottage: async () => {
     const { data } = await custimAxios.get("/cottage", {
       headers: {
-        "accept-language": localStorage.getItem("language"),
+        "accept-language": safeLocalStorage.getItem("language"),
       },
     });
     return data;
@@ -12,7 +13,7 @@ export const cottageUtils = {
   getCottageByPlace: async (placeId) => {
     const { data } = await custimAxios.get(`/cottage/place/${placeId}`, {
       headers: {
-        "accept-language": localStorage.getItem("language"),
+        "accept-language": safeLocalStorage.getItem("language"),
       },
     });
     return data;
@@ -20,7 +21,7 @@ export const cottageUtils = {
   getCottageTop: async () => {
     const { data } = await custimAxios.get("/cottage/top", {
       headers: {
-        "accept-language": localStorage.getItem("language"),
+        "accept-language": safeLocalStorage.getItem("language"),
       },
     });
     return data;
@@ -28,7 +29,7 @@ export const cottageUtils = {
   getCottageType: async (type) => {
     const { data } = await custimAxios.get(`/cottage/cottage-type/${type}`, {
       headers: {
-        "accept-language": localStorage.getItem("language"),
+        "accept-language": safeLocalStorage.getItem("language"),
       },
     });
     return data;
@@ -36,8 +37,8 @@ export const cottageUtils = {
   getCottageUser: async () => {
     const { data } = await custimAxios.get("cottage/user", {
       headers: {
-        "accept-language": localStorage.getItem("language"),
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "accept-language": safeLocalStorage.getItem("language"),
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
       },
     });
     return data;
@@ -45,7 +46,7 @@ export const cottageUtils = {
   getCottageUserId: async (userId) => {
     const { data } = await custimAxios.get(`cottage/user/${userId}`, {
       headers: {
-        "accept-language": localStorage.getItem("language"),
+        "accept-language": safeLocalStorage.getItem("language"),
       },
     });
     return data;
@@ -73,7 +74,7 @@ export const cottageUtils = {
         price: price,
 
         headers: {
-          "accept-language": localStorage.getItem("language"),
+          "accept-language": safeLocalStorage.getItem("language"),
         },
       }
     );
@@ -82,7 +83,7 @@ export const cottageUtils = {
   getCottageTariffTop: async (id) => {
     const { data } = await custimAxios.get(`cottage/suitable/${id}`, {
       headers: {
-        "accept-language": localStorage.getItem("language"),
+        "accept-language": safeLocalStorage.getItem("language"),
       },
     });
     return data;
@@ -90,7 +91,7 @@ export const cottageUtils = {
   getCottageRecommended: async () => {
     const { data } = await custimAxios.get("cottage/recommended", {
       headers: {
-        "accept-language": localStorage.getItem("language"),
+        "accept-language": safeLocalStorage.getItem("language"),
       },
     });
     return data;
@@ -121,7 +122,7 @@ export const cottageUtils = {
       formData.append("description", description);
       const { data } = await custimAxios.post("cottage/add", formData, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
         },
       });
       return data;

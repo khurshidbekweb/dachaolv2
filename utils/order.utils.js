@@ -1,11 +1,12 @@
 import custimAxios from "@/config/axios.config";
+import { safeLocalStorage } from "./safeLocalstorge";
 
 export const OrderUtils = {
     getOrder: async () => {
         const {data} = await custimAxios.get('order/all/for/user', {
             headers: {
-                "accept-language": localStorage.getItem("language"),
-                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                "accept-language": safeLocalStorage.getItem("language"),
+                Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
             },
         })
         return data
@@ -17,7 +18,7 @@ export const OrderUtils = {
         },
     {
         headers:{
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
         }
     })
         return data
@@ -30,8 +31,8 @@ export const OrderUtils = {
     }, 
     {
     headers: {
-        "accept-language": localStorage.getItem("language"),
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "accept-language": safeLocalStorage.getItem("language"),
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
     },
     })
     return data

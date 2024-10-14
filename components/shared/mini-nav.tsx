@@ -2,13 +2,14 @@
 import ChangeLanguage from "@/app/(root)/_components/change-language";
 import User from "@/app/(root)/_components/user";
 import { useLikeStore } from "@/store/like-card";
+import { safeLocalStorage } from "@/utils/safeLocalstorge";
 import { HeartIcon, HomeIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 const MiniNav = () => {
     const { likedCards } = useLikeStore()
-    const accessAToken = localStorage.getItem('accessToken')
-    const refreshToken = localStorage.getItem('refreshToken')
+    const accessAToken = safeLocalStorage.getItem('accessToken')
+    const refreshToken = safeLocalStorage.getItem('refreshToken')
     return (
         <div className="fixed bottom-[-2px] w-full bg-white dark:bg-secondary dark:text-white shadow-lg flex justify-around items-center p-2 py-3 md:hidden">
             {/* Home Button */}
