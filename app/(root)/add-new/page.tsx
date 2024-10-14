@@ -133,7 +133,6 @@ const AddNew = () => {
       });
   
       childImagesWrapper.current.innerHTML = "";
-      mainImage.current.setAttribute("src", Dacha3);
       e.target.reset();
     };
   
@@ -168,23 +167,23 @@ const AddNew = () => {
           </h3>
           <form onSubmit={handlCottage}>
             <div className="addnew-imgs grid grid-cols-4 gap-2">
-              <div className="addnew-box relative col-span-2 md:col-span-1">
-                <label className="absolute w-full flex items-center justify-center h-full bg-black/50 rounded-3xl overflow-hidden">
+              <div className="addnew-box relative col-span-2 md:col-span-1 overflow-hidden h-[150px] rounded-b-3xl">
+                <label className="absolute w-full flex flex-col items-center justify-start h-full bg-black/50 ">
                   <Input
                     type="file"
                     accept="image/*"
                     name="mainImage"
-                    className="input-file w-1 h-1 opacity-0"
+                    className="h-[40px] z-0 rounded-none"
                     onChange={handleMainImage}
                   />
-                  <p className="text-white text-2xl md:text-3xl font-createRound">
+                  <p className="text-white flex items-center justify-center text-2xl md:text-3xl font-createRound">
                     {AddNewPageLanguage.mainPhoto[language]}
                   </p>
                 </label>
                 <Image
                   ref={mainImage}
-                  className="z-20"
-                  src={Dacha3}
+                  className="!z-20 w-full hidden !h-[150px]"
+                  src={''}
                   alt="add"
                   width={250}
                   height={250}

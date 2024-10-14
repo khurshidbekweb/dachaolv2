@@ -5,12 +5,14 @@ import { FaServicestack } from "react-icons/fa";
 import { TfiAnnouncement } from 'react-icons/tfi'
 import { FaDiagramSuccessor } from 'react-icons/fa6'
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const User = () => {
     const clearUser = () =>{
         localStorage.clear()
         window.location.reload()
     }
+    const route = useRouter()
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -20,24 +22,22 @@ const User = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => route.push('/profile')}>
                         <Users className="mr-2 h-4 w-4" />
                         <span>Profile</span>
                         <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <Link href={'/add-new'} className="w-full flex justify-between items-center">
+                    <DropdownMenuItem onClick={() => route.push('/add-new')}>
                             <TfiAnnouncement className="mr-2 h-4 w-4" />
                             <span>E`lonlan qoyish</span>
                             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                        </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => route.push('/my-cottage')}>
                         <ShieldHalf className="mr-2 h-4 w-4" />
                         <span>Mening dachalarim</span>
                         <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => route.push('/services')}>
                         <FaServicestack className="mr-2 h-4 w-4" />
                         <span>Services</span>
                         <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
