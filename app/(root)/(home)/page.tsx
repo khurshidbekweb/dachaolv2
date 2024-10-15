@@ -1,7 +1,7 @@
 import Place from '@/components/shared/place';
 import SwiperHero from '@/components/shared/swiper-hero';
 import React from 'react';
-import Recommunded from '../sections/recommunded';
+import Recommunded from '../../../sections/recommunded';
 import MiniNav from '@/components/shared/mini-nav';
 
 const Home = () => {

@@ -108,7 +108,7 @@ export const ALL_DATA = {
       queryFn: async () => await cottageUtils.getCottageType(type),
     }),
 
-  useCottageUserId: () =>
+  useCottageUser: () =>
     useQuery({
       queryKey: [QUERY_KEYS.cottage_by_UserId],
       queryFn: cottageUtils.getCottageUser,

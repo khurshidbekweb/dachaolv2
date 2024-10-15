@@ -98,3 +98,21 @@ export interface breadcrambs {
   title: string,
   slug: string,
 }
+
+export interface services{
+  id: string,
+  name:string,
+  description:string,
+  serviceCode: 'recommended' | 'top',
+  tariffs: tariff[],
+  images: string[]
+}
+
+export interface tariff{
+  id:string,
+  description: string,
+  service_id: string, 
+  days:string,
+  price: string
+  type: string
+}
