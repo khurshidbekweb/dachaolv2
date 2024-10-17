@@ -6,14 +6,18 @@ import { useLikeStore } from "@/store/like-card";
 import { safeLocalStorage } from "@/utils/safeLocalstorge";
 import { HeartIcon, HomeIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const MiniNav = () => {
     const { likedCards } = useLikeStore()
     const pathname = usePathname()
-    
+    const route = useRouter()    
     const accessAToken = safeLocalStorage.getItem('accessToken')
     const refreshToken = safeLocalStorage.getItem('refreshToken')
+
+    if(!accessAToken){
+        route.push('/')
+    }
     return (
         <div className="fixed bottom-[-2px] w-full bg-white dark:bg-secondary dark:text-white shadow-lg flex justify-around items-center p-2 py-3 md:hidden">
             {/* Home Button */}
@@ -38,7 +42,7 @@ const MiniNav = () => {
                             <User/>
                         </div>
                     </> :
-                    <Link href={'/login'} className='bg-green-600 dark:bg-green-400 text-white p-2 rounded-md font-createRound text-[16px]'>
+                    <Link href={'/login'} className='bg-green-600 dark:bg-green-400 text-white p-1 px-2 rounded-md font-createRound text-[16px]'>
                         LogIn
                     </Link>
             }

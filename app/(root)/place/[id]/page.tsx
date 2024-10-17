@@ -21,7 +21,7 @@ const PlaseId = () => {
                 <BreacdCrambs data={[{ slug: '', title: 'Home' }, { slug: 'place', title: 'Place' }]} page={`${placeName}`} />
                 <h2 className='text-2xl md:text-3xl font-createRound'>Place cottage {placeName}</h2>
             </div>
-            <div className="w-full mt-5 flex flex-col md:flex-row md:flex-wrap gap-5">
+            <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                 {cottages && cottages.map((dacha) => (
                     <Dacha key={dacha.id} {...dacha}/>
                 ))}

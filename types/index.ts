@@ -115,4 +115,16 @@ export interface tariff{
   days:string,
   price: string
   type: string
+  service: services
+}
+export interface order {
+  id:string,
+  cottageId:string,
+  createdAt:string,
+  expireAt:string,
+  orderStatus:string,  
+  tariff: tariff,
+  status: 'active' | 'inactive',
+  tariffId:string,
+  userId:string,
 }

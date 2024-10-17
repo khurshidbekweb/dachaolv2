@@ -25,7 +25,7 @@ const ChangeLanguage = () => {
         <div className="block">
             <DropdownMenu>
             <DropdownMenuTrigger type="button">
-                <Image src={`${IMG_BASE_URL}${activeLang?.image}`}  alt="active img" width={30} height={40}/>
+                <Image className="mb-[-3px]" src={`${IMG_BASE_URL}${activeLang?.image}`}  alt="language" width={30} height={40}/>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 {

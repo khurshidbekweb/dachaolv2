@@ -5,11 +5,12 @@ import BreacdCrambs from '@/components/shared/breacd-crambs';
 import MiniNav from '@/components/shared/mini-nav';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { AddNewPageLanguage, signInLanguage } from '@/constants/language';
 import { cn } from '@/lib/utils';
 import { ALL_DATA } from '@/Query/get_all';
 import useLanguageStore from '@/store/language-provider';
-import { cottage, cottageTop } from '@/types';
+import { cottage, cottageTop, order } from '@/types';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import { userUtils } from '@/utils/user.utils';
 import { useMutation } from '@tanstack/react-query';
@@ -37,11 +38,11 @@ const Profile = () => {
     const userImg = userData?.data?.image;
     const ismainImage = useRef(null);
     const [active, setActive] = useState<activeView>('profile')
-    const userCottage = ALL_DATA.useCottageUser()?.data;
-    console.log(userCottage);
-    
+    const userCottage = ALL_DATA.useCottageUser()?.data; 
+    const orders = user?.orders
+    console.log(orders);
     console.log(user);
-    console.log(userCottage);
+    
     
     
     const saveData = useRef(null);
@@ -136,6 +137,28 @@ const Profile = () => {
                 }
                 {active ==='services' && <div>
                     <h2>Services</h2>
+                    <Table>
+                        <TableCaption>Foydalangan tarif jadvali</TableCaption>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-[100px]">Nomi</TableHead>
+                                <TableHead>Status</TableHead>
+                                <TableHead>Method</TableHead>
+                                <TableHead className="text-right">Amount</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {orders && orders.map((order: order) => (
+                                <TableRow key={order.id}>
+                                    <TableCell className="font-medium">INV001</TableCell>
+                                    <TableCell>{order.status}</TableCell>
+                                    <TableCell>Credit Card</TableCell>
+                                    <TableCell className="text-right">$250.00</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+
                 </div>
                 }
             </div>

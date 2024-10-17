@@ -56,7 +56,7 @@ const Login = () => {
         mutationFn: authUtils.loginAuth,
         onSuccess: () => {
             toast.success(signInLanguage.successLogin[language]);
-            navigate.push("/add-new");
+            navigate.push("/profile");
         },
         onError: (err) => {
             console.log(err, "login");

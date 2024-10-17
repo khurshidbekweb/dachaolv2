@@ -7,11 +7,12 @@ import { FaDiagramSuccessor } from 'react-icons/fa6'
 import { useRouter } from "next/navigation";
 
 const User = () => {
+    const route = useRouter()
     const clearUser = () =>{
         localStorage.clear()
+        route.push('/')
         window.location.reload()
     }
-    const route = useRouter()
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

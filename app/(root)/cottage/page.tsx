@@ -1,3 +1,5 @@
+'use client'
+
 import Dacha from "@/components/card/dacha";
 import BreacdCrambs from "@/components/shared/breacd-crambs";
 import MiniNav from "@/components/shared/mini-nav";
@@ -6,7 +8,6 @@ import { cottage } from "@/types";
 
 const CottageAll = () => {
     const cottages = ALL_DATA.useCottage()?.data
-    console.log(cottages);    
     return (
         <>
         <div className="max-w-6xl mx-auto px-3 md:px-1">
@@ -15,9 +16,9 @@ const CottageAll = () => {
                 <h2>Cottage</h2>
             </div>
             <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-                {/* {cottages && cottages.map((dacha: cottage) => (
+                {cottages && cottages.map((dacha: cottage) => (
                     <Dacha key={dacha.id} {...dacha}/>
-                ))} */}
+                ))}
             </div>
         </div>
         <MiniNav/>
