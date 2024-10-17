@@ -15,7 +15,7 @@ const MiniNav = () => {
     const accessAToken = safeLocalStorage.getItem('accessToken')
     const refreshToken = safeLocalStorage.getItem('refreshToken')
 
-    if(!accessAToken){
+    if(!accessAToken && pathname=='/profile'){
         route.push('/')
     }
     return (
