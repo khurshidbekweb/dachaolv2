@@ -7,6 +7,7 @@ import useLanguageStore from '@/store/language-provider';
 import { langKey, services } from '@/types';
 import React from 'react';
 import ServiceCard from './service-card';
+import MiniNav from '@/components/shared/mini-nav';
 
 const Services = () => {
     const services:services[] = ALL_DATA.useServices()?.data;
@@ -14,6 +15,7 @@ const Services = () => {
     const language = store.language as keyof langKey;
     
     return (
+        <>
         <div className='max-w-6xl mx-auto px-3 md:px-1'>
             <div className="min-h-[20vh] flex flex-col items-start justify-end">
                 <BreacdCrambs data={[{ slug: '', title: 'Home' }]} page="Services" />
@@ -25,6 +27,8 @@ const Services = () => {
                 ))}
             </div>
         </div>
+        <MiniNav/>
+        </>
     );
 };
 

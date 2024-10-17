@@ -38,7 +38,7 @@ export const useLikeStore = create(
         }),
     }),
     {
-      name: 'likes', // safeLocalStorage kaliti
+      name: 'likes', 
       // Use the custom storage instead of the default localStorage
       storage: customStorage, // localStorage-dan foydalanamiz
     }

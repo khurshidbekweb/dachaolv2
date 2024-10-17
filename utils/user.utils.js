@@ -30,12 +30,6 @@ export const userUtils = {
     formData.append("email", email);
     formData.append("name", name);
     formData.append("image", image);
-
-    // User fovarite cottage oldin bor edi
-
-    // favoriteCottages.forEach((cottage) =>
-    //   formData.append("favoriteCottages", cottage)
-    // );
     const { data } = await custimAxios.patch(`user/edit/${id}`, formData, {
       headers: {
         Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,

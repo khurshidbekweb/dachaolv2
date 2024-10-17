@@ -2,16 +2,21 @@
 
 import Dacha from '@/components/card/dacha';
 import BreacdCrambs from '@/components/shared/breacd-crambs';
+import MiniNav from '@/components/shared/mini-nav';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { AddNewPageLanguage, signInLanguage } from '@/constants/language';
 import { cn } from '@/lib/utils';
 import { ALL_DATA } from '@/Query/get_all';
 import useLanguageStore from '@/store/language-provider';
-import { cottageTop } from '@/types';
+import { cottage, cottageTop } from '@/types';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
+import { userUtils } from '@/utils/user.utils';
+import { useMutation } from '@tanstack/react-query';
 import { ImageDown } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
+import { toast } from 'sonner';
 
 async function getBase64Full(file) {
     return new Promise((resolve, reject) => {
@@ -30,46 +35,47 @@ const Profile = () => {
     const user = JSON.parse(safeLocalStorage.getItem("user"));
     const { language } = useLanguageStore();
     const userImg = userData?.data?.image;
-    const fovarite = JSON.parse(safeLocalStorage.getItem("liked"));
     const ismainImage = useRef(null);
-    const [active, setActive] = useState<activeView>('services')
+    const [active, setActive] = useState<activeView>('profile')
     const userCottage = ALL_DATA.useCottageUser()?.data;
     console.log(userCottage);
     
-    // const saveData = useRef(null);
-    // const editImage = useRef(null);
-    // const [edit, setEdit] = useState(true);
+    console.log(user);
+    console.log(userCottage);
+    
+    
+    const saveData = useRef(null);
+    const editImage = useRef(null);
+    const [edit, setEdit] = useState(true);
 
-    // const userEdit = useMutation({
-    //     mutationFn: userUtils.editUser,
-    //     onSuccess: async () => {
-    //         toast.success(signInLanguage.successLogin[language]);
-    //         localStorage.setItem("user", JSON.stringify(userData?.data));
-    //         saveData.current.classList.add("hidden");
-    //         editImage.current.classList.add("hidden");
-    //         await userUtils.getSingleUser();
-    //         console.log(edit);            
-    //         setEdit(true);
-    //     },
-    //     onError: (err) => {
-    //         toast.error(AddNewPageLanguage.cottageError[language]);
-    //         console.log(err);
-    //     },
-    // });
+    const userEdit = useMutation({
+        mutationFn: userUtils.editUser,
+        onSuccess: async () => {
+            toast.success(signInLanguage.successLogin[language]);
+            localStorage.setItem("user", JSON.stringify(userData?.data));
+            saveData.current.classList.add("hidden");
+            editImage.current.classList.add("hidden");
+            await userUtils.getSingleUser();
+            console.log(edit);            
+            setEdit(true);
+        },
+        onError: (err) => {
+            toast.error(AddNewPageLanguage.cottageError[language]);
+            console.log(err);
+        }
+    });
 
-    // const handleUser = (e) => {
-    //     e.preventDefault();
-    //     userEdit.mutate({
-    //         id: user.id,
-    //         phone:
-    //             e.target.phone.value.slice(4) === user.phone
-    //                 ? ""
-    //                 : e.target.phone.value.slice(4),
-    //         email: e.target.email.value || "",
-    //         name: e.target.name.value || "",
-    //         image: e.target.userImage.files[0],
-    //     });
-    // };
+    const handleUser = (e) => {        
+        e.preventDefault();
+        userEdit.mutate({
+            id: user?.id,
+            phone: e.target.phone.value.slice(4),
+            email: e.target.email.value || "",
+            name: e.target.name.value || "",
+            image: e.target.userImage.files[0],
+        });
+        console.log(userEdit) 
+    };
 
     const handleIsMianImage = async (e) => {
         ismainImage.current.src = await getBase64Full(e.target.files[0]);
@@ -77,6 +83,7 @@ const Profile = () => {
     };
 
     return (
+        <>
         <div className='max-w-6xl mx-auto px-3 md:px-1'>
             <div className="min-h-[20vh] flex flex-col justify-end items-start">
                 <BreacdCrambs data={[{ slug: '', title: 'Home' }]} page="Profile" />
@@ -88,7 +95,7 @@ const Profile = () => {
                     <li onClick={() =>setActive('cottage')} className={cn('cursor-pointer', active=='cottage' && 'text-blue-400')}>My Cottage</li>
                     <li onClick={() =>setActive('services')} className={cn('cursor-pointer', active=='services' && 'text-blue-400')}>Services</li>
                 </ul>
-                {active==='profile' && <form>
+                {active==='profile' && <form onSubmit={handleUser}>
                     <div className="w-full md:w-[50vw] flex flex-col space-y-3 items-center md:flex-row gap-2 md:items-start">
                         <div className="w-[120px] h-[120px] relative border border-separate rounded-full overflow-hidden  flex items-center justify-center">
                             <Image
@@ -97,6 +104,7 @@ const Profile = () => {
                                 src={''}
                                 alt="useImg"
                                 fill
+                                
                             />
                             <label className="w-[100px] h-[100px] relative">
                                 <input
@@ -110,9 +118,9 @@ const Profile = () => {
                             </label>
                         </div>
                         <div className="p-1 w-full md:flex-1 space-y-3">
-                            <Input type='text' placeholder='Enter your name' className=''/>
-                            <Input type='text' placeholder='Phone' className=''/>
-                            <Button className='flex items-start bg-green-600 text-white'>Save</Button>
+                            <Input type='text' name='name' placeholder='Enter your name' className='' defaultValue={user?.name ? user.name : ""}/>
+                            <Input type='text' placeholder='Phone' className='' defaultValue={"+998" + user?.phone} disabled/>
+                            <Button type='submit' className='flex items-start bg-green-600 text-white'>Save</Button>
                         </div>
                     </div>
                 </form>
@@ -120,9 +128,9 @@ const Profile = () => {
                 {active === 'cottage' && <div>
                     <h2 className='text-xl md:text-2xl font-createRound'>Mening dachalarim</h2>
                     <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-                    {/* {userCottage && userCottage.map((dacha: cottageTop) => (
+                    {userCottage && userCottage.map((dacha: cottage) => (
                         <Dacha key={dacha.id} {...dacha}/>
-                    ))} */}
+                    ))}
                     </div>
                 </div>
                 }
@@ -132,6 +140,8 @@ const Profile = () => {
                 }
             </div>
         </div>
+        <MiniNav/>
+        </>
     );
 };
 

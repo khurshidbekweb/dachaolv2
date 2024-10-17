@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from './theme-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ChildProps } from '@/types';
@@ -20,15 +20,25 @@ const creteRound = Crete_Round({
     subsets: ['latin']
   })
   
-  const RootLayoutClient = ({children}:ChildProps) => {
-    if (!safeLocalStorage.getItem("language")) safeLocalStorage.setItem("language", "uz");
-    const queryClient = new QueryClient()
+  const RootLayoutClient = ({children}: ChildProps) => {
+    const queryClient = new QueryClient();
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+      setIsClient(true);  // Klientda ekanligimizni belgilaymiz
+      if (!safeLocalStorage.getItem("language")) safeLocalStorage.setItem("language", "uz");
+    }, []);
+
+    if (!isClient) {
+      return null; // serverda bo'lgan paytda hech narsa render qilmaydi
+    }
+
     return (
-        <html lang="en" suppressHydrationWarning>
+        <>
         <Head>
           <title>Dacha Ol</title>
         </Head>
-        <body
+        <div
           className={`antialiased ${workSans.variable} ${creteRound.variable}`}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
@@ -37,8 +47,8 @@ const creteRound = Crete_Round({
               </QueryClientProvider>
               <Toaster position='top-center'/>
           </ThemeProvider>
-        </body>
-      </html>
+        </div>
+      </>
     );
 };
 

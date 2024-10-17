@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import ViewSwiper from "../view-swiper";
 import ViewComforts from "../comforts";
+import MiniNav from "@/components/shared/mini-nav";
+import Dacha from "@/components/card/dacha";
 
 
 
@@ -18,7 +20,9 @@ const View = () => {
     const [isTop, setIsTop] = useState(false)
 
     const cottage = ALL_DATA.useCottage();
+    const suitableCottage = ALL_DATA.useSuitableCottage(id)?.data
     const cottageView:cottage = cottage?.data?.find((e: cottage) => e.id === id);
+    
     const childImage = [];
     cottageView?.images?.forEach((e: image) => {
         if (!e.isMainImage) {
@@ -59,17 +63,17 @@ const View = () => {
                     <BreacdCrambs data={breadcrumb} page={'View'}/>
                 </div>
                     <div className="view">
-                        <h1 className="text-2xl md:text-4xl font-createRound mt-5">{cottageView?.name}</h1>
                         <ViewSwiper cottageView={cottageView} />
+                        <h1 className="text-2xl md:text-4xl font-createRound mt-5">{cottageView?.name}</h1>
                         <div className="view-main">
                             {/* <h1 className="text-2xl md:text-4xl font-createRound mt-5">{cottageView?.name}</h1> */}
 
-                            <p className="view-location">
-                                {cottageView?.region?.name} {ViewLanguage[language]}, {cottageView?.place?.name}
+                            <p className="text-xl">
+                                {cottageView?.region?.name}, {cottageView?.place?.name}
                             </p>
 
                             {/* <ViewStars cottageView={cottageView} /> */}
-                            <h3 className="view-h">
+                            <h3 className="text-xl font-createRound my-4">
                                 {ViewPageLanguage.aboutCottage[language]}
                             </h3>
                             <pre className="view-p max-w-6xl overflow-x-scroll scroll-smooth">{cottageView?.description}</pre>
@@ -81,14 +85,19 @@ const View = () => {
                             <ViewComforts comforts={cottageView} />
                         </div>
                     </div>
-                {/* <MiniNaw /> */}
             </div>
-            <div className="mt-5">
-                {/* <RecommenedDachi /> */}
+            <div className="mt-8">
+                <h2 className="text-2xl md:text-3xl font-createRound">Oxshash dachalar</h2>
+                <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                    {suitableCottage && suitableCottage.map((dacha: cottage) => (
+                        <Dacha key={dacha.id} {...dacha}/>
+                    ))}
+                </div>
             </div>
             <div className="fixed bottom-52 md:right-40 right-9">
                 {isTop && <button onClick={scrollToTop} className="button-top-up bg-secondary p-2 rounded-full"><FaArrowUp size={25}/> </button>}
             </div>
+            <MiniNav/>
         </>
     );
 };

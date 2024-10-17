@@ -14,31 +14,11 @@ import { OrderUtils } from "../utils/order.utils";
 import { safeLocalStorage } from "@/utils/safeLocalstorge";
 
 export const ALL_DATA = {
-  useCottage: () => {
-    const cottages = useQuery({
+  useCottage: () =>
+    useQuery({
       queryKey: [QUERY_KEYS.cottages],
       queryFn: cottageUtils.getCottage,
-    });
-
-    const likedCottages = JSON.parse(safeLocalStorage.getItem("liked"));
-    if (cottages.data?.length) {
-      const data = cottages.data.map((e) => {
-        if (likedCottages?.includes(e.id)) {
-          return {
-            ...e,
-            isLiked: true,
-          };
-        } else {
-          return {
-            ...e,
-            isLiked: false,
-          };
-        }
-      });
-      return { ...cottages, data: data };
-    }
-    return { ...cottages };
-  },
+    }),
   useCottageTop: () => {
     return useQuery({
       queryKey: [QUERY_KEYS.cottageTop],
@@ -114,38 +94,22 @@ export const ALL_DATA = {
       queryFn: cottageUtils.getCottageUser,
     }),
 
-  useCottageAllUserId: (userId) => {
-    const userCottage = useQuery({
+  useCottageAllUserId: (userId) =>
+    useQuery({
       queryKey: [QUERY_KEYS.cottageUserAllId],
       queryFn: async () => await cottageUtils.getCottageUserId(userId),
-    });
-
-    const likedCottages = JSON.parse(safeLocalStorage.getItem("liked"));
-
-    if (userCottage.data?.length) {
-      const data = userCottage.data.map((e) => {
-        if (likedCottages?.includes(e.id)) {
-          return {
-            ...e,
-            isLiked: true,
-          };
-        } else {
-          return {
-            ...e,
-            isLiked: false,
-          };
-        }
-      });
-      return { ...userCottage, data: data };
-    }
-    return { ...userCottage };
-  },
-  useCottageTariffTop: (id) => 
-  useQuery({
+    }),
+  useSuitableCottage: (id) =>
+    useQuery({
+      queryKey: [QUERY_KEYS.cottage_suitable_id, id],
+      queryFn: async () => await cottageUtils.getSuitableCottage(id)
+    }),
+  useCottageTariffTop: (id) =>
+    useQuery({
       queryKey: [QUERY_KEYS.cottage_by_isTop, id],
       queryFn: async () => await cottageUtils.getCottageTariffTop(id)
-  }),
-  useCottageRecommended: () => 
+    }),
+  useCottageRecommended: () =>
     useQuery({
       queryKey: [QUERY_KEYS.cottage_by_recommended],
       queryFn: cottageUtils.getCottageRecommended
@@ -233,14 +197,14 @@ export const ALL_DATA = {
         return data;
       },
     }),
-  useTarifId: (tarifId) => 
+  useTarifId: (tarifId) =>
     useQuery({
       queryKey: [QUERY_KEYS.servicesId, tarifId],
-      queryFn: async () =>  await ServiceUtils.getServiceId(tarifId)
+      queryFn: async () => await ServiceUtils.getServiceId(tarifId)
     }),
-  useOrder: () => 
+  useOrder: () =>
     useQuery({
       queryKey: [QUERY_KEYS.order],
-      queryFn:  OrderUtils.getOrder 
+      queryFn: OrderUtils.getOrder
     })
 };

@@ -18,6 +18,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import MiniNav from '@/components/shared/mini-nav';
 
 
 // Images transform getbase64Full
@@ -155,6 +156,7 @@ const AddNew = () => {
     };
    
         return (
+          <>
         <div className="max-w-6xl mx-auto px-3 md:px-1">
             <div className="min-h-[20vh] flex flex-col justify-end items-start">
                 <BreacdCrambs data={[{slug: '', title:'Home'}]} page="Add New"/>
@@ -336,6 +338,8 @@ const AddNew = () => {
           </form>
         </div>
         </div>
+        <MiniNav/>
+        </>
     );
 };
 

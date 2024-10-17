@@ -5,6 +5,7 @@ export const QUERY_KEYS = {
   cottage_by_filter: "cottage_by_filter",
   cottage_by_UserId: "user_cottage_single",
   cottageType_by_Id: "cottage-taype-by-id",
+  cottage_suitable_id: 'cottage_suitable_id',
   languages: "languages",
   places: "places",
   regions: "regions",

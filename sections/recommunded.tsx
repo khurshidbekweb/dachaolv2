@@ -14,7 +14,7 @@ const Recommunded = () => {
             <h2 className="text-2xl md:text-4xl font-createRound">{RecamudetLeng[language]}</h2>
             <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                 {cottages && cottages.map((dacha: cottageTop) => (
-                    <Dacha key={dacha.id} {...dacha}/>
+                    <Dacha key={dacha.id} {...dacha.cottage}/>
                 ))}
             </div>
         </div>

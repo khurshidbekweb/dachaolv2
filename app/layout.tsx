@@ -11,7 +11,14 @@ export const metadata: Metadata = {
 
 function RootLayout({children}: ChildProps) {  
 
-  return <RootLayoutClient>{children}</RootLayoutClient>
+  return <html lang="en">
+        <body>
+          {/* Bu yerda klientga xos RootLayoutClient komponentini render qilamiz */}
+          <RootLayoutClient>
+            {children}
+          </RootLayoutClient>
+        </body>
+      </html>
 }
 
 export default RootLayout;

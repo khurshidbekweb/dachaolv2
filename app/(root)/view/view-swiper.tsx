@@ -79,8 +79,8 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
             </div>
             <div className="col-span-12 md:col-span-3 md:sticky md:top-[15vh] flex-none rounded-md flex flex-col space-y-2 border p-5">
                 <div className="flex flex-col space-y-2">
-                    <p>{ViewPageLanguage.contactUser[language]}</p>
-                    <div className="contact__user">
+                    <p className="text-xl">{ViewPageLanguage.contactUser[language]}</p>
+                    <div className="flex items-center gap-3">
                         {cottageView?.user?.image ? (
                             <Image
                                 src={`${IMG_BASE_URL}${cottageView?.user?.image}`}
@@ -91,10 +91,10 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                                 <FaRegUserCircle size={23} />
                             </span>
                         )}
-                        <p>{cottageView?.user?.name}</p>
+                        <p className="text-xl">{cottageView?.user?.name === null ? '+998'+cottageView?.user?.phone : cottageView?.user?.name}</p>
                     </div>
                     <Link
-                        href={`/home/view/cottage/${cottageView?.user?.id}`}
+                        href={`/announcements/${cottageView?.user?.id}`}
                         className="flex items-center underline text-blue-500"
                     >
                         <span>{ViewPageLanguage.announcement[language]}</span>
