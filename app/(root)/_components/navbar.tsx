@@ -11,11 +11,13 @@ import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
 import User from './user';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
+import { useLikeStore } from '@/store/like-card';
 
 const Navbar = () => {
     const pathname = usePathname()    
     const accessAToken = safeLocalStorage.getItem('accessToken')
     const refreshToken = safeLocalStorage.getItem('refreshToken')
+    const {likedCards} = useLikeStore()
     
     return (
     <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
@@ -31,10 +33,11 @@ const Navbar = () => {
                         key={i} 
                         href={nav.route}
                         className={cn(
-                        'hover:bg-blue-400/20 py-1 px-3 text-xl cursor-pointer rounded-sm transition-colors',
+                        'hover:bg-blue-400/20 py-1 px-3 text-xl relative cursor-pointer  rounded-sm transition-colors',
                         pathname === nav.route && 'text-blue-400'
                     )}>
                         {nav.name}
+                        {nav.route ==='/fovarite' && likedCards.length>0 && <p className='absolute text-[13px] text-center flex items-center justify-center bg-red-500 w-5 h-5 text-white rounded-full px-1 top-[-1px] right-0'>{likedCards.length}</p>}
                     </Link>
                 ))}
             </div>

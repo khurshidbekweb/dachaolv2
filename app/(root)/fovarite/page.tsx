@@ -8,7 +8,7 @@ import { useLikeStore } from "@/store/like-card";
 import { cottageTop } from "@/types";
 
 const data = [
-    {slug: '/', title:'Home'},
+    {slug: '', title:'Home'},
     {slug: 'cottage', title:'Cottage'},
 ]
 

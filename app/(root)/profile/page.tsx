@@ -90,8 +90,8 @@ const Profile = () => {
                 <BreacdCrambs data={[{ slug: '', title: 'Home' }]} page="Profile" />
                 <h2 className='text-2xl md:text-3xl font-createRound'>Profil</h2>
             </div>
-            <div className="mt-10 flex flex-col md:flex-row gap-5">
-                <ul className="w-full h-[50px] my-3 md:space-y-5 md:max-w-[200px] md:h-auto flex md:flex-col items-center md:items-start justify-between bg-secondary rounded-md p-3">
+            <div className="mt-10 flex flex-col md:flex-row md:items-start gap-5">
+                <ul className="w-full h-[50px] my-3 md:space-y-5 md:max-w-[200px] md:h-[150px] flex md:flex-col items-center md:items-start justify-between bg-secondary rounded-md p-3">
                     <li onClick={() =>setActive('profile')} className={cn('cursor-pointer', active=='profile' && 'text-blue-400')}>Profil</li>
                     <li onClick={() =>setActive('cottage')} className={cn('cursor-pointer', active=='cottage' && 'text-blue-400')}>My Cottage</li>
                     <li onClick={() =>setActive('services')} className={cn('cursor-pointer', active=='services' && 'text-blue-400')}>Services</li>

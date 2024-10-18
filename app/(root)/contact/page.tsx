@@ -12,7 +12,7 @@ const Contact = () => {
             </div>
             <div className='grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-6'>
 				<div className='flex flex-col'>
-					<h1 className='text-4xl font-creteRound'>Contact Sammi</h1>
+					<h1 className='text-4xl font-creteRound'>Contact DachaOL</h1>
 					<p className='mt-2 text-muted-foreground'>
 						I am here to help and answer any question you might have. I look
 						forward to hearing from you
@@ -20,11 +20,11 @@ const Contact = () => {
 
 					<div className='mt-12 flex items-center gap-3'>
 						<Mail className='w-4 h-4' />
-						<p className='text-sm'>info@sammi.ac</p>
+						<p className='text-sm'>info@dachaol.uz</p>
 					</div>
 					<div className='flex items-center gap-3 mt-2'>
 						<Phone className='w-4 h-4' />
-						<p className='text-sm'>+98 02 296 4902</p>
+						<p className='text-sm'>+998 97 108 20 04</p>
 					</div>
 				</div>
 
