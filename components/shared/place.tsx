@@ -1,7 +1,7 @@
 'use client'
 import { PlaseLeng } from "@/constants/language";
 import { ALL_DATA } from "@/Query/get_all";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useLanguageStore from "../../store/language-provider";
 import { Keyboard, Navigation } from "swiper/modules";
@@ -11,13 +11,10 @@ import { IMG_BASE_URL } from "@/constants/server";
 import { place } from "@/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-
 const Place = () => {
     const places = ALL_DATA.usePlace();
-    const { language } = useLanguageStore()
-    const prevPlaceElm = useRef(null);
-    const nextPlaceElm = useRef(null);
-
+    const { language } = useLanguageStore();
+    const [swiperInstance, setSwiperInstance] = useState(null); // Swiper instance-ni saqlash uchun state
 
     return (
         <div className="relative my-6 px-2">
@@ -28,10 +25,7 @@ const Place = () => {
                     enabled: true,
                 }}
                 loop={true}
-                navigation={{
-                    prevEl: prevPlaceElm.current,
-                    nextEl: nextPlaceElm.current,
-                }}
+                onSwiper={setSwiperInstance} // Swiper instance-ni olish
                 breakpoints={{
                     300: {
                         width: 300,
@@ -44,12 +38,6 @@ const Place = () => {
                     1024: {
                         width: 960,
                         slidesPerView: 5,
-                    }
-                }}
-                onBeforeInit={(swiper) => {
-                    if (swiper.params.navigation && typeof swiper.params.navigation !== 'boolean') {
-                        swiper.params.navigation.prevEl = prevPlaceElm.current;
-                        swiper.params.navigation.nextEl = nextPlaceElm.current;
                     }
                 }}
                 modules={[Keyboard, Navigation]}
@@ -71,12 +59,18 @@ const Place = () => {
                     ))}
             </Swiper>
             <div className="absolute flex gap-2 top-0 right-1">
-                <div ref={prevPlaceElm} className="cursor-pointer bg-white text-black p-2 rounded-full">
-                    <ArrowLeft/>
-                </div>
-                <div ref={nextPlaceElm} className="nextPrevNavigator cursor-pointer bg-white text-black p-2 rounded-full">
-                    <ArrowRight/>
-                </div>
+                <button
+                    onClick={() => swiperInstance?.slidePrev()} // Swiper instance orqali slidePrev
+                    className="cursor-pointer bg-white text-black p-2 rounded-full"
+                >
+                    <ArrowLeft />
+                </button>
+                <button
+                    onClick={() => swiperInstance?.slideNext()} // Swiper instance orqali slideNext
+                    className="cursor-pointer bg-white text-black p-2 rounded-full"
+                >
+                    <ArrowRight />
+                </button>
             </div>
         </div>
     );

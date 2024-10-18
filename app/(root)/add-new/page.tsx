@@ -150,7 +150,7 @@ const AddNew = () => {
       for (const image of images) {
         childImagesWrapper.current.insertAdjacentHTML(
           "beforeend",
-          `<img src=${image} width="100" height="100" alt="child image" className="w-[120px] !h-[110px] overflow-hidden"/>`
+          `<img src=${image} width="120" height="70" alt="child image" class="child-img-cottage !h-[70px] rounded-md"/ >`
         );
       }
     };
@@ -168,16 +168,17 @@ const AddNew = () => {
           </h3>
           <form onSubmit={handlCottage}>
             <div className="addnew-imgs grid grid-cols-4 gap-2">
-              <div className="addnew-box relative col-span-2 md:col-span-1 overflow-hidden h-[150px] rounded-b-3xl">
-                <label className="absolute w-full flex flex-col items-center justify-start h-full bg-black/50 ">
+              <div className="addnew-box relative col-span-2 md:col-span-1 border overflow-hidden h-[150px] rounded-3xl">
+                <label className="label-input-file absolute w-full h-full flex items-center justify-center flex-col ">
                   <Input
                     type="file"
                     accept="image/*"
                     name="mainImage"
-                    className="h-[40px] z-0 rounded-none"
+                    className="h-1 z-0 opacity-0"
                     onChange={handleMainImage}
                   />
-                  <p className="text-white flex items-center justify-center text-2xl md:text-3xl font-createRound">
+                  <ImagePlus size={30}/>
+                  <p className="flex items-center justify-center text-2xl md:text-3xl font-createRound">
                     {AddNewPageLanguage.mainPhoto[language]}
                   </p>
                 </label>
@@ -190,7 +191,7 @@ const AddNew = () => {
                   height={250}
                 />
               </div>
-              <div className="addnew-add col-span-2 md:col-span-1 relative border rounded-3xl cursor-pointer">
+              <div className="addnew-add h-[150px] col-span-2 md:col-span-1 relative border rounded-3xl cursor-pointer">
                 <label className="label-input-file absolute w-full h-full flex items-center justify-center flex-col">
                   <Input
                     type="file"
@@ -206,7 +207,9 @@ const AddNew = () => {
                   </p>
                 </label>
               </div>
-              <div ref={childImagesWrapper} className="col-span-4 md:col-span-2 flex flex-wrap items-start gap-2"></div>
+              <div ref={childImagesWrapper} className="col-span-4 md:col-span-2 flex flex-wrap items-start gap-2">
+
+              </div>
             </div>
 
             <div>

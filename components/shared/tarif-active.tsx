@@ -7,7 +7,7 @@ import { OrderUtils } from "@/utils/order.utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Separator } from "../ui/separator";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 import { Button } from "../ui/button";
@@ -83,13 +83,15 @@ const TarifActive = (props: Props) => {
                                 </SelectContent>
                                 
                             </Select>
-                            <Button
-                                type="submit"
-                                ref={activete}
-                                className="w-[70%] mx-auto mt-4"
-                            >
-                                {TariffPageLanguage.Activite[language]}
-                            </Button>
+                            <DialogClose asChild>
+                                <Button
+                                    type="submit"
+                                    ref={activete}
+                                    className="w-[70%] mx-auto mt-4"
+                                >
+                                    {TariffPageLanguage.Activite[language]}
+                                </Button>
+                            </DialogClose>
                         </form>
                     </DialogDescription>
                 </DialogHeader>
