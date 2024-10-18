@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 		type: 'website',
 		url: 'https://dachaol.uz',
 		locale: 'en_EN',
-		images: '../assets/DachaOL.uz.png',
+		images: '../assets/SeoImg.png',
 		countryName: 'Uzbekistan',
 		siteName: 'DachaOL',
 		emails: 'khurshidbeknuriddinov@gmail.com',
