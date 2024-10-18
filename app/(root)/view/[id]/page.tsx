@@ -85,15 +85,15 @@ const View = () => {
                             <ViewComforts comforts={cottageView} />
                         </div>
                     </div>
-            </div>
-            <div className="mt-8">
-                <h2 className="text-2xl md:text-3xl font-createRound">Oxshash dachalar</h2>
-                <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-                    {suitableCottage && suitableCottage.map((dacha: cottage) => (
-                        <Dacha key={dacha.id} {...dacha}/>
-                    ))}
-                </div>
-            </div>
+                    <div className="mt-8">
+                        <h2 className="text-2xl md:text-3xl font-createRound">Oxshash dachalar</h2>
+                        <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                            {suitableCottage && suitableCottage.map((dacha: cottage) => (
+                                <Dacha key={dacha.id} {...dacha}/>
+                            ))}
+                        </div>
+                    </div>
+            </div>            
             <div className="fixed bottom-52 md:right-40 right-9">
                 {isTop && <button onClick={scrollToTop} className="button-top-up bg-secondary p-2 rounded-full"><FaArrowUp size={25}/> </button>}
             </div>

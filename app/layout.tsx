@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   openGraph: {
 		title: 'DachaOL | Uylar',
 		description:
-			'Dasturlash haqida yangiliklar, maslahatlar, va dasturlash sohasidagi eng soʻnggi xabarlar. Bizning blogda dasturlashni oʻrganish va rivojlantirish uchun qoʻllanma topishingiz mumkin.',
+			"DachaOl.uz — O'zbekistondagi eng yaxshi dacha va uy-joy topish platformasi. Arzon narxlarda dacha ijarasi va sotuvlari, shuningdek, turar joy tanlash bo'yicha keng imkoniyatlar. Yangi dacha topish yoki uni sotish uchun DachaOl.uz saytida ro'yxatdan o'ting va qulay shartlarda bitimlar amalga oshiring. Oson qidiruv, ko'plab variantlar va ishonchli dacha bozorining eng so'nggi yangiliklari shu yerda!",
 		type: 'website',
-		url: 'https://test-blog.sammi.ac',
+		url: 'https://dachaol.uz',
 		locale: 'en_EN',
 		images: 'https://media.graphassets.com/kXL006lyRnW46IKTHdHs',
 		countryName: 'Uzbekistan',
-		siteName: 'Sammi',
-		emails: 'info@sammi.ac',
+		siteName: 'DachaOL',
+		emails: 'khurshidbeknuriddinov@gmail.com',
 	},
 };
 
