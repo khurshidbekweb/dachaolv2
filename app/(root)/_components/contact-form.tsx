@@ -62,7 +62,7 @@ Message: ${values.message}`
                     <FormControl>
                     <Textarea   disabled={loading}
                                     className='resize-none h-32'
-                                    placeholder='Ask question or just say Hi'
+                                    placeholder='Savollarngiz bo`lsa yozing...'
                                     {...field}
                                 />
 
@@ -77,7 +77,7 @@ Message: ${values.message}`
                 render={({ field }) => (
                     <FormItem>
                     <FormControl>
-                    <Input placeholder='Email address' {...field} disabled={loading} />
+                    <Input placeholder='Telefon raqam' {...field} disabled={loading} />
                         
                     </FormControl>
                     <FormMessage />
@@ -90,14 +90,14 @@ Message: ${values.message}`
                 render={({ field }) => (
                     <FormItem>
                         <FormControl>
-                            <Input placeholder='Your name here' disabled={loading} {...field}/>
+                            <Input placeholder='Ismingizni kiriting' disabled={loading} {...field}/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                 )}
                 />
                 <Button className='w-fit' size={'lg'} type='submit'>
-                    <span>Send</span>
+                    <span>Yuborish</span>
                     <Send className='w-4 h-4 ml-2' />
                 </Button>
             </form>

@@ -45,7 +45,7 @@ const Place = () => {
                 {places.data?.length &&
                     places?.data.map((place: place) => (
                         <SwiperSlide key={place.id} className="">
-                            <Link href={`/place/${place.id}`} className="relative !w-[80px] !h-[80px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
+                            <Link href={`/place/${place.id}`} className="relative w-[80px] h-[80px] md:h-[140px] md:w-[140px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
                                 <Image
                                     width={150}
                                     height={150}
@@ -53,7 +53,7 @@ const Place = () => {
                                     src={`${IMG_BASE_URL}${place.image}`}
                                     alt="nature"
                                 />
-                                <p className="absolute bg-white font-medium text-black w-full bottom-0 text-[15px] dark:bg-[#020817] dark:text-white text-center">{place.name}</p>
+                                <p className="absolute bg-white font-medium md:py-2 md:text-xl text-black w-full bottom-0 text-[15px] dark:bg-[#020817] dark:text-white text-center">{place.name}</p>
                             </Link>
                         </SwiperSlide>
                     ))}

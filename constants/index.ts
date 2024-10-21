@@ -2,7 +2,7 @@ import { Contact2,  Home, ListCollapse } from "lucide-react";
 
 export const navLinks = [
     { name: 'Home', route: '/', icon: Home },
-	{ name: 'About', route: '/about', icon: ListCollapse },
+	// { name: 'About', route: '/about', icon: ListCollapse },
     { name: 'Cottage', route: '/cottage', icon: ListCollapse },
     { name: 'Fovarite', route: '/fovarite', icon: ListCollapse },
 	{ name: 'Contact', route: '/contact', icon: Contact2 },

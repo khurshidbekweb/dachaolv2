@@ -20,8 +20,8 @@ const Navbar = () => {
     const {likedCards} = useLikeStore()
     
     return (
-    <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
-        <div className="container max-w-6xl mx-auto h-[8vh] w-full flex items-center justify-between">
+    <div className="md:h-[10vh] h-[8vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
+        <div className="container max-w-6xl h-[8vh] mx-auto w-full flex items-center justify-between">
             {/* Logo */}
             <Link href={'/'}>
                 <h1 className='text-3xl md:text-4xl font-createRound font-bold'>DachaOL</h1>

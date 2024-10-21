@@ -31,7 +31,6 @@ const MiniNav = () => {
                 {likedCards.length === 0 ? '' : <p className="absolute bg-red-500 px-[5px] text-[10px] right-[-6px] rounded-full text-white top-[-4px]">{likedCards.length}</p>}
             </Link>
 
-            <ChangeLanguage />
             {
                 accessAToken && refreshToken ?
                     <>
@@ -46,6 +45,8 @@ const MiniNav = () => {
                         LogIn
                     </Link>
             }
+            
+            <ChangeLanguage />
         </div>
     );
 };
