@@ -10,13 +10,10 @@ import MobileNav from './mobile';
 import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
 import User from './user';
-import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import { useLikeStore } from '@/store/like-card';
 
 const Navbar = () => {
     const pathname = usePathname()    
-    const accessAToken = safeLocalStorage.getItem('accessToken')
-    const refreshToken = safeLocalStorage.getItem('refreshToken')
     const {likedCards} = useLikeStore()
     
     return (
@@ -48,11 +45,12 @@ const Navbar = () => {
                 <div className="hidden md:block">
                     <ChangeLanguage/>
                 </div>
-                {accessAToken && refreshToken ? <div className="hidden md:block"><User/></div> : 
+                <div className="hidden md:block"><User/></div>
+                {/* {accessAToken && refreshToken ? <div className="hidden md:block"><User/></div> : 
                 pathname=='/login'?<></>:<Link href={'/login'} className='underline hidden lg:block font-createRound text-xl px-2'>
                     LogIn
                 </Link>
-                }
+                } */}
             </div>
         </div>
     </div>

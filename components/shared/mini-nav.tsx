@@ -13,10 +13,9 @@ const MiniNav = () => {
     const pathname = usePathname()
     const route = useRouter()    
     const accessAToken = safeLocalStorage.getItem('accessToken')
-    const refreshToken = safeLocalStorage.getItem('refreshToken')
 
-    if(!accessAToken && pathname=='/profile'){
-        route.push('/')
+    if(!accessAToken && pathname=='/profile' || pathname=='/my-cottage'){
+        route.push('/login')
     }
     return (
         <div className="fixed bottom-[-2px] w-full bg-white dark:bg-secondary dark:text-white shadow-lg flex justify-around items-center p-2 py-3 md:hidden">
@@ -31,20 +30,12 @@ const MiniNav = () => {
                 {likedCards.length === 0 ? '' : <p className="absolute bg-red-500 px-[5px] text-[10px] right-[-6px] rounded-full text-white top-[-4px]">{likedCards.length}</p>}
             </Link>
 
-            {
-                accessAToken && refreshToken ?
-                    <>
-                        <Link href={'/add-new'} className="flex flex-col items-center">
-                            <PlusIcon className={cn("w-6 h-6", pathname==='/add-new' && ' text-cyan-500')}  />
-                        </Link>
-                        <div className="flex flex-col items-center">
-                            <User/>
-                        </div>
-                    </> :
-                    <Link href={'/login'} className='bg-green-600 dark:bg-green-400 text-white p-1 px-2 rounded-md font-createRound text-[16px]'>
-                        LogIn
-                    </Link>
-            }
+            <Link href={'/add-new'} className="flex flex-col items-center">
+                <PlusIcon className={cn("w-6 h-6", pathname==='/add-new' && ' text-cyan-500')}  />
+            </Link>
+            <div className="flex flex-col items-center">
+                <User/>
+            </div>
             
             <ChangeLanguage />
         </div>

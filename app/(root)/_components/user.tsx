@@ -48,12 +48,6 @@ const User = () => {
                         <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={clearUser} className="bg-destructive">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span className="text-white">Log out</span>
-                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );

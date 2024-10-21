@@ -8,7 +8,7 @@ import { cottageUtils } from '@/utils/cottage.utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
-import { ImagePlus } from 'lucide-react';
+import { ImagePlus, LogInIcon } from 'lucide-react';
 import { IMG_BASE_URL } from '@/constants/server';
 import { toast } from 'sonner';
 import { authUtils } from '@/utils/auth.utils';
@@ -19,8 +19,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import MiniNav from '@/components/shared/mini-nav';
-import { Metadata } from 'next';
-
+import { safeLocalStorage } from '@/utils/safeLocalstorge';
+import Link from 'next/link';
 
 // Images transform getbase64Full
 async function getBase64Full(file: Blob) {
@@ -39,6 +39,7 @@ const AddNew = () => {
     // get Language
     const store = useLanguageStore()
     const language: langKey = store.language as keyof footerLang;
+    const accessAToken = safeLocalStorage.getItem('accessToken')
 
     const childImagesWrapper = useRef(null);
   
@@ -155,9 +156,16 @@ const AddNew = () => {
         );
       }
     };
-   
+    if(!accessAToken){
+      return <div className="max-w-6xl mx-auto px-3 md:px-1 flex flex-col justify-end items-start mt-16 mb-52">
+                <BreacdCrambs data={[{slug: '', title:'Home'}]} page="Add New"/>
+                <h2 className='text-xl md:text-xl font-createRound bg-yellow-300 border p-2 rounded-md'>E`lon qo`shish uchun ro`yxatdan o`ting !</h2>
+                <Link href={'/login'} className='bg-blue-400 underline p-1 rounded-sm text-white mt-5 flex gap-2 text-[18px]'>Royhatdan o`tish <LogInIcon/></Link>
+                <MiniNav/>
+            </div>
+    }
         return (
-          <>
+      <>
         <div className="max-w-6xl mx-auto px-3 md:px-1">
             <div className="min-h-[20vh] flex flex-col justify-end items-start">
                 <BreacdCrambs data={[{slug: '', title:'Home'}]} page="Add New"/>
