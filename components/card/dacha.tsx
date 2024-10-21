@@ -1,5 +1,5 @@
 import { IMG_BASE_URL } from '@/constants/server';
-import { cottage, cottageTop, image } from '@/types';
+import { comfort, cottage, cottageTop, image } from '@/types';
 import Image from 'next/image';
 import React from 'react';
 import { A11y, Navigation, Pagination } from 'swiper/modules';
@@ -25,7 +25,7 @@ const Dacha = (dacha: cottage) => {
     };    
 
     return (
-        <div className='relative max-w-[165px] mx-auto md:ml-0 md:max-w-[250px] border group shadow-lg rounded-md overflow-hidden'>
+        <div className='relative max-w-[170px] mx-auto md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
                 <Swiper
                     pagination={{
@@ -36,8 +36,8 @@ const Dacha = (dacha: cottage) => {
                 >
                     {
                         dacha && dacha?.images.map((img: image) => (
-                                <SwiperSlide className='!h-[140px] !md:h-[190px]' key={img.id}>
-                                    <Image className='w-full h-[140px] md:h-[190px]' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
+                                <SwiperSlide className='!h-[140px] !md:h-[240px]' key={img.id}>
+                                    <Image className='w-full h-[140px] md:h-[210px]' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
                                 </SwiperSlide>
                         ))
                     }
@@ -51,6 +51,11 @@ const Dacha = (dacha: cottage) => {
                     <div className="flex gap-x-4 items-start space-y-2 flex-col md:flex-row md:items-center">
                         <Badge variant='secondary'>{dacha.region.name}</Badge>
                         <Badge variant='secondary' className=''>{dacha.place.name}</Badge>
+                    </div>
+                    <div className="hidden md:flex justify-between items-center mt-2">
+                        {dacha && dacha.comforts.slice(0, 7).map((com: comfort) => (
+                            <Image width={20} height={20} key={com.id} src={`${IMG_BASE_URL}${com.image}`} alt={com.name} />
+                        ))}
                     </div>
                 </div> 
             </Link>
