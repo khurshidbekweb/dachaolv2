@@ -17,10 +17,10 @@ const Place = () => {
     const [swiperInstance, setSwiperInstance] = useState(null); // Swiper instance-ni saqlash uchun state
 
     return (
-        <div className="relative my-3 px-2">
+        <div className="relative my-2 px-2">
             <h2 className="places-top my-2 text-2xl font-createRound md:text-4xl">{PlaseLeng[language]}</h2>
             <Swiper
-                className="mt-4 md:mt-7"
+                className="mt-1 md:mt-5"
                 keyboard={{
                     enabled: true,
                 }}
