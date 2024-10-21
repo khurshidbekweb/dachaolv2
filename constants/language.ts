@@ -548,3 +548,9 @@ export const notificationLanguage = {
   ru: "Нет уведомлений",
   en: "There are no notifications",
 };
+
+export const scenicPLace = {
+  uz: "Manzarali joylar",
+  ru: "Живописные места",
+  en: "Scenic place",
+}

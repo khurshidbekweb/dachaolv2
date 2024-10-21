@@ -3,6 +3,7 @@ import SwiperHero from '@/components/shared/swiper-hero';
 import React from 'react';
 import Recommunded from '../../../sections/recommunded';
 import MiniNav from '@/components/shared/mini-nav';
+import ScenicPlace from '../_components/scenic-place';
 
 const Home = () => {
     return (
@@ -12,6 +13,9 @@ const Home = () => {
             </section>
             <section className="place">
                 <Place/>
+            </section>
+            <section>
+                <ScenicPlace/>
             </section>
             <section className="recommended">
                 <Recommunded/>
