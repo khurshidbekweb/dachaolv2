@@ -25,7 +25,7 @@ const SwiperHero = () => {
     
     return (
       <Swiper
-      className="swiper mt-[70px] mx-auto"
+      className="swiper mt-[30px] mx-auto"
       modules={[Navigation, A11y, Scrollbar, Autoplay, Parallax, Pagination]}
       spaceBetween={1}
       slidesPerView={1}
@@ -38,7 +38,7 @@ const SwiperHero = () => {
       >
         {cottageTop && cottageTop.map((el: cottageTop) => (
           <SwiperSlide key={el.id}>
-            <div className="min-w-[100%] mx-auto relative h-[35vh] md:h-[50vh] lg:h-[80vh]">
+            <div className="min-w-[100%] mx-auto relative h-[35vh] md:h-[30vh] lg:h-[50vh]">
               <Image
                 fill
                 src={`${IMG_BASE_URL}${

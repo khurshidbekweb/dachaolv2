@@ -27,32 +27,32 @@ const Dacha = (dacha: cottage) => {
     return (
         <div className='relative max-w-[165px] mx-auto md:ml-0 md:max-w-[250px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
-            <Swiper
-                pagination={{
-                    type: 'fraction',
-                }}
-                modules={[Pagination, Navigation, A11y]}
-                className="swiper"
-            >
-                {
-                    dacha && dacha?.images.map((img: image) => (
-                            <SwiperSlide className='!h-[140px] !md:h-[190px]' key={img.id}>
-                                <Image className='w-full h-[140px] md:h-[190px]' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
-                            </SwiperSlide>
-                    ))
-                }
-                <SwiperNavBotton />
-            </Swiper> 
-            <div className="dacha-info p-2">
-                <div className="flex justify-between items-center">
-                    <h2 className='text-[16px] md:text-xl font-createRound'>{dacha.name}</h2>
-                    <p className='font-createRound text-xl text-yellow-400'>{dacha.price}$</p>
-                </div>
-                <div className="flex gap-x-4 items-start space-y-2 flex-col md:flex-row md:items-center">
-                    <Badge variant='secondary'>{dacha.region.name}</Badge>
-                    <Badge variant='secondary' className=''>{dacha.place.name}</Badge>
-                </div>
-            </div> 
+                <Swiper
+                    pagination={{
+                        type: 'fraction',
+                    }}
+                    modules={[Pagination, Navigation, A11y]}
+                    className="swiper"
+                >
+                    {
+                        dacha && dacha?.images.map((img: image) => (
+                                <SwiperSlide className='!h-[140px] !md:h-[190px]' key={img.id}>
+                                    <Image className='w-full h-[140px] md:h-[190px]' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
+                                </SwiperSlide>
+                        ))
+                    }
+                    <SwiperNavBotton />
+                </Swiper> 
+                <div className="dacha-info p-2">
+                    <div className="flex justify-between items-center">
+                        <h2 className='text-[16px] md:text-xl font-createRound'>{dacha.name}</h2>
+                        <p className='font-createRound text-xl text-yellow-400'>{dacha.price}$</p>
+                    </div>
+                    <div className="flex gap-x-4 items-start space-y-2 flex-col md:flex-row md:items-center">
+                        <Badge variant='secondary'>{dacha.region.name}</Badge>
+                        <Badge variant='secondary' className=''>{dacha.place.name}</Badge>
+                    </div>
+                </div> 
             </Link>
             <Button onClick={() => handleLikeClick(dacha.id)} variant='link' className='absolute  top-0 right-0'>
                 <span className={cn('overflow-hidden text-white', isLiked && 'transition-colors text-red-700')}><FaHeart  size={20}/></span>

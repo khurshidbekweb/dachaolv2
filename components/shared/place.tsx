@@ -17,7 +17,7 @@ const Place = () => {
     const [swiperInstance, setSwiperInstance] = useState(null); // Swiper instance-ni saqlash uchun state
 
     return (
-        <div className="relative my-6 px-2">
+        <div className="relative my-3 px-2">
             <h2 className="places-top my-2 text-2xl font-createRound md:text-4xl">{PlaseLeng[language]}</h2>
             <Swiper
                 className="mt-4 md:mt-7"
@@ -29,7 +29,7 @@ const Place = () => {
                 breakpoints={{
                     300: {
                         width: 300,
-                        slidesPerView: 2,
+                        slidesPerView: 3,
                     },
                     768: {
                         width: 768,
@@ -45,7 +45,7 @@ const Place = () => {
                 {places.data?.length &&
                     places?.data.map((place: place) => (
                         <SwiperSlide key={place.id} className="">
-                            <Link href={`/place/${place.id}`} className="relative !w-[150px] !h-[150px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
+                            <Link href={`/place/${place.id}`} className="relative !w-[80px] !h-[80px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
                                 <Image
                                     width={150}
                                     height={150}
@@ -53,7 +53,7 @@ const Place = () => {
                                     src={`${IMG_BASE_URL}${place.image}`}
                                     alt="nature"
                                 />
-                                <p className="absolute bg-white font-medium py-2 text-black w-full bottom-[3px] text-xl dark:bg-[#020817] dark:text-white text-center">{place.name}</p>
+                                <p className="absolute bg-white font-medium text-black w-full bottom-0 text-[15px] dark:bg-[#020817] dark:text-white text-center">{place.name}</p>
                             </Link>
                         </SwiperSlide>
                     ))}

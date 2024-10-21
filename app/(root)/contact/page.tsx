@@ -1,6 +1,11 @@
 import BreacdCrambs from "@/components/shared/breacd-crambs";
 import { Mail, Phone } from "lucide-react";
 import ContactForm from "../_components/contact-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact | DachaOL",
+}
 
 
 const Contact = () => {

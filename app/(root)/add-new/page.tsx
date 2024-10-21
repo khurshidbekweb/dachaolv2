@@ -19,6 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import MiniNav from '@/components/shared/mini-nav';
+import { Metadata } from 'next';
 
 
 // Images transform getbase64Full

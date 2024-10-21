@@ -14,14 +14,26 @@ import MiniNav from "@/components/shared/mini-nav";
 import Dacha from "@/components/card/dacha";
 
 
+// export function generateMetaData({params}: {params: {id: string}}){ 
+//     const cottage =  ALL_DATA.useCottage()
+//     const cottageView:cottage = cottage && cottage?.data?.find((e: cottage) => e.id === params.id);
 
-const View = () => {
-    const { id } = useParams();
+//     return{
+//         title: cottageView.name,
+//         description: cottageView.description,
+//         openGraph: {
+//             images: cottageView.images[0],
+//         },
+//     }
+// }
+
+
+
+const View = ({params}: {params: {id: string}}) => {    
     const [isTop, setIsTop] = useState(false)
-
     const cottage = ALL_DATA.useCottage();
-    const suitableCottage = ALL_DATA.useSuitableCottage(id)?.data
-    const cottageView:cottage = cottage?.data?.find((e: cottage) => e.id === id);
+    const suitableCottage = ALL_DATA.useSuitableCottage(params.id)?.data
+    const cottageView:cottage = cottage?.data?.find((e: cottage) => e.id === params.id);
     
     const childImage = [];
     cottageView?.images?.forEach((e: image) => {

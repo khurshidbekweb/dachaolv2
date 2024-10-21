@@ -1,5 +1,11 @@
 import BreacdCrambs from '@/components/shared/breacd-crambs';
+import { Metadata } from 'next';
 import React from 'react';
+
+export const metadata: Metadata = {
+    title: "About | DachaOL",
+}
+
 
 const About = () => {
     return (
