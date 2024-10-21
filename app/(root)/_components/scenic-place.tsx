@@ -29,8 +29,8 @@ const ScenicPlace = () => {
                 onSwiper={setSwiperInstance} // Swiper instance-ni olish
                 breakpoints={{
                     300: {
-                        width: 300,
-                        slidesPerView: 2,
+                        width: 350,
+                        slidesPerView: 2.3,
                     },
                     768: {
                         width: 768,
@@ -50,7 +50,7 @@ const ScenicPlace = () => {
                                 <Image
                                     width={150}
                                     height={150}
-                                    className="w-full h-[100px] md:h-[120px]"
+                                    className="w-full h-[80px] md:h-[120px]"
                                     src={`${IMG_BASE_URL}${place.image}`}
                                     alt="nature"
                                 />
@@ -59,10 +59,10 @@ const ScenicPlace = () => {
                         </SwiperSlide>
                     ))}
             </Swiper>
-            <div className="absolute w-full flex items-center top-20 lg:top-28 justify-between">
+            <div className="absolute w-full flex items-center top-[70px] lg:top-28 justify-between">
                 <button
                     onClick={() => swiperInstance?.slidePrev()} // Swiper instance orqali slidePrev
-                    className="cursor-pointer bg-white text-black p-1 rounded-full ml-[-5px] md:ml-[-10px]"
+                    className="cursor-pointer bg-white text-black p-1 rounded-full ml-[-8px] md:ml-[-10px]"
                 >
                     <ChevronLeft size={20}/>
                 </button>

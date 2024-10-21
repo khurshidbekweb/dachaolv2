@@ -61,13 +61,13 @@ const Place = () => {
             <div className="absolute flex gap-2 top-0 right-1">
                 <button
                     onClick={() => swiperInstance?.slidePrev()} // Swiper instance orqali slidePrev
-                    className="cursor-pointer bg-white text-black p-2 rounded-full"
+                    className="cursor-pointer bg-white text-black p-1 rounded-full"
                 >
                     <ArrowLeft />
                 </button>
                 <button
                     onClick={() => swiperInstance?.slideNext()} // Swiper instance orqali slideNext
-                    className="cursor-pointer bg-white text-black p-2 rounded-full"
+                    className="cursor-pointer bg-white text-black p-1 rounded-full"
                 >
                     <ArrowRight />
                 </button>
