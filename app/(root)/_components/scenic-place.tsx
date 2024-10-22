@@ -45,7 +45,7 @@ const ScenicPlace = () => {
             >
                 {places.data?.length &&
                     places?.data.map((place: place) => (
-                        <SwiperSlide key={place.id} className=" w-[170px] border overflow-hidden h-[100px] rounded-md">
+                        <SwiperSlide key={place.id} className=" w-[170px] cursor-pointer border overflow-hidden h-[100px] rounded-md">
                             <Link href={`/place/${place.id}`} className="relative w-full h-full">
                                 <Image
                                     width={150}

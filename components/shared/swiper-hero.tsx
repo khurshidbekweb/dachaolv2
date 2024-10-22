@@ -27,8 +27,8 @@ const SwiperHero = () => {
       <Swiper
       className="swiper mt-[30px] mx-auto"
       modules={[Navigation, A11y, Scrollbar, Autoplay, Parallax, Pagination]}
-      spaceBetween={1}
-      slidesPerView={1}
+      spaceBetween={10  }
+      slidesPerView={1.2}
       autoplay={{
         delay: 5000,
       }}

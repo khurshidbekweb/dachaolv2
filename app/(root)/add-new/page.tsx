@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button';
 import MiniNav from '@/components/shared/mini-nav';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // Images transform getbase64Full
 async function getBase64Full(file: Blob) {
@@ -37,6 +38,7 @@ async function getBase64Full(file: Blob) {
 const AddNew = () => {
     const mainImage = useRef<HTMLImageElement | null>(null);
     // get Language
+    const route = useRouter()
     const store = useLanguageStore()
     const language: langKey = store.language as keyof footerLang;
     const accessAToken = safeLocalStorage.getItem('accessToken')
@@ -68,7 +70,8 @@ const AddNew = () => {
         queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.cottages] });
         toast.success(
           AddNewPageLanguage.cottageSuccess[language]
-        );
+        );          
+        route.push('/services')
       },
       onError: (err) => {
         console.log(err, "err");
