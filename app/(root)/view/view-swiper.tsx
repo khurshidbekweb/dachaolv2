@@ -16,6 +16,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import ShereLink from "../_components/shere-link";
 
 
 interface Props {
@@ -78,9 +79,9 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                 </Swiper>
             </div>
             <div className="col-span-12 md:col-span-3 md:sticky md:top-[15vh] flex-none rounded-md flex flex-col space-y-2 border p-5">
-                <div className="flex flex-col space-y-2">
                     <p className="text-xl">{ViewPageLanguage.contactUser[language]}</p>
-                    <div className="flex items-center gap-3">
+                <div className="flex items-start gap-x-5">
+                    <Link href={`/announcements/${cottageView?.user?.id}`} className="flex items-center gap-3">
                         {cottageView?.user?.image ? (
                             <Image
                                 src={`${IMG_BASE_URL}${cottageView?.user?.image}`}
@@ -91,18 +92,12 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                                 <FaRegUserCircle size={23} />
                             </span>
                         )}
-                        <p className="text-xl">{cottageView?.user?.name === null ? '+998'+cottageView?.user?.phone : cottageView?.user?.name}</p>
-                    </div>
-                    <Link
-                        href={`/announcements/${cottageView?.user?.id}`}
-                        className="flex items-center underline text-blue-500"
-                    >
-                        <span>{ViewPageLanguage.announcement[language]}</span>
-
-                        <span>
-                            <IoIosArrowForward size={22} />
-                        </span>
+                        <div className="">
+                            <p className="text-[17px] font-createRound">Profile</p>
+                            <p className="text-xs underline text-blue-500">{cottageView?.user?.name === null ? '+998'+cottageView?.user?.phone : cottageView?.user?.name}</p>
+                        </div>
                     </Link>
+                    <ShereLink/>
                 </div>
                 <Link
                     href={`tel:+998${cottageView?.user?.phone}`}
