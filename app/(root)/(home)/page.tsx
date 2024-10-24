@@ -4,6 +4,7 @@ import React from 'react';
 import Recommunded from '../../../sections/recommunded';
 import MiniNav from '@/components/shared/mini-nav';
 import ScenicPlace from '../_components/scenic-place';
+import HotelView from '../_components/hotel-view';
 
 const Home = () => {
     return (
@@ -14,11 +15,14 @@ const Home = () => {
             <section className="place">
                 <Place/>
             </section>
-            <section>
-                <ScenicPlace/>
-            </section>
+            <section className='hotel'>
+                <HotelView/>
+            </section>           
             <section className="recommended">
                 <Recommunded/>
+            </section>
+            <section>
+                <ScenicPlace/>
             </section>
             <MiniNav/>
         </div>

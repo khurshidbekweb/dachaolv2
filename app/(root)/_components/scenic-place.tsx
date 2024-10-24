@@ -45,34 +45,31 @@ const ScenicPlace = () => {
             >
                 {places.data?.length &&
                     places?.data.map((place: place) => (
-                        <SwiperSlide key={place.id} className=" w-[170px] cursor-pointer border overflow-hidden h-[100px] rounded-md">
-                            <Link href={`/place/${place.id}`} className="relative w-full h-full">
+                        <SwiperSlide key={place.id} className="">
+                            <Link href={`/place/${place.id}`} className="w-[170px] cursor-pointer overflow-hidden h-[100px] rounded-md">
                                 <Image
-                                    width={150}
-                                    height={150}
-                                    className="w-full h-[80px] md:h-[120px]"
+                                    width={170}
+                                    height={100}
+                                    className="w-full h-[80px] md:h-[120px] cursor-pointer rounded-md"
                                     src={`${IMG_BASE_URL}${place.image}`}
                                     alt="nature"
                                 />
-                                <p className="absolute">{place.name}</p>
                             </Link>
                         </SwiperSlide>
                     ))}
             </Swiper>
-            <div className="absolute w-full flex items-center top-[70px] lg:top-28 justify-between">
-                <button
-                    onClick={() => swiperInstance?.slidePrev()} // Swiper instance orqali slidePrev
-                    className="cursor-pointer bg-white text-black p-1 rounded-full ml-[-8px] md:ml-[-10px]"
-                >
-                    <ChevronLeft size={20}/>
-                </button>
-                <button
-                    onClick={() => swiperInstance?.slideNext()} // Swiper instance orqali slideNext
-                    className="cursor-pointer flex items-center justify-center bg-white text-black p-1 mr-2 md:mr-0 rounded-full"
-                >
-                    <ChevronRight size={20}/>
-                </button>
-            </div>
+            <button
+                onClick={() => swiperInstance?.slidePrev()} // Swiper instance orqali slidePrev
+                className="cursor-pointer absolute shadow-lg top-[70px] lg:top-28 bg-white text-black p-1 rounded-full ml-[-8px] md:ml-[-10px]"
+            >
+                <ChevronLeft size={20}/>
+            </button>
+            <button
+                onClick={() => swiperInstance?.slideNext()} // Swiper instance orqali slideNext
+                className="cursor-pointer absolute shadow-md top-[70px] lg:top-28 right-[-2px] flex items-center justify-center bg-white text-black p-1 mr-2 md:mr-0 rounded-full"
+            >
+                <ChevronRight size={20}/>
+            </button>
         </div>
     );
 };

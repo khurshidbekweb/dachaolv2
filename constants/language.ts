@@ -554,3 +554,8 @@ export const scenicPLace = {
   ru: "Живописные места",
   en: "Scenic place",
 }
+export const hotelAndAanatorium = {
+  uz: "Mehmonhona va Sanatoriyalar",
+  ru: "Гостиницы и санатории",
+  en: "Hotels and sanatoriums",
+}
