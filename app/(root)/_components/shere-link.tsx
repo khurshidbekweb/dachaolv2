@@ -73,7 +73,7 @@ const ShereLink = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="https://www.instagram.com/xursh1dbek________" target="_blank" rel="noopener noreferrer">
+                            <Link href="https://www.instagram.com/xursh1dbek________/" target="_blank" rel="noopener noreferrer">
                                 <Instagram  size={35} className='text-red-300'/>
                             </Link>
                         </li>
