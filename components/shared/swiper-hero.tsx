@@ -11,9 +11,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
 
 // import required modules
-import { A11y, Autoplay, Navigation, Pagination, Parallax, Scrollbar } from 'swiper/modules';
+import { A11y, Autoplay, EffectCoverflow, Navigation, Pagination, Parallax, Scrollbar } from 'swiper/modules';
 import {cottageTop, footerLang, langKey, } from "@/types";
 
 
@@ -26,9 +27,19 @@ const SwiperHero = () => {
     return (
       <Swiper
       className="swiper mt-[30px] mx-auto"
-      modules={[Navigation, A11y, Scrollbar, Autoplay, Parallax, Pagination]}
-      spaceBetween={10  }
-      slidesPerView={1.2}
+      modules={[Navigation, A11y, Scrollbar, Autoplay, Parallax, Pagination, EffectCoverflow]}
+      spaceBetween={10}
+      effect={'coverflow'}
+      grabCursor={true}
+      centeredSlides={true}
+      slidesPerView={'auto'}
+      coverflowEffect={{
+        rotate: 20,
+        stretch: 1,
+        depth: 50,
+        modifier: 1,
+        slideShadows: true,
+      }}
       autoplay={{
         delay: 5000,
       }}
@@ -38,7 +49,7 @@ const SwiperHero = () => {
       >
         {cottageTop && cottageTop.map((el: cottageTop) => (
           <SwiperSlide key={el.id}>
-            <div className="min-w-[100%] mx-auto relative h-[35vh] md:h-[30vh] lg:h-[50vh]">
+            <div className="min-w-[80%] mx-auto relative h-[35vh] md:h-[30vh] lg:h-[50vh]">
               <Image
                 fill
                 src={`${IMG_BASE_URL}${

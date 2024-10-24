@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import HotelImg from '@/assets/mehmonhona.jpeg'
+import Sanatoriya from '@/assets/sanatoriya.jpg'
 
 
 const HotelView = () => {
@@ -46,7 +47,7 @@ const HotelView = () => {
                             <Image
                         width={350}
                         height={100}
-                        className="!w-full h-[100px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
+                        className="!w-full h-[110px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
                         src={HotelImg}
                         alt="nature"
                     />
@@ -57,8 +58,8 @@ const HotelView = () => {
                             <Image
                         width={350}
                         height={100}
-                        className="!w-full h-[100px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
-                        src={HotelImg}
+                        className="!w-full h-[110px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
+                        src={Sanatoriya}
                         alt="nature"
                     />
                 </Link>
@@ -68,7 +69,7 @@ const HotelView = () => {
                             <Image
                                 width={350}
                                 height={100}
-                                className="!w-full h-[100px] md:h-[130px] md:w-[400px] cursor-pointer rounded-md"
+                                className="!w-full h-[110px] md:h-[130px] md:w-[400px] cursor-pointer rounded-md"
                                 src={HotelImg}
                                 alt="nature"
                             />
