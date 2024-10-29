@@ -1,21 +1,19 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
+import { Pen } from 'lucide-react';
+import { Badge } from '../ui/badge';
 
 const CottageEdit = () => {
+    
     return (
         <Dialog>
-        <DialogTrigger>Open</DialogTrigger>
-        <DialogContent>
-            <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-                This action cannot be undone. This will permanently delete your account
-                and remove your data from our servers.
-            </DialogDescription>
-            </DialogHeader>
-        </DialogContent>
+            <DialogTrigger className='absolute bottom-16 right-0'><Badge className='flex gap-1 p-[2px] rounded-e-md font-createRound md:text-[15px]'>Tahrirlash <Pen size={18}/></Badge></DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>E`lon rasmini tahrirlash</DialogTitle>
+                </DialogHeader>
+            </DialogContent>
         </Dialog>
-
     );
 };
 

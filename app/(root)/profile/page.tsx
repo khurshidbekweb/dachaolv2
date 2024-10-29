@@ -1,6 +1,6 @@
 'use client'
 
-import Dacha from '@/components/card/dacha';
+import UserDacha from '@/components/card/user-dacha';
 import BreacdCrambs from '@/components/shared/breacd-crambs';
 import MiniNav from '@/components/shared/mini-nav';
 import { Button } from '@/components/ui/button';
@@ -39,10 +39,7 @@ const Profile = () => {
     const ismainImage = useRef(null);
     const [active, setActive] = useState<activeView>('profile')
     const userCottage = ALL_DATA.useCottageUser()?.data; 
-    const orders = user?.orders
-    console.log(orders);
-    console.log(user);
-    
+    const orders = user?.orders    
     
     
     const saveData = useRef(null);
@@ -130,7 +127,7 @@ const Profile = () => {
                     <h2 className='text-xl md:text-2xl font-createRound'>Mening dachalarim</h2>
                     <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                     {userCottage && userCottage.map((dacha: cottage) => (
-                        <Dacha key={dacha.id} {...dacha}/>
+                        <UserDacha key={dacha.id} {...dacha}/>
                     ))}
                     </div>
                 </div>
