@@ -155,7 +155,7 @@ const AddNew = () => {
       for (const image of images) {
         childImagesWrapper.current.insertAdjacentHTML(
           "beforeend",
-          `<img src=${image} width="120" height="70" alt="child image" class="child-img-cottage !h-[70px] rounded-md"/ >`
+          `<Image src=${image} width="120" height="70" alt="child image" class="child-img-cottage !h-[70px] rounded-md"/ >`
         );
       }
     };

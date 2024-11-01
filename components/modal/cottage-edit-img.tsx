@@ -11,6 +11,8 @@ import { cottageUtils } from '@/utils/cottage.utils';
 import { toast } from 'sonner';
 import Image from 'next/image';
 import { IMG_BASE_URL } from '@/constants/server';
+import { Separator } from '../ui/separator';
+import { Button } from '../ui/button';
 
 interface PropsType {
     id: string,
@@ -93,80 +95,85 @@ const CottageEditImg = ({ id, images }: PropsType) => {
                 <DialogHeader>
                     <DialogTitle>E`lon rasmini tahrirlang</DialogTitle>
                 </DialogHeader>
-                <div className="modal-body">
+                <div className="modal-body overflow-x-hidden">
                     <form className="p-4" onSubmit={handlCottage}>
-                        <div className="main-image-wrapper d-flex align-items-end justify-content-between border p-3">
+                        <h2 className='text-[18px] font-createRound'>Asosiy rasm</h2>
+                        <div className="flex items-end gap-4 my-3">
                             {mainImageCottage?.image && (
                                 <Image
                                     ref={mainImage}
                                     src={`${IMG_BASE_URL}${mainImageCottage.image}`}
                                     alt="main-image"
-                                    width={250}
-                                    height={200}
-                                    className="rounded-3"
+                                    width={150}
+                                    height={180}
+                                    className="!w-[150px] rounded-md"
                                 />
                             )}
-                            <label className="file-input-label d-block w-25 text-center mb-2">
+                            <label className="flex flex-col items-center">
                                 <input
                                     onChange={handleMainImage}
                                     type="file"
                                     accept="image/*"
                                     name="mainImage"
                                     id="cottage-main-img"
-                                    className="file-input"
+                                    className="file-input w-1 opacity-0 absolute"
                                 />
-                                <Upload size={30} />
-                                <span> Main Img</span>
+                                <div className="bg-secondary flex items-center justify-center flex-col p-1 rounded-md cursor-pointer">
+                                    <Upload size={20} />
+                                    <span> Rasmni almashtiring</span>
+                                </div>
                             </label>
                         </div>
-                        <div className="imagesMultiple mt-4 border p-2 rounded">
-                            <label className="file-input-label d-block w-25 text-center mb-2">
+                        <Separator/>
+                        <div className="mt-4 overflow-x-hidden">
+                            <h1>Qo`shimcha rasmlar</h1>
+                            <div
+                                ref={childImagesWrapper}
+                                className="flex gap-2 w-full"
+                            >
+                                {childImages?.length &&
+                                    childImages.map((e) => {
+                                        return (
+                                            <div key={e.id} className="!w-[110px] relative">
+                                                <Image
+                                                    src={`${IMG_BASE_URL}${e.image}`}
+                                                    width={110}
+                                                    height={120}
+                                                    alt="childImages"
+                                                    className="rounded-md !w-full h-[120px]"
+                                                />
+                                                <Button
+                                                    variant='link'
+                                                    type="button"
+                                                    className="text-center absolute bottom-1 left-4 bg-red-500 px-2 flex items-center justify-center rounded-full"
+                                                    onClick={() => deletChilImage.mutate(e.id)}
+                                                >
+                                                    <Trash size={20} className='text-white' />
+                                                </Button>
+                                            </div>
+                                        );
+                                    })}
+                            </div>
+                            <label className="bg-secondary flex items-center justify-center flex-col p-1 rounded-md cursor-pointer">
                                 <input
                                     onChange={addChildImg}
                                     type="file"
                                     accept="image/*"
                                     name="childimg"
                                     id="cottage-main-img"
-                                    className="file-input"
+                                    className="file-input w-1 opacity-0 absolute"
                                     multiple
                                 />
-                                <Upload size={30} />
-                                <span>Child Images</span>
+                                <Upload size={20} />
+                                <span>Qo`shimcha rasm</span>
                             </label>
-                            <div
-                                ref={childImagesWrapper}
-                                className="imagesChildWrap mt-4 flex-wrap d-flex gap-4"
-                            >
-                                {childImages?.length &&
-                                    childImages.map((e) => {
-                                        return (
-                                            <div key={e.id} className="childImgCard">
-                                                <Image
-                                                    src={`${IMG_BASE_URL}${e.image}`}
-                                                    width={100}
-                                                    height={120}
-                                                    alt="childImages"
-                                                    className="childImage"
-                                                />
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-danger"
-                                                    onClick={() => deletChilImage.mutate(e.id)}
-                                                >
-                                                    <Trash size={25} />
-                                                </button>
-                                            </div>
-                                        );
-                                    })}
-                            </div>
                         </div>
-                        <button
+                        <Button
                             type="submit"
-                            data-bs-dismiss="modal"
-                            className="btn-modal bg-success border-0 mt-4 fs-6 fw-bold rounded-2 text-white d-block"
+                            className="bg-green-500 p-2 rounded-md mt-3 ml-auto"
                         >
                             Save changes
-                        </button>
+                        </Button>
                     </form>
                 </div>
             </DialogContent>

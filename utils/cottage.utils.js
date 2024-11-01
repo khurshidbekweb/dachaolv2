@@ -184,7 +184,9 @@ export const cottageUtils = {
       lattitude: lattitude,
       longitude: longitude,
       isTop: isTop,
-    });
+    }, {headers:{
+      Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
+  }});
     return data;
   },
 
@@ -195,16 +197,28 @@ export const cottageUtils = {
 
     const { data } = await custimAxios.patch(
       `/cottage/image/edit/${id}`,
-      formData
+      formData, {
+        headers:{
+          Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
+      }
+      }
     );
     return data;
   },
   deleteCottageAll: async (id) => {
-    const { data } = await custimAxios.delete(`/cottage/delete/${id}`);
+    const { data } = await custimAxios.delete(`/cottage/delete/${id}`, {
+      headers:{
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
+    }
+    });
     return data;
   },
   deleteCottageImage: async (id) => {
-    const { data } = await custimAxios.delete(`/cottage/image/delete/${id}`);
+    const { data } = await custimAxios.delete(`/cottage/image/delete/${id}`, {
+      headers:{
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
+    }
+    });
     return data;
   },
 };
