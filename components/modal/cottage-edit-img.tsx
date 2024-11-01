@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef } from 'react';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { Pen, Trash, Upload } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -43,6 +43,7 @@ const CottageEditImg = ({ id, images }: PropsType) => {
         mutationFn: cottageUtils.addCottageImage,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.cottages] });
+            toast.success("Success add image");
         },
         onError: (err) => {
             alert(err.message);
@@ -129,7 +130,7 @@ const CottageEditImg = ({ id, images }: PropsType) => {
                             <h1>Qo`shimcha rasmlar</h1>
                             <div
                                 ref={childImagesWrapper}
-                                className="flex gap-2 w-full"
+                                className="flex gap-2 w-full "
                             >
                                 {childImages?.length &&
                                     childImages.map((e) => {
@@ -154,7 +155,7 @@ const CottageEditImg = ({ id, images }: PropsType) => {
                                         );
                                     })}
                             </div>
-                            <label className="bg-secondary flex items-center justify-center flex-col p-1 rounded-md cursor-pointer">
+                            <label className="bg-secondary my-2 flex items-center justify-center flex-col p-1 rounded-md cursor-pointer">
                                 <input
                                     onChange={addChildImg}
                                     type="file"
@@ -168,12 +169,14 @@ const CottageEditImg = ({ id, images }: PropsType) => {
                                 <span>Qo`shimcha rasm</span>
                             </label>
                         </div>
-                        <Button
-                            type="submit"
-                            className="bg-green-500 p-2 rounded-md mt-3 ml-auto"
-                        >
-                            Save changes
-                        </Button>
+                        <DialogClose asChild>
+                            <Button
+                                type="submit"
+                                className="bg-green-500 p-2 rounded-md mt-3 ml-auto"
+                            >
+                                Save changes
+                            </Button>
+                        </DialogClose>
                     </form>
                 </div>
             </DialogContent>

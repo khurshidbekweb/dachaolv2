@@ -61,7 +61,7 @@ const UserDacha = (dacha: cottage) => {
                 </div> 
             </Link>
             <CottageEditImg id={dacha.id} images={dacha.images}/>
-            <CottageEdit/>
+            <CottageEdit id={dacha.id} cottage ={dacha} />
         </div>
     );
 };

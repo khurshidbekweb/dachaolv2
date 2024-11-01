@@ -90,7 +90,7 @@ export const ALL_DATA = {
 
   useCottageUser: () =>
     useQuery({
-      queryKey: [QUERY_KEYS.cottage_by_UserId],
+      queryKey: [QUERY_KEYS.cottages],
       queryFn: cottageUtils.getCottageUser,
     }),
 
@@ -119,43 +119,36 @@ export const ALL_DATA = {
       queryKey: [QUERY_KEYS.languages],
       queryFn: languageUtils.getLanguage,
     }),
-
   usePlace: () =>
     useQuery({
       queryKey: [QUERY_KEYS.places],
       queryFn: placeUtils.getPlace,
     }),
-
   useRegion: () =>
     useQuery({
       queryKey: [QUERY_KEYS.regions],
       queryFn: regionUtils.getRegion,
     }),
-
   useComforts: () =>
     useQuery({
       queryKey: [QUERY_KEYS.comforts],
       queryFn: comfortUtils.getComfort,
     }),
-
   useCottageType: () =>
     useQuery({
       queryKey: [QUERY_KEYS.cottageType],
       queryFn: cottageTypeUtils.getCottageType,
     }),
-
   useUsers: () =>
     useQuery({
       queryKey: [QUERY_KEYS.users],
       queryFn: userUtils.getUsers,
     }),
-
   useSingleUser: () =>
     useQuery({
       queryKey: [QUERY_KEYS.users],
       queryFn: userUtils.getSingleUser,
     }),
-
   useCottageUserById: (userID) =>
     useQuery({
       queryKey: [QUERY_KEYS.userCottageUser],

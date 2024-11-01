@@ -143,7 +143,11 @@ export const cottageUtils = {
     formData.append("cottageId", cottageId);
     formData.append("image", image);
     formData.append("isMainImage", isMainImage);
-    const { data } = await custimAxios.post("cottage/image/add", formData);
+    const { data } = await custimAxios.post("cottage/image/add", formData, {
+      headers:{
+        Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
+    }
+    });
     return data;
   },
   orderActivePre: async ({cottageId, expireDays, priority, serviceCode}) => {
@@ -167,10 +171,13 @@ export const cottageUtils = {
     name,
     price,
     priceWeekend,
+    rating,
     status,
     lattitude,
     longitude,
-    isTop,
+    placeId,
+    regionId,
+    isTop
   }) => {
     const { data } = await custimAxios.patch(`/cottage/edit/${id}`, {
       comforts: comforts,
@@ -184,6 +191,9 @@ export const cottageUtils = {
       lattitude: lattitude,
       longitude: longitude,
       isTop: isTop,
+      placeId: placeId,
+      regionId: regionId,
+      rating: rating
     }, {headers:{
       Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
   }});
