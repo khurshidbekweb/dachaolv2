@@ -8,6 +8,7 @@ export const QUERY_KEYS = {
   cottage_suitable_id: 'cottage_suitable_id',
   languages: "languages",
   places: "places",
+  place_by_id: "place_bu_id",
   regions: "regions",
   cottageType: "cottagetypes",
   comforts: "comforts",

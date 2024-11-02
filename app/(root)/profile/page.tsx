@@ -101,8 +101,7 @@ const Profile = () => {
                                 ref={ismainImage}
                                 src={''}
                                 alt="useImg"
-                                fill
-                                
+                                fill                                
                             />
                             <label className="w-[100px] h-[100px] relative">
                                 <input
@@ -125,7 +124,7 @@ const Profile = () => {
                 }
                 {active === 'cottage' && <div>
                     <h2 className='text-xl md:text-2xl font-createRound'>Mening dachalarim</h2>
-                    <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                    <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
                     {userCottage && userCottage.map((dacha: cottage) => (
                         <UserDacha key={dacha.id} {...dacha}/>
                     ))}

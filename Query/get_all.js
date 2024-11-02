@@ -199,5 +199,10 @@ export const ALL_DATA = {
     useQuery({
       queryKey: [QUERY_KEYS.order],
       queryFn: OrderUtils.getOrder
+    }),
+  usePlaceById: (id) => 
+    useQuery({
+      queryKey: [QUERY_KEYS.place_by_id, id],
+      queryFn: async ()=> await placeUtils.getPlaceById(id) 
     })
 };

@@ -10,4 +10,12 @@ export const placeUtils = {
     });
     return data;
   },
+  getPlaceById: async (id) => {
+    const { data } = await custimAxios.get(`place/by/region/${id}`, {
+      headers: {
+        "accept-language": safeLocalStorage.getItem("language"),
+      },
+    });
+    return data;
+  },
 };

@@ -7,7 +7,7 @@ import useLanguageStore from '@/store/language-provider';
 import { cottageUtils } from '@/utils/cottage.utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import { ImagePlus, LogInIcon } from 'lucide-react';
 import { IMG_BASE_URL } from '@/constants/server';
 import { toast } from 'sonner';
@@ -25,156 +25,160 @@ import { useRouter } from 'next/navigation';
 
 // Images transform getbase64Full
 async function getBase64Full(file: Blob) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.onerror = reject;
-    });
-  }
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+    reader.onerror = reject;
+  });
+}
 
 const AddNew = () => {
-    const mainImage = useRef<HTMLImageElement | null>(null);
-    // get Language
-    const route = useRouter()
-    const store = useLanguageStore()
-    const language: langKey = store.language as keyof footerLang;
-    const accessAToken = safeLocalStorage.getItem('accessToken')
+  const mainImage = useRef<HTMLImageElement | null>(null);
+  // get Language
+  const route = useRouter()
+  const store = useLanguageStore()
+  const language: langKey = store.language as keyof footerLang;
+  const accessAToken = safeLocalStorage.getItem('accessToken')
+  const childImagesWrapper = useRef(null);
+  const [cottageInfo, setCottageInfo] = useState({
+    dachaType: [],
+    response: [],
+  });
+  const [cottageComforts, setcottageComforts] = useState({
+    comforts: [],
+    response: [],
+  });
+  // Query 
+  const queryClient = useQueryClient();
+  const region = ALL_DATA.useRegion();
+  const place = ALL_DATA.usePlace();
+  const cottageType = ALL_DATA.useCottageType();
+  const comforts = ALL_DATA.useComforts();
+  const cottage = useMutation({
+    mutationFn: cottageUtils.postCottage,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.cottages] });
+      toast.success(
+        AddNewPageLanguage.cottageSuccess[language]
+      );
+      route.push('/services')
+    },
+    onError: (err) => {
+      console.log(err, "err");
+      toast.error(AddNewPageLanguage.cottageError[language]);
+    },
+  });
 
-    const childImagesWrapper = useRef(null);
+  //Region chacked
+  const [choosRegion, setChoosRegion] = useState<string>('')
+  const placeByRegionId= ALL_DATA.usePlaceById(choosRegion)?.data
+  console.log(placeByRegionId);
   
-    const [cottageInfo, setCottageInfo] = useState({
-      dachaType: [],
-      response: [],
-    });
-  
-    const [cottageComforts, setcottageComforts] = useState({
-      comforts: [],
-      response: [],
-    });
-  
-    const queryClient = useQueryClient();
-  
-    const region = ALL_DATA.useRegion();
-  
-    const place = ALL_DATA.usePlace();
-  
-    const cottageType = ALL_DATA.useCottageType();
-    const comforts = ALL_DATA.useComforts();
-  
-    const cottage = useMutation({
-      mutationFn: cottageUtils.postCottage,
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.cottages] });
-        toast.success(
-          AddNewPageLanguage.cottageSuccess[language]
-        );          
-        route.push('/services')
-      },
-      onError: (err) => {
-        console.log(err, "err");
-        toast.error(AddNewPageLanguage.cottageError[language]);
-      },
-    });
-  
-    const handlChoseCottageType = (e) => {
-      const { value, checked } = e.target;
-      const { dachaType } = cottageInfo;
-      if (checked) {
-        setCottageInfo({
-          dachaType: [...dachaType, value],
-          response: [...dachaType, value],
-        });
-      } else {
-        setCottageInfo({
-          dachaType: dachaType.filter((e) => e !== value),
-          response: dachaType.filter((e) => e !== value),
-        });
-      }
-    };
-  
-    const handleCottageComforts = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { value, checked } = e.target;
-      const { comforts } = cottageComforts;
-      if (checked) {
-        setcottageComforts({
-          comforts: [...comforts, value],
-          response: [...comforts, value],
-        });
-      } else {
-        setcottageComforts({
-          comforts: comforts.filter((e) => e !== value),
-          response: comforts.filter((e) => e !== value),
-        });
-      }
-    };
-  
-    const handlCottage = async (e) => {
-      e.preventDefault();
-  
-      const images = [];
-      for (let i = 0; i < e.target.childimg.files.length; i++) {
-        images.push(e.target.childimg.files[i]);
-      }
-  
-      cottage.mutate({
-        name: e.target.cottagename.value,
-        images: images,
-        mainImage: e.target.mainImage.files[0],
-        placeId: e.target.place.value,
-        regionId: e.target.region.value,
-        price: +e.target.price.value,
-        priceWeekend: +e.target.priceweekend.value,
-        cottageType: cottageInfo.response,
-        comforts: cottageComforts.response,
-        description: e.target.description.value,
+
+  // const handleChoosRegion = (e: React.ChangeEvent<HTMLSelectElement>) => {
+
+  // }
+
+
+  const handlChoseCottageType = (e) => {
+    const { value, checked } = e.target;
+    const { dachaType } = cottageInfo;
+    if (checked) {
+      setCottageInfo({
+        dachaType: [...dachaType, value],
+        response: [...dachaType, value],
       });
-  
-      childImagesWrapper.current.innerHTML = "";
-      e.target.reset();
-    };
-  
-    const handleMainImage = async (e) => {
-      const result = await getBase64Full(e.target.files[0]);
-      if (typeof result === 'string') { // Tekshirish
-        const mainImgUrl = result; // Endi bu 'string'
-        mainImage.current.classList.remove("hidden");
-        mainImage.current.setAttribute("src", mainImgUrl);
     } else {
-        console.error("getBase64Full returned a non-string value.");
+      setCottageInfo({
+        dachaType: dachaType.filter((e) => e !== value),
+        response: dachaType.filter((e) => e !== value),
+      });
     }
-    };
-  
-    const handlmultipleImg = async (e) => {
-      const images = [];
-      for (let i = 0; i < e.target.files.length; i++) {
-        images.push(await getBase64Full(e.target.files[i]));
-      }
-      for (const image of images) {
-        childImagesWrapper.current.insertAdjacentHTML(
-          "beforeend",
-          `<Image src=${image} width="120" height="70" alt="child image" class="child-img-cottage !h-[70px] rounded-md"/ >`
-        );
-      }
-    };
-    if(!accessAToken){
-      return <div className="max-w-6xl mx-auto px-3 md:px-1 flex flex-col justify-end items-start mt-16 mb-52">
-                <BreacdCrambs data={[{slug: '', title:'Home'}]} page="Add New"/>
-                <h2 className='text-xl md:text-xl font-createRound bg-yellow-300 border p-2 rounded-md'>E`lon qo`shish uchun ro`yxatdan o`ting !</h2>
-                <Link href={'/login'} className='bg-blue-400 underline p-1 rounded-sm text-white mt-5 flex gap-2 text-[18px]'>Royhatdan o`tish <LogInIcon/></Link>
-                <MiniNav/>
-            </div>
+  };
+
+  const handleCottageComforts = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    const { comforts } = cottageComforts;
+    if (checked) {
+      setcottageComforts({
+        comforts: [...comforts, value],
+        response: [...comforts, value],
+      });
+    } else {
+      setcottageComforts({
+        comforts: comforts.filter((e) => e !== value),
+        response: comforts.filter((e) => e !== value),
+      });
     }
-        return (
-      <>
-        <div className="max-w-6xl mx-auto px-3 md:px-1">
-            <div className="min-h-[20vh] flex flex-col justify-end items-start">
-                <BreacdCrambs data={[{slug: '', title:'Home'}]} page="Add New"/>
-                <h2 className='text-2xl md:text-3xl font-createRound'>Add new Cottage</h2>
-            </div>
-            <div className="addnew">
+  };
+
+  const handlCottage = async (e) => {
+    e.preventDefault();
+
+    const images = [];
+    for (let i = 0; i < e.target.childimg.files.length; i++) {
+      images.push(e.target.childimg.files[i]);
+    }
+
+    cottage.mutate({
+      name: e.target.cottagename.value,
+      images: images,
+      mainImage: e.target.mainImage.files[0],
+      placeId: e.target.place.value,
+      regionId: e.target.region.value,
+      price: +e.target.price.value,
+      priceWeekend: +e.target.priceweekend.value,
+      cottageType: cottageInfo.response,
+      comforts: cottageComforts.response,
+      description: e.target.description.value,
+    });
+
+    childImagesWrapper.current.innerHTML = "";
+    e.target.reset();
+  };
+
+  const handleMainImage = async (e) => {
+    const result = await getBase64Full(e.target.files[0]);
+    if (typeof result === 'string') { // Tekshirish
+      const mainImgUrl = result; // Endi bu 'string'
+      mainImage.current.classList.remove("hidden");
+      mainImage.current.setAttribute("src", mainImgUrl);
+    } else {
+      console.error("getBase64Full returned a non-string value.");
+    }
+  };
+
+  const handlmultipleImg = async (e) => {
+    const images = [];
+    for (let i = 0; i < e.target.files.length; i++) {
+      images.push(await getBase64Full(e.target.files[i]));
+    }
+    for (const image of images) {
+      childImagesWrapper.current.insertAdjacentHTML(
+        "beforeend",
+        `<Image src=${image} width="120" height="70" alt="child image" class="child-img-cottage !h-[70px] rounded-md"/ >`
+      );
+    }
+  };
+  if (!accessAToken) {
+    return <div className="max-w-6xl mx-auto px-3 md:px-1 flex flex-col justify-end items-start mt-16 mb-52">
+      <BreacdCrambs data={[{ slug: '', title: 'Home' }]} page="Add New" />
+      <h2 className='text-xl md:text-xl font-createRound bg-yellow-300 border p-2 rounded-md'>E`lon qo`shish uchun ro`yxatdan o`ting !</h2>
+      <Link href={'/login'} className='bg-blue-400 underline p-1 rounded-sm text-white mt-5 flex gap-2 text-[18px]'>Royhatdan o`tish <LogInIcon /></Link>
+      <MiniNav />
+    </div>
+  }
+  return (
+    <>
+      <div className="max-w-6xl mx-auto px-3 md:px-1">
+        <div className="min-h-[20vh] flex flex-col justify-end items-start">
+          <BreacdCrambs data={[{ slug: '', title: 'Home' }]} page="Add New" />
+          <h2 className='text-2xl md:text-3xl font-createRound'>Add new Cottage</h2>
+        </div>
+        <div className="addnew">
           <h3 className="text-2xl md:text-3xl font-createRound mt-5">
             {AddNewPageLanguage.maintitle[language]}
           </h3>
@@ -189,7 +193,7 @@ const AddNew = () => {
                     className="h-1 z-0 opacity-0"
                     onChange={handleMainImage}
                   />
-                  <ImagePlus size={30}/>
+                  <ImagePlus size={30} />
                   <p className="flex items-center justify-center text-2xl md:text-3xl font-createRound">
                     {AddNewPageLanguage.mainPhoto[language]}
                   </p>
@@ -213,7 +217,7 @@ const AddNew = () => {
                     className="w-1 h-1 opacity-0"
                     onChange={handlmultipleImg}
                   />
-                  <ImagePlus size={30}/>
+                  <ImagePlus size={30} />
                   <p className="addnew-add-text font-createRound text-xl">
                     {AddNewPageLanguage.addPhoto[language]}
                   </p>
@@ -242,18 +246,19 @@ const AddNew = () => {
                   </h3>
                   <Select
                     name="region"
+                    onValueChange={(value: string)=> setChoosRegion(value)}
                   >
-                   <SelectTrigger className='w-full'>
-                      <SelectValue placeholder='Viloyat tanlang'/>
-                   </SelectTrigger>
-                   <SelectContent>
-                   {region.data?.length &&
-                      region.data.map((e:region) => (
-                        <SelectItem key={e.id} value={e.id}>
-                          {e.name}
-                        </SelectItem>
-                      ))}
-                   </SelectContent>
+                    <SelectTrigger className='w-full'>
+                      <SelectValue placeholder='Viloyat tanlang' />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {region.data?.length &&
+                        region.data.map((e: region) => (
+                          <SelectItem key={e.id} value={e.id}>
+                            {e.name}
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
                   </Select>
                 </div>
 
@@ -262,14 +267,15 @@ const AddNew = () => {
                     {AddNewPageLanguage.Place[language]}
                   </h3>
                   <Select
+                    disabled={!choosRegion}
                     name="place"
                   >
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Joy nomini tanlang" />
                     </SelectTrigger>
                     <SelectContent className='p-2 rounded-md'>
-                      {place.data?.length &&
-                        place.data.map((e:place) => (
+                      {placeByRegionId?.length &&
+                        placeByRegionId.map((e: place) => (
                           <SelectItem key={e.id} value={e.id}>
                             {e.name}
                           </SelectItem>
@@ -298,7 +304,7 @@ const AddNew = () => {
               </h3>
               <div className="addnew-inner my-3">
                 {cottageType.data?.length &&
-                  cottageType.data.map((e:cottageType) => (
+                  cottageType.data.map((e: cottageType) => (
                     <label key={e.id} className="flex items-center gap-2">
                       <input
                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -319,7 +325,7 @@ const AddNew = () => {
 
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4">
               {comforts.data?.length &&
-                comforts.data.map((e:comfort) => (
+                comforts.data.map((e: comfort) => (
                   <label key={e.id} className="flex items-center gap-2">
                     <input
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -352,10 +358,10 @@ const AddNew = () => {
             </Button>
           </form>
         </div>
-        </div>
-        <MiniNav/>
-        </>
-    );
+      </div>
+      <MiniNav />
+    </>
+  );
 };
 
 export default AddNew;
