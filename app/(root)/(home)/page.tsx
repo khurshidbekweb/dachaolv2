@@ -5,6 +5,8 @@ import Recommunded from '../../../sections/recommunded';
 import MiniNav from '@/components/shared/mini-nav';
 import ScenicPlace from '../_components/scenic-place';
 import HotelView from '../_components/hotel-view';
+import CottageAll from '../cottage/page';
+import RecentlyCottage from '@/sections/recently-cottage';
 
 const Home = () => {
     return (
@@ -23,6 +25,9 @@ const Home = () => {
             </section>
             <section>
                 <ScenicPlace/>
+            </section>
+            <section>
+                <RecentlyCottage/>
             </section>
             <MiniNav/>
         </div>

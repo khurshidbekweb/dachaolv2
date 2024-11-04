@@ -66,6 +66,11 @@ export const RecamudetLeng = {
   ru: "Рекомендуемые",
   en: "Recommended",
 };
+export const RecentlyCottageLang ={
+  uz: "Yaqinda qo`yilgan dachalar",
+  ru: "Недавно построенные коттеджи",
+  en: "Recently built cottages",
+};
 export const showMoreInfo = {
   uz: "Ko'proq ko'rish",
   ru: "Показать больше",

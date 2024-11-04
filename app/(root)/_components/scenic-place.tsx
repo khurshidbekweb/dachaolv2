@@ -12,7 +12,7 @@ import { Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const ScenicPlace = () => {
-    const places = ALL_DATA.usePlace();
+    const places = ALL_DATA.useCottageType();
     const { language } = useLanguageStore();
     const [swiperInstance, setSwiperInstance] = useState(null); // Swiper instance-ni saqlash uchun state
 
@@ -46,7 +46,7 @@ const ScenicPlace = () => {
                 {places.data?.length &&
                     places?.data.map((place: place) => (
                         <SwiperSlide key={place.id} className="">
-                            <Link href={`/place/${place.id}`} className="w-[170px] cursor-pointer overflow-hidden h-[100px] rounded-md">
+                            <Link href={`/cottage-type/${place.id}`} className="w-[170px] cursor-pointer overflow-hidden h-[100px] rounded-md">
                                 <Image
                                     width={170}
                                     height={100}

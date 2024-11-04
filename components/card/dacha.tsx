@@ -48,7 +48,7 @@ const Dacha = (dacha: cottage) => {
                         <h2 className='text-[16px] md:text-xl font-createRound'>{dacha.name}</h2>
                         <p className='font-createRound text-xl text-yellow-400'>{dacha.price}$</p>
                     </div>
-                    <div className="flex gap-x-4 items-start space-y-2 flex-col md:flex-row md:items-center">
+                    <div className="flex gap-x-4 my-2 items-start space-y-2 flex-col md:flex-row md:items-center md:space-y-0">
                         <Badge variant='secondary'>{dacha.region.name}</Badge>
                         <Badge variant='secondary' className=''>{dacha.place.name}</Badge>
                     </div>
