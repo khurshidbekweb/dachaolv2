@@ -68,9 +68,7 @@ const Login = () => {
         e.preventDefault();
         phone.mutate({
             phone: phoneNumber.replaceAll(" ", "").slice(4),
-        });
-        console.log(phone.variables);
-        
+        });        
     };
 
     const handleLogin = (e) => {
@@ -203,8 +201,8 @@ function authLOgin(step: number) {
 
 return (
     <div className="max-w-6xl mx-auto px-3 md:px-1">
-        <div className="min-h-[20vh] flex flex-col justify-end items-start border p-11">
-            Login
+        <div className="min-h-[15vh] flex flex-col justify-end items-start p-11">
+            {/* Login */}
         </div>
         <div className="min-h-[49vh] flex items-center justify-center">
             {authLOgin(step)}

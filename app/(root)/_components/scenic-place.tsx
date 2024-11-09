@@ -44,7 +44,7 @@ const ScenicPlace = () => {
                 modules={[Keyboard, Navigation]}
             >
                 {places.data?.length &&
-                    places?.data.map((place: place) => (
+                    places?.data.filter(e => e.name!=='Dacha').map((place: place) => (
                         <SwiperSlide key={place.id} className="">
                             <Link href={`/cottage-type/${place.id}`} className="w-[170px] cursor-pointer overflow-hidden h-[100px] rounded-md">
                                 <Image
