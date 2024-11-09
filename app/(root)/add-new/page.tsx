@@ -302,9 +302,9 @@ const AddNew = () => {
               <h3 className="text-2xl md:text-3xl font-createRound my-5">
                 {AddNewPageLanguage.dachaType[language]}
               </h3>
-              <div className="addnew-inner my-3">
+              <div className="addnew-inner my-5 flex flex-col md:flex-row md:items-center gap-x-2 md:gap-x-7">
                 {cottageType.data?.length &&
-                  cottageType.data.map((e: cottageType) => (
+                  cottageType.data.slice(0,3).map((e: cottageType) => (
                     <label key={e.id} className="flex items-center gap-2">
                       <input
                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"

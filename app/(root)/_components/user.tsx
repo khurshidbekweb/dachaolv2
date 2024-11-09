@@ -5,14 +5,10 @@ import { FaServicestack } from "react-icons/fa";
 import { TfiAnnouncement } from 'react-icons/tfi'
 import { FaDiagramSuccessor } from 'react-icons/fa6'
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const User = () => {
     const route = useRouter()
-    const clearUser = () =>{
-        localStorage.clear()
-        route.push('/')
-        window.location.reload()
-    }
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -22,30 +18,39 @@ const User = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem onClick={() => route.push('/profile')}>
-                        <Users className="mr-2 h-4 w-4" />
-                        <span>Profile</span>
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => route.push('/add-new')}>
-                            <TfiAnnouncement className="mr-2 h-4 w-4" />
-                            <span>E`lonlan qoyish</span>
+                    <DropdownMenuItem>
+                        <Link href={'/profile'} className="flex justify-between items-center w-full">
+                            <Users className="mr-2 h-4 w-4" />
+                            <span>Profile</span>
                             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => route.push('/my-cottage')}>
-                        <ShieldHalf className="mr-2 h-4 w-4" />
-                        <span>Mening dachalarim</span>
-                        <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => route.push('/services')}>
-                        <FaServicestack className="mr-2 h-4 w-4" />
-                        <span>Services</span>
-                        <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
+                        </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        <FaDiagramSuccessor className="mr-2 h-4 w-4" />
-                        <span>Foydalangan tariflarim</span>
-                        <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut>
+                            <Link href={'/add-new'}  className="flex justify-between items-center w-full">
+                                <TfiAnnouncement className="mr-2 h-4 w-4" />
+                                <span>E`lonlan qoyish</span>
+                                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                            </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <Link href={'/my-cottage'} className="flex justify-between items-center w-full">
+                            <ShieldHalf className="mr-2 h-4 w-4" />
+                            <span>Mening dachalarim</span>
+                            <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut></Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <Link href={'/services'}  className="flex justify-between items-center w-full">
+                            <FaServicestack className="mr-2 h-4 w-4" />
+                            <span>Services</span>
+                            <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
+                        </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <Link href={'/'} className="flex justify-between items-center w-full">
+                            <FaDiagramSuccessor className="mr-2 h-4 w-4" />
+                            <span>Foydalangan tariflarim</span>
+                            <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut>
+                        </Link>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
             </DropdownMenuContent>

@@ -10,26 +10,26 @@ import useLanguageStore from '@/store/language-provider';
 import { langKey, footerLang} from '@/types';
 import { authUtils } from '@/utils/auth.utils';
 import { useRouter } from 'next/navigation';
+import { set } from 'zod';
 
 const Login = () => {
     const [step, setStep] = useState<number>(0)
     const store = useLanguageStore()
     const language: langKey = store.language as keyof footerLang;
     const navigate = useRouter()
+    const [phoneNumber, setPhoneNumber] = useState('')
+    console.log(phoneNumber)    
 
     const [code, setCode] = useState(["", "", "", "", ""]);
-    const inputRefs = useRef<HTMLInputElement[]| null>([]); // Ref massiv  
-    // Kiritilgan qiymatni o'zgarishini boshqarish
+    const inputRefs = useRef<HTMLInputElement[]| null>([]); 
     const handleChange = (index: number, value: string) => {
         const newCode = [...code];
         newCode[index] = value;
         setCode(newCode);
-        // Agar keyingi input mavjud bo'lsa, unga fokusni o'tkazish
         if (value && index < inputRefs.current.length - 1) {
             inputRefs.current[index + 1].focus();
         }
     };
-    // Inputlarga qiymat kiritish
     const handleKeyDown = (index: number, event: React.KeyboardEvent) => {
         if (event.key === "Backspace" && !code[index] && index > 0) {
             inputRefs.current[index - 1].focus(); // Oldingi inputga o'tish
@@ -67,8 +67,10 @@ const Login = () => {
     const handleAuth = (e) => {
         e.preventDefault();
         phone.mutate({
-            phone: e.target.phonenumber.value.replaceAll(" ", "").slice(4),
+            phone: phoneNumber.replaceAll(" ", "").slice(4),
         });
+        console.log(phone.variables);
+        
     };
 
     const handleLogin = (e) => {
@@ -119,6 +121,7 @@ function authLOgin(step: number) {
                         placeholder="Phone number"
                         className="w-full p-2 dark:bg-slate-100 text-xl text-black  rounded-md"
                         name="phonenumber"
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                         required
                     />
                     <Button
@@ -136,7 +139,7 @@ function authLOgin(step: number) {
                     SMS kodini kiriting
                 </h2>
                 <p className="text-center text-gray-600 mb-4">
-                    +998971082004 raqamiga yuborilgan SMS kodini kiriting
+                    {phoneNumber.replaceAll(' ', '')} raqamiga yuborilgan SMS kodini kiriting
                 </p>
                 <form onSubmit={handleLogin}>
                     <div className="flex justify-between items-center mb-4">
@@ -147,7 +150,7 @@ function authLOgin(step: number) {
                                     if (el) {
                                         inputRefs.current[index] = el; // Bu yerda el null emasligini tekshiramiz
                                     }
-                                }}  // Inputlar refga qo'shiladi
+                                }} 
                                 type="text"
                                 name="smsCode"
                                 maxLength={1} 

@@ -67,10 +67,12 @@ const Profile = () => {
         e.preventDefault();
         userEdit.mutate({
             id: user?.id,
-            phone: e.target.phone.value.slice(4),
-            email: e.target.email.value || "",
+            // phone: e.target.phone.value.slice(4),
+            // email: e.target.email.value || "",
             name: e.target.name.value || "",
             image: e.target.userImage.files[0],
+            phone: undefined,
+            email: undefined
         });
         console.log(userEdit) 
     };

@@ -14,7 +14,7 @@ const MiniNav = () => {
     const route = useRouter()    
     const accessAToken = safeLocalStorage.getItem('accessToken')
 
-    if(!accessAToken && pathname=='/profile' || pathname=='/my-cottage'){
+    if(!accessAToken && pathname =='/profile' || !accessAToken && pathname =='/my-cottage'){
         route.push('/login')
     }
     return (

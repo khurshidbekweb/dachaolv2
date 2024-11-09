@@ -26,8 +26,8 @@ export const userUtils = {
   },
   editUser: async ({ id, phone, email, name, image }) => {
     const formData = new FormData();
-    formData.append("phone", phone);
-    formData.append("email", email);
+    // formData.append("phone", phone);
+    // formData.append("email", email);
     formData.append("name", name);
     formData.append("image", image);
     const { data } = await custimAxios.patch(`user/edit/${id}`, formData, {

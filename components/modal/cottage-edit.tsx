@@ -148,7 +148,7 @@ const CottageEdit = ({ cottage, id }: PropsType) => {
                         <p className="mb-0">Edit cottage type</p>
                         <div className="flex items-center gap-5">
                             {cottageType.data?.length &&
-                                cottageType.data.map((e) => {
+                                cottageType.data.slice(0,3).map((e) => {
                                     return (
                                         <label
                                             key={e.id}
