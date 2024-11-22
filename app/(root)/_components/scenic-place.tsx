@@ -48,6 +48,8 @@ const ScenicPlace = () => {
                         <SwiperSlide key={place.id} className="">
                             <Link href={`/cottage-type/${place.id}`} className="w-[170px] cursor-pointer overflow-hidden h-[100px] rounded-md">
                                 <Image
+                            sizes="(min-width: 170px)"
+
                                     width={170}
                                     height={100}
                                     className="w-full h-[80px] md:h-[120px] cursor-pointer rounded-md"

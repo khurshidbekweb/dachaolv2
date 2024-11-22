@@ -15,6 +15,7 @@ const ServiceCard = (props: services) => {
                 src={`${IMG_BASE_URL}${props.images[0]}`}
                 alt={props.name}
                 className="w-full h-[180px]"
+                sizes="(min-width: 150px)"
                 width={150}
                 height={100}
             />

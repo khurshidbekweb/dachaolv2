@@ -26,7 +26,7 @@ const SwiperHero = () => {
     
     return (
       <Swiper
-      className="swiper mt-[30px] mx-auto"
+      className="swiper mt-[30px] mx-auto h-[35vh] md:h-[30vh] lg:h-[50vh]"
       modules={[Navigation, A11y, Scrollbar, Autoplay, Parallax, Pagination, EffectCoverflow]}
       spaceBetween={10}
       effect={'coverflow'}
@@ -57,6 +57,8 @@ const SwiperHero = () => {
                 }`}
                 alt="bgimg"
                 className="bg-img -z-10 md:rounded-md"
+                sizes="(min-width: 80%) 100vw, 33vw"
+                loading="lazy"
               />
               <div className="flex flex-col items-center justify-center z-0 w-full h-full space-y-3 bg-black/35">
                 <h1 className="header-text font-createRound text-2xl md:text-5xl text-white"> {el.cottage.name} </h1>

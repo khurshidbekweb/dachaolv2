@@ -45,28 +45,31 @@ const HotelView = () => {
             <SwiperSlide className="">
                         <Link href={'/'} className="w-[350px] cursor-pointer overflow-hidden h-[150px] rounded-md">
                             <Image
-                        width={350}
-                        height={100}
-                        className="!w-full h-[110px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
-                        src={HotelImg}
-                        alt="nature"
+                            sizes="350px"
+                            width={350}
+                            height={100}
+                            className="!w-full h-[110px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
+                            src={HotelImg}
+                            alt="nature"
                     />
                 </Link>
             </SwiperSlide>
             <SwiperSlide className="">
                         <Link href={'/'} className="w-[350px] cursor-pointer overflow-hidden h-[150px] rounded-md">
                             <Image
-                        width={350}
-                        height={100}
-                        className="!w-full h-[110px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
-                        src={Sanatoriya}
-                        alt="nature"
+                            sizes="(min-width: 350px)"
+                            width={350}
+                            height={100}
+                            className="!w-full h-[110px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
+                            src={Sanatoriya}
+                            alt="nature"
                     />
                 </Link>
             </SwiperSlide>
             <SwiperSlide className="">
                         <Link href={'/'} className="w-[350px] md:-w-[450px] cursor-pointer overflow-hidden h-[150px] rounded-md">
                             <Image
+                            sizes="(min-width: 350px)"
                                 width={350}
                                 height={100}
                                 className="!w-full h-[110px] md:h-[130px] md:w-[400px] cursor-pointer rounded-md"

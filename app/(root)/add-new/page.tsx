@@ -159,7 +159,7 @@ const AddNew = () => {
     for (const image of images) {
       childImagesWrapper.current.insertAdjacentHTML(
         "beforeend",
-        `<Image src=${image} width="120" height="70" alt="child image" class="child-img-cottage !h-[70px] rounded-md"/ >`
+        `<Image src=${image} width="120" sizes="(min-width: 120px)" height="70" alt="child image" class="child-img-cottage !h-[70px] rounded-md"/ >`
       );
     }
   };
@@ -203,6 +203,7 @@ const AddNew = () => {
                   className="!z-20 w-full hidden !h-[150px]"
                   src={''}
                   alt="add"
+                  sizes="(min-width: 250px)"
                   width={250}
                   height={250}
                 />
@@ -336,6 +337,7 @@ const AddNew = () => {
                     <Image
                       className="bg-white rounded-sm"
                       width={20}
+                      sizes="(min-width: 20px)"
                       height={20}
                       src={`${IMG_BASE_URL}${e.image}`}
                       alt="img"

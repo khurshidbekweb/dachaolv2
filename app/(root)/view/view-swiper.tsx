@@ -49,6 +49,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                                     className=" md:w-[950px] h-[250px] md:h-[480px]"
                                     src={`${IMG_BASE_URL}${img?.image}`}
                                     alt="img"
+                                    sizes="(min-width: 950px)"
                                     width={950}
                                     height={480}
                                 />
@@ -71,6 +72,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                                     className="w-[250] h-[90px] md:h-[150px]"
                                     src={`${IMG_BASE_URL}${img?.image}`}
                                     alt="img"
+                                    sizes="(min-width: 250px)"
                                     width={250}
                                     height={150}
                                 />
@@ -86,6 +88,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                             <Image
                                 src={`${IMG_BASE_URL}${cottageView?.user?.image}`}
                                 height={40}
+                                sizes="(min-width: 40px)"
                                 width={40} alt={""} />
                         ) : (
                             <span>

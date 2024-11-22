@@ -20,7 +20,7 @@ const Place = () => {
         <div className="relative my-2 px-2">
             <h2 className="places-top my-2 text-2xl font-createRound md:text-4xl">{PlaseLeng[language]}</h2>
             <Swiper
-                className="mt-1 md:mt-5"
+                className="mt-1 md:mt-5 h-[95px] md:h-[140px]"
                 keyboard={{
                     enabled: true,
                 }}
@@ -47,6 +47,7 @@ const Place = () => {
                         <SwiperSlide key={place.id} className="">
                             <Link href={`/place/${place.id}`} className="relative w-[80px] h-[80px] md:h-[140px] md:w-[140px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
                                 <Image
+                                sizes='(max-width: 150px)'
                                     width={150}
                                     height={150}
                                     className="w-[120px] h-[125px] md:h-[140px] md:w-[150px] rounded-full mx-auto"

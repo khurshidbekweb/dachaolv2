@@ -265,6 +265,7 @@ const CottageEdit = ({ cottage, id }: PropsType) => {
                                             <Image
                                                 src={`${IMG_BASE_URL}${e.image}`}
                                                 alt="img"
+                                                sizes='(max-width: 20px)'
                                                 width={20}
                                                 height={20}
                                             />

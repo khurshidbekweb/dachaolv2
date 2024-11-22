@@ -38,7 +38,7 @@ const UserDacha = (dacha: cottage) => {
                     {
                         dacha && dacha?.images.map((img: image) => (
                                 <SwiperSlide className='!h-[140px] !md:h-[240px]' key={img.id}>
-                                    <Image className='w-full h-[140px] md:h-[210px]' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
+                                    <Image className='w-full h-[140px] md:h-[210px]' sizes='(max-width: 300px)' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
                                 </SwiperSlide>
                         ))
                     }
@@ -55,7 +55,7 @@ const UserDacha = (dacha: cottage) => {
                     </div>
                     <div className="hidden md:flex justify-between items-center mt-2">
                         {dacha && dacha.comforts.slice(0, 7).map((com: comfort) => (
-                            <Image width={20} height={20} key={com.id} src={`${IMG_BASE_URL}${com.image}`} alt={com.name} />
+                            <Image width={20} sizes='(max-width: 20px)' height={20} key={com.id} src={`${IMG_BASE_URL}${com.image}`} alt={com.name} />
                         ))}
                     </div>
                 </div> 

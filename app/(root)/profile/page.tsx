@@ -96,13 +96,14 @@ const Profile = () => {
                     <li onClick={() =>setActive('services')} className={cn('cursor-pointer', active=='services' && 'text-blue-400')}>Services</li>
                 </ul>
                 {active==='profile' && <form onSubmit={handleUser}>
-                    <div className="w-full md:w-[50vw] flex flex-col space-y-3 items-center md:flex-row gap-2 md:items-start">
-                        <div className="w-[120px] h-[120px] relative border border-separate rounded-full overflow-hidden  flex items-center justify-center">
+                    <div className="w-full max-md:size-[50vw] flex flex-col space-y-3 items-center md:flex-row gap-2 md:items-start">
+                        <div className="size-[120px] h-[120px] relative border border-separate rounded-full overflow-hidden  flex items-center justify-center">
                             <Image
                                 className={userImg ? "w-[100px] h-[100px] shadow-sm" : "hidden"}
                                 ref={ismainImage}
                                 src={''}
                                 alt="useImg"
+                                sizes="120px"
                                 fill                                
                             />
                             <label className="w-[100px] h-[100px] relative">

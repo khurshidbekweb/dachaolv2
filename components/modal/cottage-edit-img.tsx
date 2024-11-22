@@ -105,6 +105,7 @@ const CottageEditImg = ({ id, images }: PropsType) => {
                                     ref={mainImage}
                                     src={`${IMG_BASE_URL}${mainImageCottage.image}`}
                                     alt="main-image"
+                                    sizes='(max-width: 150px)'
                                     width={150}
                                     height={180}
                                     className="!w-[150px] rounded-md"
@@ -138,6 +139,7 @@ const CottageEditImg = ({ id, images }: PropsType) => {
                                             <div key={e.id} className="!w-[110px] relative">
                                                 <Image
                                                     src={`${IMG_BASE_URL}${e.image}`}
+                                                    sizes='(max-width: 110px)'
                                                     width={110}
                                                     height={120}
                                                     alt="childImages"
