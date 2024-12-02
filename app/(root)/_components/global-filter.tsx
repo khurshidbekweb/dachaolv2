@@ -10,10 +10,15 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { debounce } from 'lodash'
 import { ALL_DATA } from '@/Query/get_all';
 import { cn } from '@/lib/utils';
+import SearchCard from '@/components/card/search-card';
+import { cottage, place } from '@/types';
 
 const GlobalFilter = () => {
     const [searchText, setSearchText] = useState('');
     const { data, isLoading } = ALL_DATA?.useSearchCottage(searchText);
+    const {data: place} = ALL_DATA.usePlace()
+    console.log(place);
+    
 
     const debouncedSearch = debounce((value: string) => setSearchText(value), 400);
     const handleSearchCottage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +27,7 @@ const GlobalFilter = () => {
     }
     useEffect(() => {
         return () => debouncedSearch.cancel();
-    }, []);
+    }, [searchText]);
     console.log(data);
     
     return (
@@ -40,9 +45,13 @@ const GlobalFilter = () => {
                     <div className="container max-w-6xl mx-auto py-12">
                         <Input onChange={handleSearchCottage} disabled={isLoading} className="bg-secondary" placeholder="E'lonlarni qidirish..." />
                         {isLoading ? <Loader className='animate-spin mx-auto w-4 h-4'/> : <p className='text-start'>{data?.length?data?.length+' - natija':''}</p> }
-                        <div className={cn('grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2', data?'':'')}></div>
+                        <div className={cn('grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2')}>
+                             {data?.length && data.map((dacha: cottage) => (
+                                <SearchCard key={dacha.id} dacha={dacha}/>
+                             ))}
+                        </div>
                         <div className='flex flex-col space-y-2 mt-4'>
-                            <p className='font-creteRound text-2xl text-start'>See posts by categories</p>
+                            <p className='font-creteRound text-2xl text-start'>See posts by type</p>
                             <div className="flex items-center gap-x-3">
                                 <div className='flex flex-wrap gap-2'>
                                     {dachaType.map(item => (
@@ -61,17 +70,19 @@ const GlobalFilter = () => {
                         </div>
 
                         <div className='flex flex-col space-y-2 mt-4'>
-                            <p className='font-creteRound text-2xl text-start'>See posts by tags</p>
+                            <p className='font-creteRound text-2xl text-start'>See posts by place</p>
                             <div className="flex items-center gap-x-3">
                                 <div className='flex flex-wrap gap-2'>
-                                    {dachaType.map(item => (
-                                        <Badge key={item.id} variant={'secondary'}>
-                                            {item.name}
-                                        </Badge>
+                                    {place?.slice(0,3)?.map((item:place) => (
+                                        <Link href={`/place/${item.id}`} key={item.id}>
+                                            <Badge  variant={'secondary'}>
+                                                {item.name}
+                                            </Badge>
+                                        </Link>
                                     ))}
                                 </div>
                                 <Minus />
-                                <Link href={'/tags'} className="text-blue-500 underline">
+                                <Link href={'/place'} className="text-blue-500 underline">
                                     <DrawerClose>
                                         See all
                                     </DrawerClose>

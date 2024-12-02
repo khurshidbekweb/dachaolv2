@@ -16,39 +16,19 @@ import { useLikeStore } from '@/store/like-card';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
-const SearchCard = (dacha: cottage) => {
+interface propsCard{
+    dacha: cottage
+}
+
+const SearchCard = ({dacha}:propsCard) => {
     return (
-        <div className='relative max-w-[170px] mx-auto md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
+        <div className='relative max-w-[110px] mx-auto md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
-                <Swiper
-                    pagination={{
-                        type: 'fraction',
-                    }}
-                    modules={[Pagination, Navigation, A11y]}
-                    className="swiper"
-                >
-                    {
-                        dacha && dacha?.images.map((img: image) => (
-                                <SwiperSlide className='!h-[140px] !md:h-[240px]' key={img.id}>
-                                    <Image className='w-full h-[140px] md:h-[210px]' sizes='(max-width: 300px)' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
-                                </SwiperSlide>
-                        ))
-                    }
-                    <SwiperNavBotton />
-                </Swiper> 
+            <Image width={110} height={120} className='!h-[70px]' src={`${IMG_BASE_URL}${dacha.images[0].image}`} alt='image cottage'/> 
                 <div className="dacha-info p-2">
-                    <div className="flex justify-between items-center">
-                        <h2 className='text-[16px] md:text-xl font-createRound'>{dacha.name}</h2>
-                        <p className='font-createRound text-xl text-yellow-400'>{dacha.price}$</p>
-                    </div>
-                    <div className="flex gap-x-4 my-2 items-start space-y-2 flex-col md:flex-row md:items-center md:space-y-0">
-                        <Badge variant='secondary'>{dacha.region.name}</Badge>
-                        <Badge variant='secondary' className=''>{dacha.place.name}</Badge>
-                    </div>
-                    <div className="hidden md:flex justify-between items-center mt-2">
-                        {dacha && dacha.comforts.slice(0, 7).map((com: comfort) => (
-                            <Image sizes='(max-width: 20px)' width={20} height={20} key={com.id} src={`${IMG_BASE_URL}${com.image}`} alt={com.name} />
-                        ))}
+                    <div className="flex justify-between flex-col items-start">
+                        <h2 className='text-[16px] line-clamp-1 text-start md:text-xl font-createRound'>{dacha.name}</h2>
+                        <p className='font-createRound text-xs text-yellow-400'>{dacha.price}$</p>
                     </div>
                 </div> 
             </Link>
