@@ -99,6 +99,12 @@ export const ALL_DATA = {
       queryKey: [QUERY_KEYS.cottageUserAllId],
       queryFn: async () => await cottageUtils.getCottageUserId(userId),
     }),
+    useSearchCottage: (search) => (
+      useQuery({
+        queryKey: ['search_cottage'],
+        queryFn: async () => await cottageUtils.getSearchCottage(search)
+      })
+    ),
   useSuitableCottage: (id) =>
     useQuery({
       queryKey: [QUERY_KEYS.cottage_suitable_id, id],

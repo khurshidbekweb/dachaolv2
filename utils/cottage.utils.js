@@ -104,6 +104,14 @@ export const cottageUtils = {
     })
     return data;
   },
+  getSearchCottage: async ({search})=>{
+    const {data} = await custimAxios.get(`cottage/search?name=${search}`, {
+      headers: {
+        "accept-language": safeLocalStorage.getItem("language"),
+      },
+    })
+    return data
+  },
   postCottage: async ({
     comforts,
     cottageType,

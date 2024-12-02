@@ -4,9 +4,13 @@ import { Input } from '@/components/ui/input';
 import { dachaType } from '@/constants';
 import { Minus, Search } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import {debounce} from 'lodash'
 
 const GlobalFilter = () => {
+    const [isLoading, setIsLoading] = useState(false)
+    const [cottage, setCottage] = useState([])
+    
     return (
         <Drawer>
             <DrawerTrigger>
