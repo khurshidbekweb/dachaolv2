@@ -19,7 +19,7 @@ const ViewComforts = (props: Props) => {
               height={30}
               className="bg-white"
             /> */}
-            <p title={e.name} className="text-[16px] border rounded-lg p-2">{e.name}</p>
+            <p title={e.name} className="text-[16px] border rounded-lg bg-secondary p-2">{e.name}</p>
           </div>
         ))}
     </div>
