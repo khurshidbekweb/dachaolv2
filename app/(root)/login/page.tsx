@@ -18,7 +18,6 @@ const Login = () => {
     const language: langKey = store.language as keyof footerLang;
     const navigate = useRouter()
     const [phoneNumber, setPhoneNumber] = useState('')
-    console.log(phoneNumber)    
 
     const [code, setCode] = useState(["", "", "", "", ""]);
     const inputRefs = useRef<HTMLInputElement[]| null>([]); 

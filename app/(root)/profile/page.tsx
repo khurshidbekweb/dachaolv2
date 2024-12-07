@@ -54,7 +54,6 @@ const Profile = () => {
             saveData.current.classList.add("hidden");
             editImage.current.classList.add("hidden");
             await userUtils.getSingleUser();
-            console.log(edit);            
             setEdit(true);
         },
         onError: (err) => {
@@ -74,7 +73,6 @@ const Profile = () => {
             phone: undefined,
             email: undefined
         });
-        console.log(userEdit) 
     };
 
     const handleIsMianImage = async (e) => {

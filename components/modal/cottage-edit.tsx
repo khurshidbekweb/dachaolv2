@@ -102,7 +102,6 @@ const CottageEdit = ({ cottage, id }: PropsType) => {
                 response: comforts.filter((e) => e !== value),
             });
         }
-        console.log(value);
     };
 
     const handlCottage = (e) => {

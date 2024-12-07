@@ -75,7 +75,6 @@ const AddNew = () => {
   //Region chacked
   const [choosRegion, setChoosRegion] = useState<string>('')
   const placeByRegionId= ALL_DATA.usePlaceById(choosRegion)?.data
-  console.log(placeByRegionId);
   
 
   // const handleChoosRegion = (e: React.ChangeEvent<HTMLSelectElement>) => {

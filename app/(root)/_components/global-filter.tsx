@@ -18,7 +18,6 @@ const GlobalFilter = () => {
     const { data, isLoading } = ALL_DATA?.useSearchCottage(searchText);
     const { data: place } = ALL_DATA.usePlace()
     const {data: cottageType} = ALL_DATA.useCottageType()
-    console.log(place);
 
 
     const debouncedSearch = debounce((value: string) => setSearchText(value), 400);
@@ -29,7 +28,6 @@ const GlobalFilter = () => {
     useEffect(() => {
         return () => debouncedSearch.cancel();
     }, [searchText]);
-    console.log(data);
 
     return (
         <Drawer>

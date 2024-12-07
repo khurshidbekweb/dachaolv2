@@ -1,22 +1,21 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import 'react-i18next';
+
+declare module 'react-i18next' {
+  interface Resources {
+    common: typeof import('../locales/uz/translation.json');
+  }
+}
 
 
-import translationUZ from "@/locales/uz/translation.json";
-import translationRU from "@/locales/ru/translation.json";
-import translationEN from "@/locales/en/translation.json";
 
-i18n.use(initReactI18next).init({
-  resources: {
-    uz: { translation: translationUZ },
-    ru: { translation: translationRU },
-    en: { translation: translationEN },
-  },
-  lng: JSON.parse(localStorage.getItem('language')!) || 'uz', // Default til
-  fallbackLng: JSON.parse(localStorage.getItem('language')!) || 'uz',
-  interpolation: {
-    escapeValue: false,
-  },
-});
-
-export default i18n;
+const a = {
+    i18n: {
+      defaultLocale: 'en',
+      locales: ['en', 'uz'],
+    },
+  };
+const {i18n} = a
+  module.exports = {
+    i18n
+  };
+  
