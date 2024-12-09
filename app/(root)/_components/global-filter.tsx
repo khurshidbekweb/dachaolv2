@@ -42,7 +42,7 @@ const GlobalFilter = () => {
             <DrawerContent aria-describedby=''>
                 <DrawerHeader aria-describedby="">
                     <div className="container max-w-6xl mx-auto py-12">
-                        <Input onChange={handleSearchCottage} disabled={isLoading} className="bg-secondary" placeholder="E'lonlarni qidirish..." />
+                        <Input onChange={handleSearchCottage} className="bg-secondary" placeholder="E'lonlarni qidirish..." />
                         {isLoading ? <Loader className='animate-spin mx-auto w-4 h-4' /> : <p className='text-start'>{data?.length ? data?.length + ' - natija' : ''}</p>}
                         <div className={cn('grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2')}>
                             {data?.length && data.map((dacha: cottage) => (
@@ -53,7 +53,7 @@ const GlobalFilter = () => {
                             <div className="flex items-center gap-2">
                                 <p className='font-creteRound text-2xl text-start'>See posts by type</p>
                                 <Minus />
-                                <Link href={'/category'} className="text-blue-500 underline">
+                                <Link href={'/place'} className="text-blue-500 underline">
                                     <DrawerClose>
                                         See all
                                     </DrawerClose>
