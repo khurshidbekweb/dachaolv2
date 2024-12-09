@@ -5,6 +5,7 @@ import RootLayoutClient from "@/components/providers/root-layout";
 import NextTopLoader from 'nextjs-toploader';
 
 
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://dachaol.uz'),
   title: "DachaOL | Uylar",
@@ -29,10 +30,9 @@ export const metadata: Metadata = {
 function RootLayout({children}: ChildProps) {  
   return <html lang="en">
         <body>
-          {/* Bu yerda klientga xos RootLayoutClient komponentini render qilamiz */}
           <RootLayoutClient>
             <NextTopLoader showSpinner={false}/>
-            {children}
+            {children}        
           </RootLayoutClient>
         </body>
       </html>

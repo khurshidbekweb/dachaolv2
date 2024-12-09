@@ -11,17 +11,18 @@ import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
 import User from './user';
 import { useLikeStore } from '@/store/like-card';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
     const pathname = usePathname()    
     const {likedCards} = useLikeStore()
-    
+    const {t} = useTranslation('common')
     return (
     <div className="md:h-[10vh] h-[8vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
         <div className="container max-w-6xl h-[8vh] mx-auto w-full flex items-center justify-between">
             {/* Logo */}
             <Link href={'/'}>
-                <h1 className='text-3xl md:text-4xl font-createRound font-bold'>DachaOL</h1>
+                <h1 className='text-3xl md:text-4xl font-createRound font-bold'>{t('nav_logo')}</h1>
             </Link>
             {/* Nav link */}
             <div className=" hidden md:flex gap-2">

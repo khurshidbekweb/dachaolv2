@@ -8,7 +8,9 @@ import Image from "next/image";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import {safeLocalStorage} from '@/utils/safeLocalstorge'
+import { useTranslation } from "react-i18next";
 const ChangeLanguage = () => {   
+    const {i18n} = useTranslation()
     const languages:language[] = ALL_DATA.useLanguage()?.data
     const activeLang = languages && languages.find((lang: language) => lang.code == safeLocalStorage.getItem('language'))  
       
@@ -17,8 +19,9 @@ const ChangeLanguage = () => {
 
   const toggleLanguage = (code: string) => {
         safeLocalStorage.setItem("language", code);
-    setLanguage(code);
-    queryClient.invalidateQueries({ type: "all" });
+        setLanguage(code);
+        i18n.changeLanguage(code)
+        queryClient.invalidateQueries({ type: "all" });
   };
 
     return (

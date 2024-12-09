@@ -1,21 +1,25 @@
-import 'react-i18next';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import HttpApi from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-declare module 'react-i18next' {
-  interface Resources {
-    common: typeof import('../locales/uz/translation.json');
-  }
-}
-
-
-
-const a = {
-    i18n: {
-      defaultLocale: 'en',
-      locales: ['en', 'uz'],
+i18n
+  .use(HttpApi)
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: 'uz', // Default til
+    supportedLngs: ['ru', 'uz'], // Qo‘llab-quvvatlanadigan tillar
+    interpolation: {
+      escapeValue: false, // React uchun xavfsiz
     },
-  };
-const {i18n} = a
-  module.exports = {
-    i18n
-  };
-  
+    detection: {
+      order: ['path', 'cookie', 'localStorage', 'navigator'],
+      caches: ['cookie'],
+    },
+    backend: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json', // Tarjima fayllar yo‘li
+    },
+  });
+
+export default i18n;

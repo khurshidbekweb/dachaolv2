@@ -12,24 +12,24 @@ const Home = () => {
     return (
         <div className='max-w-6xl min-h-[40vh] mx-auto'>
             <section className="hero">
-                <SwiperHero/>
+                <SwiperHero />
             </section>
             <section className="place">
-                <Place/>
+                <Place />
             </section>
             <section className='hotel'>
-                <HotelView/>
-            </section>           
+                <HotelView />
+            </section>
             <section className="recommended">
-                <Recommunded/>
+                <Recommunded />
             </section>
             <section>
-                <ScenicPlace/>
+                <ScenicPlace />
             </section>
             <section>
-                <RecentlyCottage/>
+                <RecentlyCottage />
             </section>
-            <MiniNav/>
+            <MiniNav />
         </div>
     );
 };

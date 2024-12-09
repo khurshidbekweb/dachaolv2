@@ -7,6 +7,8 @@ import {Crete_Round, Work_Sans} from 'next/font/google'
 import Head from 'next/head';
 import { Toaster } from 'sonner';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '@/i18n';
 
 const creteRound = Crete_Round({
     weight: ['400'],
@@ -43,7 +45,7 @@ const creteRound = Crete_Round({
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
               <QueryClientProvider client={queryClient}>
-                {children}
+                <I18nextProvider i18n={i18n}>{children}</I18nextProvider>                
               </QueryClientProvider>
               <Toaster position='top-center'/>
           </ThemeProvider>
