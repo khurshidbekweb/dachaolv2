@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 const Navbar = () => {
     const pathname = usePathname()    
     const {likedCards} = useLikeStore()
-    const {t} = useTranslation('common')
+    const {t} = useTranslation()
     return (
     <div className="md:h-[10vh] h-[8vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
         <div className="container max-w-6xl h-[8vh] mx-auto w-full flex items-center justify-between">
