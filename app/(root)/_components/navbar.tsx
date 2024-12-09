@@ -1,22 +1,34 @@
 'use client'
 
 import ModeToggle from '@/components/shared/mode-toggle';
-import { navLinks } from '@/constants';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
 import MobileNav from './mobile';
 import GlobalFilter from './global-filter';
 import ChangeLanguage from './change-language';
 import User from './user';
 import { useLikeStore } from '@/store/like-card';
 import { useTranslation } from 'react-i18next';
+import { Contact2,  Home, ListCollapse, LucideProps } from "lucide-react";
+
+interface navLinks{
+    name: string,
+    route: string,
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
+}
 
 const Navbar = () => {
     const pathname = usePathname()    
     const {likedCards} = useLikeStore()
     const {t} = useTranslation()
+    const navLinks:navLinks[] = [
+        { name: t('nav_home'), route: '/', icon: Home },
+        { name: t('nav_cottage'), route: '/cottage', icon: ListCollapse },
+        { name: t('nav_fovarite'), route: '/fovarite', icon: ListCollapse },
+        { name: t('nav_contact'), route: '/contact', icon: Contact2 },
+    ]
     return (
     <div className="md:h-[10vh] h-[8vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
         <div className="container max-w-6xl h-[8vh] mx-auto w-full flex items-center justify-between">
@@ -26,7 +38,7 @@ const Navbar = () => {
             </Link>
             {/* Nav link */}
             <div className=" hidden md:flex gap-2">
-                {navLinks.map((nav, i) =>(
+                {navLinks?.length && navLinks?.map((nav, i) =>(
                     <Link
                         key={i} 
                         href={nav.route}

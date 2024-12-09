@@ -1,4 +1,14 @@
 {
-    "nav_logo": "ДачаOL",
-    "nav_home": "Asosiy"
+    "nav_logo": "DachaOL",
+    "nav_home": "Главная",      
+    "nav_cottage": "Категория",      
+    "nav_fovarite": "Избранное",      
+    "nav_contact": "Контакт",      
+    "nav_profile": "Профиль",
+    "nav_myaccaunt": "Мой Аккаунт",
+    "profile_search": "Поиск",
+    "profile_e'lonlar": "Добавить объявление",
+    "profile_dachalarim": "Мои дачи",
+    "profile_service": "Услуги",
+    "profile_tariff": "Мои использованные тарифы"
 }

@@ -3,7 +3,6 @@
 import { Badge } from '@/components/ui/badge';
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import { Input } from '@/components/ui/input';
-import { dachaType } from '@/constants';
 import { Loader, Minus, Search } from 'lucide-react';
 import Link from 'next/link';
 import React, { ChangeEvent, useEffect, useState } from 'react';
@@ -12,13 +11,14 @@ import { ALL_DATA } from '@/Query/get_all';
 import { cn } from '@/lib/utils';
 import SearchCard from '@/components/card/search-card';
 import { cottage, cottageType, place } from '@/types';
+import { useTranslation } from 'react-i18next';
 
 const GlobalFilter = () => {
     const [searchText, setSearchText] = useState('');
     const { data, isLoading } = ALL_DATA?.useSearchCottage(searchText);
     const { data: place } = ALL_DATA.usePlace()
     const {data: cottageType} = ALL_DATA.useCottageType()
-
+    const {t} = useTranslation()
 
     const debouncedSearch = debounce((value: string) => setSearchText(value), 400);
     const handleSearchCottage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,7 @@ const GlobalFilter = () => {
             <DrawerTrigger>
                 <DrawerTitle>
                     <div className='hover:bg-blue-400/20 cursor-pointer rounded-sm transition-colors flex items-center gap-2 px-3 py-2'>
-                        <span className='hidden md:flex'>Search</span>
+                        <span className='hidden md:flex'>{t('profile_search')}</span>
                         <Search type='icon' />
                     </div>
                 </DrawerTitle>

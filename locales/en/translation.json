@@ -1,4 +1,14 @@
 {
     "nav_logo": "DachaOL",
-    "nav_home": "Asosiy"
+    "nav_home": "Home",      
+    "nav_cottage": "Category",      
+    "nav_fovarite": "Favorite",      
+    "nav_contact": "Contact",      
+    "nav_profile": "Profile",
+    "nav_myaccaunt": "My Account",
+    "profile_search": "Search",
+    "profile_e'lonlar": "Add Announcement",
+    "profile_dachalarim": "My Cottages",
+    "profile_service": "Services",
+    "profile_tariff": "My Used Tariffs"
 }

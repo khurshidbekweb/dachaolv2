@@ -1,16 +1,29 @@
 'use client'
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { navLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 import { Separator } from "@radix-ui/react-separator";
-import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { useTranslation } from "react-i18next";
+import { Contact2,  Home, ListCollapse, LucideProps, Menu } from "lucide-react";
 
+
+interface navLinks{
+    name: string,
+    route: string,
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
+}
 
 const MobileNav = () => {
     const pathname = usePathname()
-
+    const {t} = useTranslation()
+    const navLinks:navLinks[] = [
+        { name: t('nav_home'), route: '/', icon: Home },
+        { name: t('nav_cottage'), route: '/cottage', icon: ListCollapse },
+        { name: t('nav_fovarite'), route: '/fovarite', icon: ListCollapse },
+        { name: t('nav_contact'), route: '/contact', icon: Contact2 },
+    ]
     return (
         <Sheet>
             <SheetTrigger asChild className="md:hidden flex cursor-pointer"><Menu /></SheetTrigger>
@@ -21,7 +34,7 @@ const MobileNav = () => {
                 <Separator className="my-3"/>
 
                 <div className="flex flex-col">
-                    {navLinks.map((nav, i) =>(
+                    {navLinks?.map((nav, i) =>(
                             <Link
                                 key={i} 
                                 href={nav.route}
