@@ -32,8 +32,25 @@ import Dacha from "@/components/card/dacha";
 const View = ({params}: {params: {id: string}}) => {    
     const [isTop, setIsTop] = useState(false)
     const cottage = ALL_DATA.useCottage();
-    const suitableCottage = ALL_DATA.useSuitableCottage(params.id)?.data
-    const cottageView:cottage = cottage?.data?.find((e: cottage) => e.id === params.id);
+    const [paramsNew, SetNewParams] = useState<{ id: string } | null>(null)   
+    useEffect(() => {
+            const getParams = async () => {
+                const a = await params
+                SetNewParams(a)
+            } 
+            getParams()
+        }, [params]
+    )
+    const suitableCottage = ALL_DATA.useSuitableCottage(paramsNew?.id)?.data
+    const cottageView:cottage = cottage?.data?.find((e: cottage) => e.id === paramsNew?.id)
+    console.log(cottageView);
+    const mapLink =
+    cottageView?.latitude &&
+    cottageView?.longitude &&
+    `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10000!2d${cottageView?.longitude}!3d${cottageView?.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1`;
+  
+    console.log(mapLink);
+    
     
     const childImage = [];
     cottageView?.images?.forEach((e: image) => {
@@ -96,6 +113,21 @@ const View = ({params}: {params: {id: string}}) => {
                             </p>
                             <ViewComforts comforts={cottageView} />
                         </div>
+                        {mapLink && 
+                        <div className="flex justify-center items-center bg-gray-100">
+                        <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+                          <div className="aspect-w-16 aspect-h-9">
+                            <iframe 
+                              className="w-full h-full rounded-b-lg"
+                              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10000!2d69.2593952!3d41.3010284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1'
+                            //   style={"border:0;"} 
+                              loading="lazy"
+                            ></iframe>
+                          </div>
+                        </div>
+                      </div>
+                      
+                        }
                     </div>
                     <div className="mt-8">
                         <h2 className="text-2xl md:text-3xl font-createRound">Oxshash dachalar</h2>
