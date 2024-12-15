@@ -20,7 +20,6 @@ import {cottageTop, footerLang, langKey, } from "@/types";
 
 const SwiperHero = () => {
     const cottageTop = ALL_DATA.useCottageTop()?.data;
-    // const {language} = useLanguageStore()
     const store= useLanguageStore()
     const language: langKey = store.language as keyof footerLang;
     

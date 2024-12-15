@@ -23,7 +23,7 @@ const Dacha = (dacha: cottage) => {
     const handleLikeClick = (id: string) => {
         toggleLike(id);
     };    
-
+    console.log(dacha);    
     return (
         <div className='relative max-w-[170px] mx-auto md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
