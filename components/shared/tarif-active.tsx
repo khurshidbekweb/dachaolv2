@@ -4,13 +4,15 @@ import { QUERY_KEYS } from "@/Query/query-keys";
 import useLanguageStore from "@/store/language-provider";
 import { langKey, tariff } from "@/types";
 import { OrderUtils } from "@/utils/order.utils";
+import {paymiUtils} from '@/utils/paymi.utils'
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { toast } from "sonner";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Separator } from "../ui/separator";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 
 interface Props {
@@ -24,19 +26,38 @@ const TarifActive = (props: Props) => {
     const queryClient = useQueryClient();
     const store = useLanguageStore()
     const language = store.language as keyof langKey
+    const route = useRouter()
 
+    const paymeIntegration = useMutation({
+        mutationFn: paymiUtils.orderPaymi,
+        onSuccess: (data) => {
+            queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.tariff] });
+            toast.success(TariffModalLanguage[language]);
+            route.push(data.url)
+        },
+        onError: (err) => {
+            toast.error('Xatolik mavjud');
+            console.error(err);
+        },
+    })
 
     const addCottage = useMutation({
         mutationFn: OrderUtils.activeOrder,
-        onSuccess: () => {
+        onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.tariff] });
             toast.success(TariffModalLanguage[language]);
+            paymeIntegration.mutate({
+                orderId: data.id,
+                url:'http://localhost:3000/profile'
+            })
+            console.log(paymeIntegration.variables);            
         },
         onError: (err) => {
             toast.error('Xatolik mavjud');
             console.error(err);
         },
     });
+    
 
     const handleCottage = (e) => {
         e.preventDefault();
@@ -44,8 +65,11 @@ const TarifActive = (props: Props) => {
             cottageId: e.target.tariff_cottage.value,
             tariffId: props.tariff.id,
         });
+        console.log(addCottage.variables);        
         activete.current.classList.remove("disabled");
     };
+
+    
     return (
         <Dialog>
             <DialogTrigger className="bg-secondary w-[90%] absolute bottom-2 p-2 rounded-lg font-medium">{TariffPageLanguage.active[language]} {props.tariff.price}$</DialogTrigger>
