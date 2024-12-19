@@ -27,6 +27,7 @@ const TarifActive = (props: Props) => {
     const store = useLanguageStore()
     const language = store.language as keyof langKey
     const route = useRouter()
+    const backUrl = process.env.NEXT_PUBLIC_PAYME_URL
 
     const paymeIntegration = useMutation({
         mutationFn: paymiUtils.orderPaymi,
@@ -48,7 +49,7 @@ const TarifActive = (props: Props) => {
             toast.success(TariffModalLanguage[language]);
             paymeIntegration.mutate({
                 orderId: data.id,
-                url:'http://localhost:3000/profile'
+                url: backUrl
             })
             console.log(paymeIntegration.variables);            
         },
