@@ -40,6 +40,7 @@ const Profile = () => {
     const [active, setActive] = useState<activeView>('profile')
     const userCottage = ALL_DATA.useCottageUser()?.data; 
     const orders = user?.orders    
+    console.log(userData?.data);
     
     
     const saveData = useRef(null);
