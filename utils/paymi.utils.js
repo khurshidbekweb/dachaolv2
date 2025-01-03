@@ -1,4 +1,5 @@
 import custimAxios from "@/config/axios.config";
+import { safeLocalStorage } from "./safeLocalstorge";
 
 
 export const paymiUtils = {
@@ -6,6 +7,11 @@ export const paymiUtils = {
         const {data}  = await custimAxios.post('payme/checkout', {
             orderId, 
             url
+        }, {
+            headers: {
+                            "accept-language": safeLocalStorage.getItem("language"),
+                            Authorization: `Bearer ${safeLocalStorage.getItem("accessToken")}`,
+                        },
         })
         return data
     }
