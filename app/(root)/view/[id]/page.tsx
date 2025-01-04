@@ -7,12 +7,14 @@ import useLanguageStore from "@/store/language-provider";
 import { breadcrambs, cottage, image } from "@/types";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowUp, FaGoogle, FaYandex } from "react-icons/fa";
 import ViewSwiper from "../view-swiper";
 import ViewComforts from "../comforts";
 import MiniNav from "@/components/shared/mini-nav";
 import Dacha from "@/components/card/dacha";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 
 // export function generateMetaData({params}: {params: {id: string}}){ 
@@ -42,9 +44,6 @@ const View = () => {
         cottageView?.latitude &&
         cottageView?.longitude &&
         `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10000!2d${cottageView?.longitude}!3d${cottageView?.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1`;
-
-    console.log(mapLink);
-
 
     const childImage = [];
     cottageView?.images?.forEach((e: image) => {
@@ -107,17 +106,21 @@ const View = () => {
                         <ViewComforts comforts={cottageView} />
                     </div>
                     {mapLink &&
-                        <div className="flex justify-center items-center bg-gray-100">
-                            <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
-                                <div className="aspect-w-16 aspect-h-9">
-                                    <iframe
-                                        className="w-full h-full rounded-b-lg"
-                                        src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10000!2d69.2593952!3d41.3010284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1'
-                                        loading="lazy"
-                                    ></iframe>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="flex items-center gap-x-6">
+                        <Link target="_blank" className="flex rounded-md items-center gap-2 border p-2" href={'https://www.google.com/maps/place/41.486724,69.575866'}><p className="text-2xl font-bold bg-gradient-to-r from-google-blue via-google-green to-google-red bg-clip-text text-transparent">Google</p></Link>
+                        <Link target="_blank" className="flex rounded-md items-center gap-2 border p-2 px-3" href={'https://yandex.com/maps/?pt=69.575866,41.486724&z=15&l=map'}><p className="text-2xl font-bold bg-gradient-to-r from-red-500 via-yellow-500 to-black bg-clip-text text-transparent">Yandex</p></Link>
+                    </div>
+                        // <div className="flex justify-center items-center bg-gray-100">
+                        //     <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+                        //         <div className="aspect-w-16 aspect-h-9">
+                        //             <iframe
+                        //                 className="w-full h-full rounded-b-lg"
+                        //                 src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10000!2d69.2593952!3d41.3010284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1'
+                        //                 loading="lazy"
+                        //             ></iframe>
+                        //         </div>
+                        //     </div>
+                        // </div>
 
                     }
                 </div>

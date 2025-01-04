@@ -10,6 +10,10 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+			'google-blue': '#4285F4',
+			'google-green': '#34A853',
+			'google-yellow': '#FBBC05',
+			'google-red': '#EA4335',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -62,7 +66,6 @@ const config: Config = {
   		}
   	}
   },
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 };
 export default config;
