@@ -24,7 +24,7 @@ const Dacha = (dacha: cottage) => {
         toggleLike(id);
     };  
     return (
-        <div className='relative max-w-[170px] mx-auto md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
+        <div className='relative max-w-[170px] bg-[#161f309c] mx-auto md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
                 <Swiper
                     pagination={{

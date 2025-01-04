@@ -22,6 +22,7 @@ import MiniNav from '@/components/shared/mini-nav';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Login from '../login/page';
 
 // Images transform getbase64Full
 async function getBase64Full(file: Blob) {
@@ -163,12 +164,7 @@ const AddNew = () => {
     }
   };
   if (!accessAToken) {
-    return <div className="max-w-6xl mx-auto px-3 md:px-1 flex flex-col justify-end items-start mt-16 mb-52">
-      <BreacdCrambs data={[{ slug: '', title: 'Home' }]} page="Add New" />
-      <h2 className='text-xl md:text-xl font-createRound bg-yellow-300 border p-2 rounded-md'>E`lon qo`shish uchun ro`yxatdan o`ting !</h2>
-      <Link href={'/login'} className='bg-blue-400 underline p-1 rounded-sm text-white mt-5 flex gap-2 text-[18px]'>Royhatdan o`tish <LogInIcon /></Link>
-      <MiniNav />
-    </div>
+    return <Login/>
   }
   return (
     <>

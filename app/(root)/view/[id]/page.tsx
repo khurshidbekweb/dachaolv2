@@ -12,6 +12,7 @@ import ViewSwiper from "../view-swiper";
 import ViewComforts from "../comforts";
 import MiniNav from "@/components/shared/mini-nav";
 import Dacha from "@/components/card/dacha";
+import { Separator } from "@/components/ui/separator";
 
 
 // export function generateMetaData({params}: {params: {id: string}}){ 
@@ -112,7 +113,6 @@ const View = () => {
                                     <iframe
                                         className="w-full h-full rounded-b-lg"
                                         src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10000!2d69.2593952!3d41.3010284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1'
-                                        //   style={"border:0;"} 
                                         loading="lazy"
                                     ></iframe>
                                 </div>
@@ -121,8 +121,9 @@ const View = () => {
 
                     }
                 </div>
-                <div className="mt-8">
-                    <h2 className="text-2xl md:text-3xl font-createRound">Oxshash dachalar</h2>
+                <div className="mt-10">
+                <Separator/>
+                    <h2 className="text-2xl md:text-3xl font-createRound mt-3">Oxshash dachalar</h2>
                     <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                         {suitableCottage && suitableCottage.map((dacha: cottage) => (
                             <Dacha key={dacha.id} {...dacha} />
