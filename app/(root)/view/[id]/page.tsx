@@ -109,18 +109,16 @@ const View = () => {
                     //     <Link target="_blank" className="flex rounded-md items-center gap-2 border p-2" href={'https://www.google.com/maps/place/41.486724,69.575866'}><p className="text-2xl font-bold bg-gradient-to-r from-google-blue via-google-green to-google-red bg-clip-text text-transparent">Google</p></Link>
                     //     <Link target="_blank" className="flex rounded-md items-center gap-2 border p-2 px-3" href={'https://yandex.com/maps/?pt=69.575866,41.486724&z=15&l=map'}><p className="text-2xl font-bold bg-gradient-to-r from-red-500 via-yellow-500 to-black bg-clip-text text-transparent">Yandex</p></Link>
                     // </div>
-                        <div className="flex justify-center items-center bg-gray-100">
-                            <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
-                                <div className="aspect-w-16 aspect-h-9">
-                                <iframe
-                                    className="w-full h-full rounded-b-lg"
-                                    src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCOoxM7bD8Eg8G0lvGlE_xJOo1D5Yj5odY&center=41.609073,70.044070&zoom=15"
-                                    style={{ border: "0" }}
-                                    allowFullScreen
-                                    loading="lazy"
-                                ></iframe>
+                        <div className="flex justify-center items-center rounded-lg h-full bg-gray-100">
+                                <div className="w-full md:h-[400px]">
+                                    <iframe
+                                        className="w-full h-full rounded-lg"
+                                        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCOoxM7bD8Eg8G0lvGlE_xJOo1D5Yj5odY&center=41.609073,70.044070&zoom=15"
+                                        style={{ border: "0" }}
+                                        allowFullScreen
+                                        loading="lazy"
+                                    ></iframe>
                                 </div>
-                            </div>
                         </div>
 
                     }
