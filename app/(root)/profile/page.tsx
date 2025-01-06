@@ -96,16 +96,17 @@ const Profile = () => {
                 </ul>
                 {active==='profile' && <form onSubmit={handleUser}>
                     <div className="w-full max-md:size-[50vw] flex flex-col space-y-3 items-center md:flex-row gap-2 md:items-start">
-                        <div className="size-[120px] h-[120px] relative border border-separate rounded-full overflow-hidden  flex items-center justify-center">
+                        {/* <div className="!w-[120px] !h-[120px] relative border border-separate rounded-full overflow-hidden  flex items-center justify-center">
                             <Image
-                                className={userImg ? "w-[100px] h-[100px] shadow-sm" : "hidden"}
+                                className={userImg ? "!w-[100px] !h-[100px] relative shadow-sm" : "hidden"}
                                 ref={ismainImage}
                                 src={''}
                                 alt="useImg"
                                 sizes="120px"
-                                fill                                
+                                width={120}
+                                height={120}                           
                             />
-                            <label className="w-[100px] h-[100px] relative">
+                            <label className="!w-[100px] !h-[100px] relative">
                                 <input
                                     onChange={handleIsMianImage}
                                     type="file"
@@ -115,7 +116,7 @@ const Profile = () => {
                                 />
                                 <ImageDown size={25} className='absolute z-10 bottom-[-10px] bg-gray-400 text-black  w-full cursor-pointer'/>                        
                             </label>
-                        </div>
+                        </div> */}
                         <div className="p-1 w-full md:flex-1 space-y-3">
                             <Input type='text' name='name' placeholder='Enter your name' className='' defaultValue={user?.name ? user.name : ""}/>
                             <Input type='text' placeholder='Phone' className='' defaultValue={"+998" + user?.phone} disabled/>

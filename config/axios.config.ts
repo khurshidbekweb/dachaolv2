@@ -4,19 +4,24 @@ import { BASE_URL_SERVER } from "@/constants/server";
 
 const custimAxios = axios.create({
   baseURL: BASE_URL_SERVER,
-  // timeout: 50000,
+  timeout: 50000,
 });
 
 
 custimAxios.interceptors.response.use(
   (res) => res,
-  (err) => {
+  async (err) => {
     if (err?.response?.status === 406) {
-      window.location.reload()
-      authUtils.refreshAuth();
+      try {
+        await authUtils.refreshAuth();
+        window.location.reload(); // Refresh muvaffaqiyatli bo'lsa qayta yuklash
+      } catch (refreshErr) {
+        console.error("Auth refresh failed:", refreshErr);
+      }
     }
     return Promise.reject(err);
   }
 );
+
 
 export default custimAxios;
