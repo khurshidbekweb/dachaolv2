@@ -13,34 +13,22 @@ import ViewComforts from "../comforts";
 import MiniNav from "@/components/shared/mini-nav";
 import Dacha from "@/components/card/dacha";
 import { Separator } from "@/components/ui/separator";
-
-// export function generateMetaData({params}: {params: {id: string}}){ 
-//     const cottage =  ALL_DATA.useCottage()
-//     const cottageView:cottage = cottage && cottage?.data?.find((e: cottage) => e.id === params.id);
-
-//     return{
-//         title: cottageView.name,
-//         description: cottageView.description,
-//         openGraph: {
-//             images: cottageView.images[0],
-//         },
-//     }
-// }
-
+import { useTranslation } from "react-i18next";
 
 
 const View = () => {
     const [isTop, setIsTop] = useState(false)
     const cottage = ALL_DATA.useCottage();
     const parms = useParams()
-    
+    const {t} = useTranslation()
     const suitableCottage = ALL_DATA.useSuitableCottage(parms?.id)?.data
     const cottageView: cottage = cottage?.data?.find((e: cottage) => e.id === parms?.id)
     console.log(cottageView);
     const mapLink =
         cottageView?.latitude &&
         cottageView?.longitude &&
-        `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10000!2d${cottageView?.longitude}!3d${cottageView?.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1`;
+        `https://www.google.com/maps/embed/v1/view?key=AIzaSyCOoxM7bD8Eg8G0lvGlE_xJOo1D5Yj5odY&center=${cottageView?.longitude},${cottageView?.latitude}&zoom=15`;
+console.log(mapLink);
 
     const childImage = [];
     cottageView?.images?.forEach((e: image) => {
@@ -70,8 +58,8 @@ const View = () => {
     const { language } = useLanguageStore();
 
     const breadcrumb: breadcrambs[] = [
-        { title: 'Home', slug: '' },
-        { title: 'Cottage', slug: 'cottage' }
+        { title: t('nav_home'), slug: '' },
+        { title: t('nav_cottage'), slug: 'cottage' }
     ]
 
 
@@ -82,7 +70,7 @@ const View = () => {
         <>
             <div className="max-w-6xl mx-auto px-3 md:px-1">
                 <div className="min-h-[15vh] flex justify-start items-end">
-                    <BreacdCrambs data={breadcrumb} page={'View'} />
+                    <BreacdCrambs data={breadcrumb} page={`${t('elon')}`} />
                 </div>
                 <div className="view">
                     <ViewSwiper cottageView={cottageView} />
@@ -114,7 +102,7 @@ const View = () => {
                                 <div className="w-full md:h-[400px]">
                                     <iframe
                                         className="w-full h-full rounded-lg"
-                                        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCOoxM7bD8Eg8G0lvGlE_xJOo1D5Yj5odY&center=41.609073,70.044070&zoom=15"
+                                        src={mapLink}
                                         style={{ border: "0" }}
                                         allowFullScreen
                                         loading="lazy"

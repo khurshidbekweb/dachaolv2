@@ -46,7 +46,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                         cottageView.images.map((img) => (
                             <SwiperSlide key={img.id}>                       
                                 <Image
-                                    className=" md:w-[950px] h-[250px] md:h-[480px]"
+                                    className=" md:w-[950px] h-[250px] md:h-[480px] rounded-md"
                                     src={`${IMG_BASE_URL}${img?.image}`}
                                     alt="img"
                                     sizes="(min-width: 950px)"
@@ -63,13 +63,13 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                     freeMode={true}
                     watchSlidesProgress
                     modules={[FreeMode, Navigation, Thumbs]}
-                    className="mySwiper"
+                    className="mySwiper mt-2"
                 >
                     {cottageView?.images &&
                         cottageView.images.map((img) => (
                             <SwiperSlide key={img.id}>
                                 <Image
-                                    className="w-[250] h-[90px] md:h-[150px]"
+                                    className="w-[250] h-[90px] md:h-[150px] rounded-sm"
                                     src={`${IMG_BASE_URL}${img?.image}`}
                                     alt="img"
                                     sizes="(min-width: 250px)"

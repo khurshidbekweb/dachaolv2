@@ -31,7 +31,7 @@ const ShereLink = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="ghost" className='flex items-center gap-2'>
+                <Button variant="ghost" className='flex items-center gap-2 bg-secondary'>
                     <Share2 />
                     <p className='text-[17px] font-createRound'>Share</p>
                 </Button>
