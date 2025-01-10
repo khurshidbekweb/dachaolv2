@@ -13,8 +13,6 @@ import ViewComforts from "../comforts";
 import MiniNav from "@/components/shared/mini-nav";
 import Dacha from "@/components/card/dacha";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-
 
 // export function generateMetaData({params}: {params: {id: string}}){ 
 //     const cottage =  ALL_DATA.useCottage()
@@ -76,6 +74,9 @@ const View = () => {
         { title: 'Cottage', slug: 'cottage' }
     ]
 
+
+
+
     //   if (cottage.isLoading) return <Loader />;
     return (
         <>
@@ -96,7 +97,7 @@ const View = () => {
                         <h3 className="text-xl font-createRound my-4">
                             {ViewPageLanguage.aboutCottage[language]}
                         </h3>
-                        <pre className="view-p max-w-6xl overflow-x-scroll scroll-smooth">{cottageView?.description}</pre>
+                        <p className="view-p max-w-6xl overflow-x-scroll scroll-smooth">{cottageView?.description}</p>
                     </div>
                     <div className="mb-5">
                         <p className="text-2xl md:text-3xl font-createRound my-4">

@@ -14,10 +14,12 @@ import { cottage, cottageTop, order } from '@/types';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import { userUtils } from '@/utils/user.utils';
 import { useMutation } from '@tanstack/react-query';
-import { ImageDown } from 'lucide-react';
+import { ImageDown, PenIcon, PenLineIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
+import userAvatar from '@/assets/user-avater.png'
 
 async function getBase64Full(file) {
     return new Promise((resolve, reject) => {
@@ -41,11 +43,27 @@ const Profile = () => {
     const userCottage = ALL_DATA.useCottageUser()?.data; 
     const orders = user?.orders    
     console.log(userData?.data);
+    const [userImage, setUserImage] = useState<null | File>(null);
+    const {t} = useTranslation()
     
     
     const saveData = useRef(null);
     const editImage = useRef(null);
     const [edit, setEdit] = useState(true);
+
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+          setUserImage(event.target.files[0]);
+        }
+      };
+      const getImageSrc = () => {
+        if (userImage instanceof File) {
+          return URL.createObjectURL(userImage); // Fayl uchun URL yaratish
+        }
+        return userImage; // String sifatida rasm URL ni qaytarish
+      };
+    
+    console.log(userImage);
 
     const userEdit = useMutation({
         mutationFn: userUtils.editUser,
@@ -70,7 +88,7 @@ const Profile = () => {
             // phone: e.target.phone.value.slice(4),
             // email: e.target.email.value || "",
             name: e.target.name.value || "",
-            image: e.target.userImage.files[0],
+            image: userImage,
             phone: undefined,
             email: undefined
         });
@@ -78,49 +96,49 @@ const Profile = () => {
 
     const handleIsMianImage = async (e) => {
         ismainImage.current.src = await getBase64Full(e.target.files[0]);
-        ismainImage.current.classList.remove("hidden");
+        setUserImage(e.target.files[0])
     };
 
     return (
         <>
         <div className='max-w-6xl mx-auto px-3 md:px-1'>
             <div className="min-h-[20vh] flex flex-col justify-end items-start">
-                <BreacdCrambs data={[{ slug: '', title: 'Home' }]} page="Profile" />
-                <h2 className='text-2xl md:text-3xl font-createRound'>Profil</h2>
+                <BreacdCrambs data={[{ slug: '', title: t('nav_home') }]} page={`${t('nav_profile')}`} />
+                <h2 className='text-2xl md:text-3xl font-createRound'>{t('nav_profile')}</h2>
             </div>
             <div className="mt-10 flex flex-col md:flex-row md:items-start gap-5">
-                <ul className="w-full h-[50px] my-3 md:space-y-5 md:max-w-[200px] md:h-[150px] flex md:flex-col items-center md:items-start justify-between bg-secondary rounded-md p-3">
-                    <li onClick={() =>setActive('profile')} className={cn('cursor-pointer', active=='profile' && 'text-blue-400')}>Profil</li>
-                    <li onClick={() =>setActive('cottage')} className={cn('cursor-pointer', active=='cottage' && 'text-blue-400')}>My Cottage</li>
-                    <li onClick={() =>setActive('services')} className={cn('cursor-pointer', active=='services' && 'text-blue-400')}>Services</li>
+                <ul className="w-full h-[50px] my-3 md:space-y-5 md:max-w-[250px] md:h-[150px] flex md:flex-col items-center md:items-start justify-between bg-secondary rounded-md p-3">
+                    <li onClick={() =>setActive('profile')} className={cn('cursor-pointer', active=='profile' && 'text-blue-400')}>{t('nav_profile')}</li>
+                    <li onClick={() =>setActive('cottage')} className={cn('cursor-pointer', active=='cottage' && 'text-blue-400')}>{t("profile_e'lonlarim")}</li>
+                    <li onClick={() =>setActive('services')} className={cn('cursor-pointer', active=='services' && 'text-blue-400')}>{t('foydalangan_service')}</li>
                 </ul>
-                {active==='profile' && <form onSubmit={handleUser}>
-                    <div className="w-full max-md:size-[50vw] flex flex-col space-y-3 items-center md:flex-row gap-2 md:items-start">
-                        {/* <div className="!w-[120px] !h-[120px] relative border border-separate rounded-full overflow-hidden  flex items-center justify-center">
+                {active==='profile' && <form onSubmit={handleUser} className='md:w-[40vw]'>
+                    <div className="w-full flex flex-col space-y-3 items-center md:flex-row gap-2 md:gap-x-14 md:items-start">
+                        <div className="!w-[120px] !h-[120px] relative flex items-center justify-center">
                             <Image
-                                className={userImg ? "!w-[100px] !h-[100px] relative shadow-sm" : "hidden"}
+                                className={"!w-[130px] flex justify-center items-center h-[120px] relative border border-separate rounded-full overflow-hidden"}
                                 ref={ismainImage}
-                                src={''}
+                                src={userImg || getImageSrc() || userAvatar}
                                 alt="useImg"
                                 sizes="120px"
                                 width={120}
                                 height={120}                           
-                            />
-                            <label className="!w-[100px] !h-[100px] relative">
+                            />      
+                            <label className="absolute text-black bg-red-300 right-0 bottom-0 rounded-full z-20 p-[2px] cursor-pointer">
                                 <input
-                                    onChange={handleIsMianImage}
+                                    onChange={handleImageChange}
                                     type="file"
                                     accept="image/*"
                                     name="userImage"
                                     className="w-1 h-1 opacity-0 absolute curson-pointer"
                                 />
-                                <ImageDown size={25} className='absolute z-10 bottom-[-10px] bg-gray-400 text-black  w-full cursor-pointer'/>                        
-                            </label>
-                        </div> */}
+                                <PenLineIcon size={25} className='mx-auto'/>                        
+                        </label>                      
+                        </div>                        
                         <div className="p-1 w-full md:flex-1 space-y-3">
-                            <Input type='text' name='name' placeholder='Enter your name' className='' defaultValue={user?.name ? user.name : ""}/>
+                            <Input type='text' name='name' placeholder={`${t('form_name')}`} className='' defaultValue={user?.name ? user.name : ""}/>
                             <Input type='text' placeholder='Phone' className='' defaultValue={"+998" + user?.phone} disabled/>
-                            <Button type='submit' className='flex items-start bg-green-600 text-white'>Save</Button>
+                            <Button type='submit' className='flex items-start w-[150px] hover:bg-green-700 bg-green-600 text-white'>{t('save')}</Button>
                         </div>
                     </div>
                 </form>
@@ -157,7 +175,6 @@ const Profile = () => {
                             ))}
                         </TableBody>
                     </Table>
-
                 </div>
                 }
             </div>

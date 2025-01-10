@@ -44,6 +44,9 @@ const AddNew = () => {
   const language: langKey = store.language as keyof footerLang;
   const accessAToken = safeLocalStorage.getItem('accessToken')
   const childImagesWrapper = useRef(null);
+  const handleChange = (value) => {
+    console.log('Content:', value); // Muharrirdagi matnni konsolga chiqarish
+  };
   const [cottageInfo, setCottageInfo] = useState({
     dachaType: [],
     response: [],

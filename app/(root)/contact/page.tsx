@@ -1,25 +1,29 @@
+'use client'
+
 import BreacdCrambs from "@/components/shared/breacd-crambs";
 import { Mail, Phone } from "lucide-react";
 import ContactForm from "../_components/contact-form";
 import { Metadata } from "next";
+import { useTranslation } from "react-i18next";
 
-export const metadata: Metadata = {
-    title: "Contact | DachaOL",
-}
+// export const metadata: Metadata = {
+//     title: "Contact | DachaOL",
+// }
 
 
 const Contact = () => {
+	const {t} = useTranslation()
     return (
         <div className="max-w-6xl mx-auto px-3 md:px-1">
             <div className="min-h-[20vh] flex flex-col justify-end items-start">
-                <BreacdCrambs data={[{slug: '', title:'Home'}]} page="Contact"/>
-                <h2 className='text-2xl md:text-3xl font-createRound'>Biz bilan bog`lanish</h2>
+                <BreacdCrambs data={[{slug: '', title:t('nav_home')}]} page={`${t('nav_contact')}`}/>
+                <h2 className='text-2xl md:text-3xl font-createRound'>{t('contact_to_me')}</h2>
             </div>
             <div className='grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-6'>
 				<div className='flex flex-col'>
-					<h1 className='text-4xl font-creteRound'>DachaOL bilan bog`laning</h1>
+					<h1 className='text-4xl font-creteRound'>{t('dachaOl_info')}</h1>
 					<p className='mt-2 text-muted-foreground'>
-					Men sizga yordam berish va har qanday savolga javob berish uchun shu yerdaman. Sizdan xabar kutib qolaman
+						{t('contacy_description')}
 					</p>
 
 					<div className='mt-12 flex items-center gap-3'>
@@ -33,7 +37,7 @@ const Contact = () => {
 				</div>
 
 				<div>
-					<h1 className='text-4xl font-creteRound mb-2'>Bog`lanish</h1>
+					<h1 className='text-4xl font-creteRound mb-2'>{t('connection')}</h1>
 					<div className='flex flex-col space-y-3'>
 						<ContactForm/>
 					</div>

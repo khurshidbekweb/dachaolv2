@@ -50,7 +50,7 @@
     "@types/cleave.js": "^1.4.12",
     "@types/lodash": "^4.17.13",
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "^18.3.18",
     "@types/react-dom": "^18",
     "@types/react-i18next": "^8.1.0",
     "@types/uuid": "^10.0.0",

@@ -10,9 +10,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { Send } from 'lucide-react';
 import { toast } from 'sonner';
 import { contactForm } from '@/lib/validation';
+import { useTranslation } from 'react-i18next';
 
 const ContactForm = () => {
     const [loading, setLoading] = useState(false)
+    const {t} = useTranslation()
         // 1. Define your form.
         const form = useForm<z.infer<typeof contactForm>>({
           resolver: zodResolver(contactForm),
@@ -62,7 +64,7 @@ Message: ${values.message}`
                     <FormControl>
                     <Textarea   disabled={loading}
                                     className='resize-none h-32'
-                                    placeholder='Savollarngiz bo`lsa yozing...'
+                                    placeholder={`${t('form_message')}`}
                                     {...field}
                                 />
 
@@ -77,8 +79,7 @@ Message: ${values.message}`
                 render={({ field }) => (
                     <FormItem>
                     <FormControl>
-                    <Input placeholder='Telefon raqam' {...field} disabled={loading} />
-                        
+                    <Input placeholder={`${t('form_number')}`} {...field} disabled={loading} />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -90,14 +91,14 @@ Message: ${values.message}`
                 render={({ field }) => (
                     <FormItem>
                         <FormControl>
-                            <Input placeholder='Ismingizni kiriting' disabled={loading} {...field}/>
+                            <Input placeholder={`${t('form_name')}`} disabled={loading} {...field}/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                 )}
                 />
                 <Button className='w-fit' size={'lg'} type='submit'>
-                    <span>Yuborish</span>
+                    <span>{t('send_message')}</span>
                     <Send className='w-4 h-4 ml-2' />
                 </Button>
             </form>
