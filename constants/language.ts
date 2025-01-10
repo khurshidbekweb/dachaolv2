@@ -317,9 +317,9 @@ export const AddNewPageLanguage = {
     en: "Add photo",
   },
   mainPhoto: {
-    uz: "Asosiy",
-    ru: "Главный",
-    en: "Main",
+    uz: "Asosiy rasm",
+    ru: "Главный Фото",
+    en: "Main image",
   },
   typeCottage: {
     uz: "Mintaqa va dam olish turi",

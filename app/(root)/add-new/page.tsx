@@ -23,6 +23,7 @@ import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Login from '../login/page';
+import { useTranslation } from 'react-i18next';
 
 // Images transform getbase64Full
 async function getBase64Full(file: Blob) {
@@ -41,6 +42,7 @@ const AddNew = () => {
   // get Language
   const route = useRouter()
   const store = useLanguageStore()
+  const {t} = useTranslation()
   const language: langKey = store.language as keyof footerLang;
   const accessAToken = safeLocalStorage.getItem('accessToken')
   const childImagesWrapper = useRef(null);
@@ -134,7 +136,7 @@ const AddNew = () => {
       regionId: e.target.region.value,
       price: +e.target.price.value,
       priceWeekend: +e.target.priceweekend.value,
-      cottageType: cottageInfo.response,
+      cottageType: ["c4c301b1-4719-499e-bde2-2c36715fae9e"],
       comforts: cottageComforts.response,
       description: e.target.description.value,
     });
@@ -173,11 +175,11 @@ const AddNew = () => {
     <>
       <div className="max-w-6xl mx-auto px-3 md:px-1">
         <div className="min-h-[20vh] flex flex-col justify-end items-start">
-          <BreacdCrambs data={[{ slug: '', title: 'Home' }]} page="Add New" />
-          <h2 className='text-2xl md:text-3xl font-createRound'>Add new Cottage</h2>
+          <BreacdCrambs data={[{ slug: '', title: t('nav_home') }]} page={`${t('elon_qoshish')}`} />
+          <h2 className='text-2xl md:text-3xl font-createRound'>{t('elon_qoshish')}</h2>
         </div>
         <div className="addnew">
-          <h3 className="text-2xl md:text-3xl font-createRound mt-5">
+          <h3 className="text-xl md:text-2xl font-createRound mt-5">
             {AddNewPageLanguage.maintitle[language]}
           </h3>
           <form onSubmit={handlCottage}>
@@ -192,7 +194,7 @@ const AddNew = () => {
                     onChange={handleMainImage}
                   />
                   <ImagePlus size={30} />
-                  <p className="flex items-center justify-center text-2xl md:text-3xl font-createRound">
+                  <p className="flex items-center justify-center text-xl md:text-2xl font-createRound">
                     {AddNewPageLanguage.mainPhoto[language]}
                   </p>
                 </label>
@@ -235,7 +237,7 @@ const AddNew = () => {
               <Input
                 type="text"
                 name="cottagename"
-                className="add-new-title-main my-4 form-input"
+                className="add-new-title-main md:w-[50vw] my-4 form-input"
                 placeholder={AddNewPageLanguage.name[language]}
               />
               <div className="w-full md:w-[40%] grid grid-cols-2 gap-2">
@@ -248,7 +250,7 @@ const AddNew = () => {
                     onValueChange={(value: string)=> setChoosRegion(value)}
                   >
                     <SelectTrigger className='w-full'>
-                      <SelectValue placeholder='Viloyat tanlang' />
+                      <SelectValue placeholder= {AddNewPageLanguage.region[language]}/>
                     </SelectTrigger>
                     <SelectContent>
                       {region.data?.length &&
@@ -270,7 +272,7 @@ const AddNew = () => {
                     name="place"
                   >
                     <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Joy nomini tanlang" />
+                      <SelectValue placeholder={AddNewPageLanguage.Place[language]} />
                     </SelectTrigger>
                     <SelectContent className='p-2 rounded-md'>
                       {placeByRegionId?.length &&
@@ -298,7 +300,7 @@ const AddNew = () => {
                 />
               </div>
 
-              <h3 className="text-2xl md:text-3xl font-createRound my-5">
+              {/* <h3 className="text-2xl md:text-3xl font-createRound my-5">
                 {AddNewPageLanguage.dachaType[language]}
               </h3>
               <div className="addnew-inner my-5 flex flex-col md:flex-row md:items-center gap-x-2 md:gap-x-7">
@@ -315,10 +317,10 @@ const AddNew = () => {
                       <span className='text-xl'>{e.name}</span>
                     </label>
                   ))}
-              </div>
+              </div> */}
             </div>
 
-            <h3 className="addnew-header text-2xl md:text-3xl font-createRound my-3">
+            <h3 className="addnew-header text-2xl md:text-3xl font-createRound mt-5 my-3">
               {AddNewPageLanguage.comforts[language]}
             </h3>
 
