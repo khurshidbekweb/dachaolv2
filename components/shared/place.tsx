@@ -9,7 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { IMG_BASE_URL } from "@/constants/server";
 import { place } from "@/types";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Place = () => {
     const places = ALL_DATA.usePlace();
@@ -17,10 +17,10 @@ const Place = () => {
     const [swiperInstance, setSwiperInstance] = useState(null); // Swiper instance-ni saqlash uchun state
 
     return (
-        <div className="relative my-2 px-2">
+        <div className="relative px-2">
             <h2 className="places-top my-2 text-2xl font-createRound md:text-4xl">{PlaseLeng[language]}</h2>
             <Swiper
-                className="mt-1 md:mt-5 h-[95px] md:h-[140px]"
+                className="mt-1 md:mt-5 h-[90px] md:h-[140px]"
                 keyboard={{
                     enabled: true,
                 }}
@@ -45,16 +45,16 @@ const Place = () => {
                 {places.data?.length &&
                     places?.data.map((place: place) => (
                         <SwiperSlide key={place.id} className="">
-                            <Link href={`/place/${place.id}`} className="relative w-[80px] h-[80px] md:h-[140px] md:w-[140px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
+                            <Link href={`/place/${place.id}`} className="relative w-[90px] h-[90px] md:h-[140px] md:w-[140px] overflow-hidden p-0 m-0 flex flex-col items-center justify-center">
                                 <Image
                                 sizes='(max-width: 150px)'
-                                    width={150}
-                                    height={150}
-                                    className="w-[120px] h-[125px] md:h-[140px] md:w-[150px] rounded-full mx-auto"
+                                    width={90}
+                                    height={90}
+                                    className="w-[90px] h-[90px] md:h-[140px] md:w-[150px] rounded-full mx-auto"
                                     src={`${IMG_BASE_URL}${place.image}`}
                                     alt="nature"
                                 />
-                                <p className="absolute bg-white font-medium md:py-2 md:text-xl text-black w-full bottom-0 text-[15px] dark:bg-[#020817] dark:text-white text-center">{place.name}</p>
+                                <p className="absolute bg-[#F5F5F5] font-medium md:py-2 md:text-xl text-black w-full bottom-0 text-[15px] dark:bg-[#020817] dark:text-white text-center">{place.name}</p>
                             </Link>
                         </SwiperSlide>
                     ))}
@@ -62,15 +62,15 @@ const Place = () => {
             <div className="absolute flex gap-2 top-0 right-1">
                 <button
                     onClick={() => swiperInstance?.slidePrev()} // Swiper instance orqali slidePrev
-                    className="cursor-pointer bg-white text-black p-1 rounded-full"
+                    className="cursor-pointer bg-white shadow-md text-black p-1 rounded-full"
                 >
-                    <ArrowLeft />
+                    <ChevronLeft />
                 </button>
                 <button
                     onClick={() => swiperInstance?.slideNext()} // Swiper instance orqali slideNext
-                    className="cursor-pointer bg-white text-black p-1 rounded-full"
+                    className="cursor-pointer bg-white shadow-md text-black p-1 rounded-full"
                 >
-                    <ArrowRight />
+                    <ChevronRight />
                 </button>
             </div>
         </div>

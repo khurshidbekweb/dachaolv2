@@ -25,7 +25,7 @@ const SwiperHero = () => {
     
     return (
       <Swiper
-      className="swiper mt-[30px] mx-auto h-[35vh] md:h-[30vh] lg:h-[50vh]"
+      className="swiper mt-[30px] mx-auto h-[32vh] md:h-[30vh] lg:h-[50vh]"
       modules={[Navigation, A11y, Scrollbar, Autoplay, Parallax, Pagination, EffectCoverflow]}
       spaceBetween={10}
       effect={'coverflow'}
@@ -48,7 +48,7 @@ const SwiperHero = () => {
       >
         {cottageTop && cottageTop.map((el: cottageTop) => (
           <SwiperSlide key={el.id}>
-            <div className="min-w-[80%] mx-auto relative h-[35vh] md:h-[30vh] lg:h-[50vh]">
+            <div className="min-w-[80%] mx-auto relative h-[32vh] md:h-[30vh] lg:h-[50vh]">
               <Image
                 fill
                 src={`${IMG_BASE_URL}${
@@ -59,10 +59,10 @@ const SwiperHero = () => {
                 sizes="(min-width: 80%) 100vw, 33vw"
                 loading="lazy"
               />
-              <div className="flex flex-col items-center justify-center z-0 w-full h-full space-y-3 bg-black/35">
-                <h1 className="header-text font-createRound text-2xl md:text-5xl text-white"> {el.cottage.name} </h1>
-                <h2 className="text-xl md:text-3xl text-white">${el.cottage.price}</h2>
-                <Link href={`/view/${el.cottage.id}`} className="bg-green-600 text-white text-xl md:text-2xl p-1 px-6 rounded-3xl font-createRound">
+              <div className="flex flex-col items-center justify-center z-0 w-full h-full space-y-2 bg-black/35">
+                <h1 className="header-text font-createRound text-3xl md:text-5xl text-white"> {el.cottage.name} </h1>
+                <h2 className="text-2xl md:text-3xl text-white">${el.cottage.price}</h2>
+                <Link href={`/view/${el.cottage.id}`} className="bg-green-600 text-white text-xl md:text-2xl py-[2px] px-6 rounded-3xl font-workSans">
                   {HeaderLang[language].btn}
                 </Link>
               </div>

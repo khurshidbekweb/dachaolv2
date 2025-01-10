@@ -14,19 +14,19 @@ const Home = () => {
             <section className="hero">
                 <SwiperHero />
             </section>
-            <section className="place">
+            <section className="place mt-4 md:mt-6">
                 <Place />
             </section>
-            <section className='hotel'>
+            <section className='hotel mt-3 md:mt-5'>
                 <HotelView />
             </section>
-            <section className="recommended">
+            <section className="recommended mt-4 md:mt-6">
                 <Recommunded />
             </section>
-            <section>
+            <section className='mt-4 md:mt-6'>
                 <ScenicPlace />
             </section>
-            <section>
+            <section className='mt-4 md:mt-6'>
                 <RecentlyCottage />
             </section>
             <MiniNav />

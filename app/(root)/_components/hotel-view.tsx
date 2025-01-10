@@ -23,8 +23,8 @@ const HotelView = () => {
     const getData = cottageType?.filter((data: { id: string; }) => hotetId.includes(data.id))
     
     return (
-        <div className="relative my-2 px-2">
-        <h2 className="places-top my-2 text-2xl font-createRound md:text-4xl">{hotelAndAanatorium[language]}</h2>
+        <div className="relative px-2">
+        <h2 className="places-top text-2xl font-createRound md:text-4xl">{hotelAndAanatorium[language]}</h2>
         <Swiper
             className="mt-1 md:mt-5"
             keyboard={{
