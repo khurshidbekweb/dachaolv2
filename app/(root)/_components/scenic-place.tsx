@@ -30,15 +30,15 @@ const ScenicPlace = () => {
                 breakpoints={{
                     300: {
                         width: 350,
-                        slidesPerView: 2.3,
+                        slidesPerView: 1.2,
                     },
                     768: {
                         width: 768,
-                        slidesPerView: 3,
+                        slidesPerView: 1.5,
                     },
                     1024: {
                         width: 960,
-                        slidesPerView: 4,
+                        slidesPerView: 2.2,
                     }
                 }}
                 modules={[Keyboard, Navigation]}
@@ -46,13 +46,12 @@ const ScenicPlace = () => {
                 {places.data?.length &&
                     places?.data.filter(e => e.name!=='Dacha').map((place: place) => (
                         <SwiperSlide key={place.id} className="">
-                            <Link href={`/cottage-type/${place.id}`} className="w-[170px] cursor-pointer overflow-hidden h-[100px] rounded-md">
+                            <Link href={`/cottage-type/${place.id}`} className="w-[350px] cursor-pointer overflow-hidden h-[150px] rounded-md">
                                 <Image
                             sizes="(min-width: 170px)"
-
                                     width={170}
                                     height={100}
-                                    className="w-full h-[80px] md:h-[120px] cursor-pointer rounded-md"
+                                    className="w-full h-[110px] md:h-[130px] cursor-pointer rounded-md"
                                     src={`${IMG_BASE_URL}${place.image}`}
                                     alt="nature"
                                 />
@@ -62,13 +61,13 @@ const ScenicPlace = () => {
             </Swiper>
             <button
                 onClick={() => swiperInstance?.slidePrev()} // Swiper instance orqali slidePrev
-                className="cursor-pointer absolute shadow-lg top-[70px] lg:top-28 bg-white text-black p-1 rounded-full ml-[-8px] md:ml-[-10px]"
+                className="cursor-pointer absolute shadow-lg top-[80px] lg:top-28 bg-white text-black p-1 rounded-full ml-0 md:ml-[-10px]"
             >
                 <ChevronLeft size={20}/>
             </button>
             <button
                 onClick={() => swiperInstance?.slideNext()} // Swiper instance orqali slideNext
-                className="cursor-pointer absolute shadow-md top-[70px] lg:top-28 right-[-2px] flex items-center justify-center bg-white text-black p-1 mr-2 md:mr-0 rounded-full"
+                className="cursor-pointer absolute shadow-md top-[80px] lg:top-28 right-0 flex items-center justify-center bg-white text-black p-1 mr-2 md:mr-0 rounded-full"
             >
                 <ChevronRight size={20}/>
             </button>
