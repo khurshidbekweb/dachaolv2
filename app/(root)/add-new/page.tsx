@@ -209,7 +209,7 @@ const AddNew = () => {
                 />
               </div>
               <div className="addnew-add h-[150px] col-span-2 md:col-span-1 relative border rounded-3xl cursor-pointer">
-                <label className="label-input-file absolute bg-white rounded-3xl w-full h-full flex items-center justify-center flex-col">
+                <label className="label-input-file absolute bg-white dark:bg-[#161f309c] rounded-3xl w-full h-full flex items-center justify-center flex-col">
                   <Input
                     type="file"
                     name="childimg"
@@ -234,7 +234,7 @@ const AddNew = () => {
               <Input
                 type="text"
                 name="cottagename"
-                className="add-new-title-main md:w-[50vw] mt-2 md:mt-4 form-input bg-white"
+                className="add-new-title-main md:w-[50vw] mt-2 md:mt-4 form-input bg-white dark:bg-[#161f309c]"
                 placeholder={AddNewPageLanguage.name[language]}
               />
               <div className="w-full md:w-[40%] grid grid-cols-2 mt-2 md:mt-4 gap-2">
@@ -246,7 +246,7 @@ const AddNew = () => {
                     name="region"
                     onValueChange={(value: string)=> setChoosRegion(value)}
                   >
-                    <SelectTrigger className='w-full bg-white'>
+                    <SelectTrigger className='w-full bg-white dark:bg-[#161f309c]'>
                       <SelectValue placeholder= {AddNewPageLanguage.region[language]}/>
                     </SelectTrigger>
                     <SelectContent>
@@ -268,7 +268,7 @@ const AddNew = () => {
                     disabled={!choosRegion}
                     name="place"
                   >
-                    <SelectTrigger className="w-[180px] bg-white">
+                    <SelectTrigger className="w-[180px] bg-white dark:bg-[#161f309c]">
                       <SelectValue placeholder={AddNewPageLanguage.Place[language]} />
                     </SelectTrigger>
                     <SelectContent className='p-2 rounded-md'>
@@ -289,13 +289,13 @@ const AddNew = () => {
                   type="number"
                   name="price"
                   placeholder={AddNewPageLanguage.Price[language]}
-                  className='bg-white'
+                  className='bg-white dark:bg-[#161f309c]'
                 />
                 <Input
                   type="number"
                   name="priceweekend"
                   placeholder={AddNewPageLanguage.weekendPrice[language]}
-                  className='bg-white'
+                  className='bg-white dark:bg-[#161f309c]'
                 />
               </div>
             </div>
@@ -332,7 +332,7 @@ const AddNew = () => {
             </h3>
             <Textarea
               name="description"
-              className="w-full md:w-[70%] h-[150px] md:h-[250px]  bg-white mt-2 md:mt-4"
+              className="w-full md:w-[70%] h-[150px] md:h-[250px]  bg-white mt-2 md:mt-4 dark:bg-[#161f309c]"
               placeholder={AddNewPageLanguage.shortDescription[language]}
             />
             <Button type="submit" className=" p-2 w-full hover:bg-green-500 dark:text-white bg-green-600 md:w-[200px] text-lg mt-5 rounded-lg">
