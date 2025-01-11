@@ -27,15 +27,16 @@ const ChangeLanguage = () => {
     return (
         <div className="block">
             <DropdownMenu>
-            <DropdownMenuTrigger type="button">
+            <DropdownMenuTrigger type="button" className="outline-none">
                 <Image className="mb-[-3px]" src={`${IMG_BASE_URL}${activeLang?.image}`} sizes="35px" alt="language" width={30} height={40}/>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 {
                     languages && languages.map((lang: language) => (
                         <DropdownMenuItem  key={lang.id}>
-                            <Button onClick={() => toggleLanguage(lang.code)} variant={'ghost'} type="button">
+                            <Button className="flex items-center gap-2 p-0" onClick={() => toggleLanguage(lang.code)} variant={'ghost'} type="button">
                                 <Image src={`${IMG_BASE_URL}${lang.image}`} sizes="35px" alt={lang.title} width={35} height={40}  />
+                                <p>{lang?.title}</p>
                             </Button>
                         </DropdownMenuItem>
                     ))
