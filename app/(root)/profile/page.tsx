@@ -41,8 +41,9 @@ const Profile = () => {
     const ismainImage = useRef(null);
     const [active, setActive] = useState<activeView>('profile')
     const userCottage = ALL_DATA.useCottageUser()?.data; 
-    const orders = user?.orders    
-    console.log(userData?.data);
+    const orders = user?.orders  
+    console.log(orders);
+    
     const [userImage, setUserImage] = useState<null | File>(null);
     const {t} = useTranslation()
     
@@ -108,9 +109,9 @@ const Profile = () => {
             </div>
             <div className="mt-10 flex flex-col md:flex-row md:items-start gap-5">
                 <ul className="w-full h-[50px] my-3 md:space-y-5 md:max-w-[250px] md:h-[150px] flex md:flex-col items-center md:items-start justify-between bg-secondary rounded-md p-3">
-                    <li onClick={() =>setActive('profile')} className={cn('cursor-pointer', active=='profile' && 'text-blue-400')}>{t('nav_profile')}</li>
-                    <li onClick={() =>setActive('cottage')} className={cn('cursor-pointer', active=='cottage' && 'text-blue-400')}>{t("profile_e'lonlarim")}</li>
-                    <li onClick={() =>setActive('services')} className={cn('cursor-pointer', active=='services' && 'text-blue-400')}>{t('foydalangan_service')}</li>
+                    <li onClick={() =>setActive('profile')} className={cn('cursor-pointer p-1 px-2', active=='profile' && 'text-white bg-gray-400 rounded-md')}>{t('nav_profile')}</li>
+                    <li onClick={() =>setActive('cottage')} className={cn('cursor-pointer p-1 px-2', active=='cottage' && 'text-white bg-gray-400 rounded-md')}>{t("profile_e'lonlarim")}</li>
+                    <li onClick={() =>setActive('services')} className={cn('cursor-pointer p-1 px-2', active=='services' && 'text-white bg-gray-400 rounded-md')}>{t('foydalangan_service')}</li>
                 </ul>
                 {active==='profile' && <form onSubmit={handleUser} className='md:w-[40vw]'>
                     <div className="w-full flex flex-col space-y-3 items-center md:flex-row gap-2 md:gap-x-14 md:items-start">
@@ -154,7 +155,7 @@ const Profile = () => {
                 }
                 {active ==='services' && <div>
                     <h2>Services</h2>
-                    <Table>
+                    <Table className='min-w-[540px] overflow-x-scroll'>
                         <TableCaption>Foydalangan tarif jadvali</TableCaption>
                         <TableHeader>
                             <TableRow>
@@ -167,10 +168,17 @@ const Profile = () => {
                         <TableBody>
                             {orders && orders.map((order: order) => (
                                 <TableRow key={order.id}>
-                                    <TableCell className="font-medium">INV001</TableCell>
-                                    <TableCell>{order.status}</TableCell>
-                                    <TableCell>Credit Card</TableCell>
-                                    <TableCell className="text-right">$250.00</TableCell>
+                                    <TableCell className="font-medium">{order.cottage.name}</TableCell>
+                                    <TableCell> <p className={`${order.status=='active'?'bg-green-400':'bg-red-400'} text-white  rounded-md p-2 text-center text-ellipsis capitalize`}>{order.status}</p> </TableCell>
+                                    <TableCell>
+                                        <p className='text-[14px] font-workSans'>Days: {order.tariff.days} kun</p>
+                                        <p className='text-[14px] font-workSans'>Price: {order.tariff.price} so`m</p>
+                                        
+                                    </TableCell>
+                                    <TableCell className="text-right">
+                                    <p className='text-[14px] font-workSans text-green-500'>Boshlanish: {order.createdAt.slice(0,10)}</p>
+                                    <p className='text-[14px] font-workSans text-red-500'>Tugash: {order.expireAt.slice(0,10)}</p>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

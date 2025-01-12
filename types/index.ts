@@ -119,6 +119,7 @@ export interface tariff{
 }
 export interface order {
   id:string,
+  cottage: cottage,
   cottageId:string,
   createdAt:string,
   expireAt:string,
