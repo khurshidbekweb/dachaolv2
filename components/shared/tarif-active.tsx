@@ -73,7 +73,7 @@ const TarifActive = (props: Props) => {
     
     return (
         <Dialog>
-            <DialogTrigger className="bg-secondary w-[90%] absolute bottom-2 p-2 rounded-lg font-medium">{TariffPageLanguage.active[language]} {props.tariff.price}$</DialogTrigger>
+            <DialogTrigger className="bg-secondary w-[90%] absolute bottom-2 p-2 rounded-lg font-medium">{TariffPageLanguage.active[language]} {props.tariff.price} so`m</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle className="text-xl md:text-2xl font-createRound">{TariffPageLanguage.mainTitle[language]}</DialogTitle>
