@@ -126,7 +126,7 @@ const CottageEdit = ({ cottage, id }: PropsType) => {
     };
     return (
         <Dialog>
-            <DialogTrigger className='absolute bottom-16 right-0'><Badge className='flex gap-1 p-[2px] roundee-md font-createRound md:text-[15px]'>Tahrirlash <Pen size={18} /></Badge></DialogTrigger>
+            <DialogTrigger className='absolute bottom-[75px] right-0'><Badge className='flex gap-1 p-1 px-4 rounded-e-md font-createRound md:text-[15px]'><Pen size={18} /></Badge></DialogTrigger>
             <DialogContent className='min-w-[340px]'>
                 <DialogHeader>
                     <DialogTitle>E`lon rasmini tahrirlash</DialogTitle>

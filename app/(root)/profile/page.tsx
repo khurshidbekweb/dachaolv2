@@ -154,8 +154,8 @@ const Profile = () => {
                 </div>
                 }
                 {active ==='services' && <div>
-                    <h2>Services</h2>
-                    <Table className='min-w-[540px] overflow-x-scroll'>
+                    <h2>{t('foydalangan_service')}</h2>
+                    <Table className='min-w-[540px] md:min-w-[720px] overflow-x-scroll'>
                         <TableCaption>Foydalangan tarif jadvali</TableCaption>
                         <TableHeader>
                             <TableRow>

@@ -91,7 +91,7 @@ const CottageEditImg = ({ id, images }: PropsType) => {
     };
     return (
         <Dialog>
-            <DialogTrigger className='absolute top-0 right-0'><Badge className='flex gap-1 rounded-e-md font-createRound text-[15px]'>Img <Pen size={18} /></Badge></DialogTrigger>
+            <DialogTrigger className='absolute top-0 right-0'><Badge className='flex gap-1 rounded-e-md font-createRound text-[15px]'><Pen size={18} /></Badge></DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>E`lon rasmini tahrirlang</DialogTitle>

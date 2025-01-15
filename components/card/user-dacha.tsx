@@ -26,7 +26,7 @@ const UserDacha = (dacha: cottage) => {
         toggleLike(id);
     };    
     return (
-        <div className='relative max-w-[170px] mx-auto md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
+        <div className='relative max-w-[170px] mx-auto bg-[#ffff] dark:bg-[#161f309c] md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
                 <Swiper
                     pagination={{
@@ -53,9 +53,9 @@ const UserDacha = (dacha: cottage) => {
                         <Badge variant='secondary'>{dacha.region.name}</Badge>
                         <Badge variant='secondary' className=''>{dacha.place.name}</Badge>
                     </div>
-                    <div className="hidden md:flex justify-between items-center mt-2">
+                    <div className="hidden md:flex md:gap-x-3 items-center mt-2">
                         {dacha && dacha.comforts.slice(0, 7).map((com: comfort) => (
-                            <Image width={20} sizes='(max-width: 20px)' height={20} key={com.id} src={`${IMG_BASE_URL}${com.image}`} alt={com.name} />
+                            <Image className=' bg-white rounded-md' width={20} sizes='(max-width: 20px)' height={20} key={com.id} src={`${IMG_BASE_URL}${com.image}`} alt={com.name} />
                         ))}
                     </div>
                 </div> 
