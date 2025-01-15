@@ -7,13 +7,14 @@ import { Check, Copy, Instagram, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaSms, FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { TfiEmail } from 'react-icons/tfi';
 
 const ShereLink = () => {
     const [copySuccess, setCopySuccess] = useState<string>('');
     const pathname = usePathname()
-
+    const {t} = useTranslation()
     const link = 'https://dachaol.uz' + pathname
     const text = ''
 
@@ -32,8 +33,8 @@ const ShereLink = () => {
         <Dialog>
             <DialogTrigger asChild>
                 <Button variant="ghost" className='flex items-center gap-2 bg-secondary'>
-                    <Share2 />
-                    <p className='text-[17px] font-createRound'>Share</p>
+                    <Share2 size={20}/>
+                    <p className='text-[12px] font-createRound'>{t('share')}</p>
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">

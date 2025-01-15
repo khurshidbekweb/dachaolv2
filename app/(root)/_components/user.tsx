@@ -19,37 +19,33 @@ const User = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuItem>
-                        <Link href={'/profile'} className="flex justify-between items-center w-full">
+                        <Link href={'/profile'} className="flex gap-x-[2px] items-center w-full">
                             <Users className="mr-2 h-4 w-4" />
                             <span>{t('nav_profile')}</span>
-                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                            <Link href={'/add-new'}  className="flex justify-between items-center w-full">
+                            <Link href={'/add-new'}  className="flex gap-x-[2px] items-center w-full">
                                 <TfiAnnouncement className="mr-2 h-4 w-4" />
                                 <span>{t("profile_e'lonlar")}</span>
-                                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                             </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        <Link href={'/my-cottage'} className="flex justify-between items-center w-full">
-                            <ShieldHalf className="mr-2 h-4 w-4" />
-                            <span>{t("profile_dachalarim")}</span>
-                            <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut></Link>
+                        <Link href={'/my-cottage'} className="flex gap-x-[2px] items-center w-full">
+                                <ShieldHalf className="mr-2 h-4 w-4" />
+                                <span>{t("profile_dachalarim")}</span>
+                            </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        <Link href={'/services'}  className="flex justify-between items-center w-full">
+                        <Link href={'/services'}  className="flex gap-x-[2px] items-center w-full">
                             <FaServicestack className="mr-2 h-4 w-4" />
                             <span>{t("profile_service")}</span>
-                            <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        <Link href={'/'} className="flex justify-between items-center w-full">
+                        <Link href={'/'} className="flex gap-x-[2px] items-center w-full">
                             <FaDiagramSuccessor className="mr-2 h-4 w-4" />
                             <span>{t("profile_tariff")}</span>
-                            <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut>
                         </Link>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>

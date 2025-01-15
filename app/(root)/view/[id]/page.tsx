@@ -94,10 +94,6 @@ console.log(mapLink);
                         <ViewComforts comforts={cottageView} />
                     </div>
                     {mapLink &&
-                    // <div className="flex items-center gap-x-6">
-                    //     <Link target="_blank" className="flex rounded-md items-center gap-2 border p-2" href={'https://www.google.com/maps/place/41.486724,69.575866'}><p className="text-2xl font-bold bg-gradient-to-r from-google-blue via-google-green to-google-red bg-clip-text text-transparent">Google</p></Link>
-                    //     <Link target="_blank" className="flex rounded-md items-center gap-2 border p-2 px-3" href={'https://yandex.com/maps/?pt=69.575866,41.486724&z=15&l=map'}><p className="text-2xl font-bold bg-gradient-to-r from-red-500 via-yellow-500 to-black bg-clip-text text-transparent">Yandex</p></Link>
-                    // </div>
                         <div className="flex justify-center items-center rounded-lg h-full bg-gray-100">
                                 <div className="w-full md:h-[400px]">
                                     <iframe
@@ -114,7 +110,7 @@ console.log(mapLink);
                 </div>
                 <div className="mt-10">
                 <Separator/>
-                    <h2 className="text-2xl md:text-3xl font-createRound mt-3">Oxshash dachalar</h2>
+                    <h2 className="text-2xl md:text-3xl font-createRound mt-3">{t('oxshash_elonlar')}</h2>
                     <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                         {suitableCottage && suitableCottage.map((dacha: cottage) => (
                             <Dacha key={dacha.id} {...dacha} />
