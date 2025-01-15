@@ -10,40 +10,36 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import SwiperNavBotton from '../shared/swiper-nav-botton';
 import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
-import {FaHeart} from 'react-icons/fa'
-import { useLikeStore } from '@/store/like-card';
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import CottageEditImg from '../modal/cottage-edit-img';
 import CottageEdit from '../modal/cottage-edit';
+import { useTranslation } from 'react-i18next';
 
-const UserDacha = (dacha: cottage) => {
-    const likedCards = useLikeStore(state => state.likedCards);
-    const toggleLike = useLikeStore(state => state.toggleLike);
-    const isLiked = likedCards.includes(dacha.id);
-    const handleLikeClick = (id: string) => {
-        toggleLike(id);
-    };    
+const UserDacha = (dacha: cottage) => {   
+    const {t} = useTranslation()
+        
     return (
         <div className='relative max-w-[170px] mx-auto bg-[#ffff] dark:bg-[#161f309c] md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
-                <Swiper
-                    pagination={{
-                        type: 'fraction',
-                    }}
-                    modules={[Pagination, Navigation, A11y]}
-                    className="swiper"
-                >
-                    {
-                        dacha && dacha?.images.map((img: image) => (
-                                <SwiperSlide className='!h-[140px] !md:h-[240px]' key={img.id}>
-                                    <Image className='w-full h-[140px] md:h-[210px]' sizes='(max-width: 300px)' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
-                                </SwiperSlide>
-                        ))
-                    }
-                    <SwiperNavBotton />
-                </Swiper> 
+                <div className="relative">
+                    <Swiper
+                        pagination={{
+                            type: 'fraction',
+                        }}
+                        modules={[Pagination, Navigation, A11y]}
+                        className="swiper"
+                    >
+                        {
+                            dacha && dacha?.images.map((img: image) => (
+                                    <SwiperSlide className='!h-[140px] !md:h-[240px]' key={img.id}>
+                                        <Image className='w-full h-[140px] md:h-[210px]' sizes='(max-width: 300px)' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
+                                    </SwiperSlide>
+                            ))
+                        }
+                        <SwiperNavBotton />
+                    </Swiper> 
+                    <span className={`w-full h-full absolute top-0 right-0 bg-[#1b1b1b58] justify-center items-center font-semibold ${dacha?.cottageStatus=='progress'?'flex':'hidden'}`}>{t('progress')}</span>
+                </div>
                 <div className="dacha-info p-2">
                     <div className="flex justify-between items-center">
                         <h2 className='text-[16px] md:text-xl font-createRound'>{dacha.name}</h2>
