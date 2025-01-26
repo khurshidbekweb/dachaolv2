@@ -7,14 +7,16 @@ import { place } from "@/types";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
+
 
 const ScenicPlace = () => {
     const places = ALL_DATA.useCottageType();
     const { language } = useLanguageStore();
-    const [swiperInstance, setSwiperInstance] = useState(null); // Swiper instance-ni saqlash uchun state
+    const swiperRef = useRef<SwiperCore | null>(null); 
 
     return (
         <div className="relative px-2">
@@ -26,7 +28,7 @@ const ScenicPlace = () => {
                 }}
                 loop={true}
                 spaceBetween={20}
-                onSwiper={setSwiperInstance} // Swiper instance-ni olish
+                onSwiper={(swiper) => (swiperRef.current = swiper)}
                 breakpoints={{
                     300: {
                         width: 350,
@@ -44,11 +46,11 @@ const ScenicPlace = () => {
                 modules={[Keyboard, Navigation]}
             >
                 {places.data?.length &&
-                    places?.data.filter(e => e.name!=='Dacha').map((place: place) => (
+                    places?.data.filter(e => e.id!=='c4c301b1-4719-499e-bde2-2c36715fae9e').map((place: place) => (
                         <SwiperSlide key={place.id} className="">
                             <Link href={`/cottage-type/${place.id}`} className="w-[350px] cursor-pointer overflow-hidden h-[150px] rounded-md">
                                 <Image
-                            sizes="(min-width: 170px)"
+                                    sizes="(min-width: 170px)"
                                     width={170}
                                     height={100}
                                     className="w-full h-[110px] md:h-[130px] cursor-pointer rounded-md"
@@ -60,13 +62,13 @@ const ScenicPlace = () => {
                     ))}
             </Swiper>
             <button
-                onClick={() => swiperInstance?.slidePrev()} // Swiper instance orqali slidePrev
+                onClick={() => swiperRef.current?.slidePrev()} // Swiper instance orqali slidePrev
                 className="cursor-pointer absolute shadow-lg top-[80px] lg:top-28 bg-white text-black p-1 rounded-full ml-0 md:ml-[-10px]"
             >
                 <ChevronLeft size={20}/>
             </button>
             <button
-                onClick={() => swiperInstance?.slideNext()} // Swiper instance orqali slideNext
+                onClick={() => swiperRef.current?.slideNext()} // Swiper instance orqali slideNext
                 className="cursor-pointer absolute shadow-md top-[80px] lg:top-28 right-0 flex items-center justify-center bg-white text-black p-1 mr-2 md:mr-0 rounded-full"
             >
                 <ChevronRight size={20}/>

@@ -60,8 +60,7 @@ const AddNew = () => {
   // Query 
   const queryClient = useQueryClient();
   const region = ALL_DATA.useRegion();
-  const place = ALL_DATA.usePlace();
-  const cottageType = ALL_DATA.useCottageType();
+ 
   const comforts = ALL_DATA.useComforts();
   const cottage = useMutation({
     mutationFn: cottageUtils.postCottage,

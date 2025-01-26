@@ -64,23 +64,18 @@ const ShereLink = () => {
                 <div>
                     <ul className='flex gap-5 items-center justify-center'>
                         <li>
-                            <Link href={`https://t.me/share/url?url=${link}&text=${text}`} target="_blank" rel="noopener noreferrer">
+                            <Link href={`https://t.me/share/url?url=${link}&text=${text}`} rel="noopener noreferrer">
                                 <FaTelegram size={35} className='text-blue-500'/>
                             </Link>
                         </li>
                         <li>
-                            <Link href={`https://api.whatsapp.com/send?text=${link}`} target="_blank" rel="noopener noreferrer">
+                            <Link href={`https://api.whatsapp.com/send?text=${link}`} rel="noopener noreferrer">
                                 <FaWhatsapp  size={35} className='text-green-700'/>
                             </Link>
                         </li>
                         <li>
-                            <Link href="https://www.instagram.com/xursh1dbek________/" target="_blank" rel="noopener noreferrer">
+                            <Link href="https://www.instagram.com/dacha_ol/"  rel="noopener noreferrer">
                                 <Instagram  size={35} className='text-red-300'/>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href={`mailto:?subject=Sayt Havolasi&body=${link}`} target="_blank" rel="noopener noreferrer">
-                                <TfiEmail  size={35} className='text-yellow-500'/>
                             </Link>
                         </li>
                         <li>
