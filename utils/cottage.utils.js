@@ -112,6 +112,25 @@ export const cottageUtils = {
     })
     return data
   },
+  getFilter: async (filter) => {
+    const queryParams = new URLSearchParams();
+  
+    Object.entries(filter).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        queryParams.append(key, value.join('&')); // Array qiymatlarni birlashtirish
+      } else if (value !== undefined && value !== null) {
+        queryParams.append(key, value); // Oddiy qiymatlar
+      }
+    });
+  
+    const { data } = await custimAxios.get(`cottage/filter/?${queryParams.toString()}`, {
+      headers: {
+        "accept-language": safeLocalStorage.getItem("language"),
+      },
+    });
+  
+    return data;
+  },
   postCottage: async ({
     comforts,
     cottageType,
