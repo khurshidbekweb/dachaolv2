@@ -182,7 +182,6 @@ const AddNew = () => {
           <h3 className="text-2xl md:text-3xl font-createRound mt-5">
             {AddNewPageLanguage.maintitle[language]}
           </h3>
-          <DachaMap/>
           <form onSubmit={handlCottage} className='mt-2 md:mt-4'>
             <div className="addnew-imgs grid grid-cols-4 gap-2">
               <div className="addnew-box relative col-span-2 md:col-span-1 border overflow-hidden h-[150px] rounded-3xl">
@@ -327,10 +326,11 @@ const AddNew = () => {
                   </label>
                 ))}
             </div>
-
+            <h2 className='my-4'>Xarita qo`shish</h2>
+            <DachaMap/>
             <h3 className="text-xl md:text-2xl font-createRound mt-4 md:mt-6">
               {AddNewPageLanguage.description[language]}
-            </h3>
+            </h3>            
             <Textarea
               name="description"
               className="w-full md:w-[70%] h-[150px] md:h-[250px]  bg-white mt-2 md:mt-4 dark:bg-[#161f309c]"
