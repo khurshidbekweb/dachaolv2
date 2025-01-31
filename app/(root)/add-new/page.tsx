@@ -24,6 +24,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Login from '../login/page';
 import { useTranslation } from 'react-i18next';
+import DachaMap from '../_components/add-map';
 
 // Images transform getbase64Full
 async function getBase64Full(file: Blob) {
@@ -181,6 +182,7 @@ const AddNew = () => {
           <h3 className="text-2xl md:text-3xl font-createRound mt-5">
             {AddNewPageLanguage.maintitle[language]}
           </h3>
+          <DachaMap/>
           <form onSubmit={handlCottage} className='mt-2 md:mt-4'>
             <div className="addnew-imgs grid grid-cols-4 gap-2">
               <div className="addnew-box relative col-span-2 md:col-span-1 border overflow-hidden h-[150px] rounded-3xl">
