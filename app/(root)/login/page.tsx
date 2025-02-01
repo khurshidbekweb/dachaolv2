@@ -118,8 +118,7 @@ function authLOgin(step: number) {
                         placeholder="Phone number"
                         className="w-full p-2 dark:bg-slate-100 text-xl text-black  rounded-md"
                         name="phonenumber"
-                        inputMode="numeric"  // 📌 Telefon klaviaturasi faqat raqam bo‘lishi uchun
-                        pattern="[0-9]*"
+                        inputMode="numeric"
                         onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))} // Faqat raqamlar
                         required
                     />
