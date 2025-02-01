@@ -66,7 +66,7 @@ const Login = () => {
     const handleAuth = (e) => {
         e.preventDefault();
         phone.mutate({
-            phone: phoneNumber.replaceAll(" ", "").slice(4),
+            phone: phoneNumber.replaceAll(" ", "").slice(3),
         });        
     };
 
@@ -118,9 +118,8 @@ function authLOgin(step: number) {
                         placeholder="Phone number"
                         className="w-full p-2 dark:bg-slate-100 text-xl text-black  rounded-md"
                         name="phonenumber"
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        required             
-                        pattern="[0-9]*"
+                        onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))} // Faqat raqamlar
+                        required
                     />
                     <Button
                         type="submit"
