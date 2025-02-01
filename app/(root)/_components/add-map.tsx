@@ -4,32 +4,36 @@ import { GoogleMap, LoadScript, Autocomplete, Marker } from "@react-google-maps/
 const mapContainerStyle = { height: "500px", width: "100%" };
 const defaultCenter = { lat: 41.2995, lng: 69.2401 }; // Toshkent koordinatalari
 
-const DachaMap = () => {
+const DachaMap = ({ onLocationSelect }) => {
   const [coordinates, setCoordinates] = useState(defaultCenter);
   const autocompleteRef = useRef(null);
 
-  // Foydalanuvchi search qilganda ishlaydi
+  // Foydalanuvchi joy tanlaganda
   const onPlaceSelected = () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
       if (place.geometry) {
-        setCoordinates({
+        const newCoordinates = {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
-        });
+        };
+        setCoordinates(newCoordinates);
+        onLocationSelect(newCoordinates); // 📡 Ota komponentaga jo‘natish
       }
     }
   };
 
-  // Geolocation orqali hozirgi joylashuvni olish
+  // Hozirgi joylashuvni olish
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setCoordinates({
+          const newCoordinates = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          });
+          };
+          setCoordinates(newCoordinates);
+          onLocationSelect(newCoordinates); // 📡 Ota komponentaga jo‘natish
         },
         (error) => console.error("Geolocation error:", error)
       );
@@ -38,51 +42,34 @@ const DachaMap = () => {
     }
   };
 
-  // Tanlangan joyning manzilini chiqarish
-  const getAddressFromCoordinates = (lat, lng) => {
-    const geocoder = new window.google.maps.Geocoder();
-    const latlng = { lat, lng };
-
-    geocoder.geocode({ location: latlng }, (results, status) => {
-      if (status === "OK" && results[0]) {
-        alert("Siz tanlagan manzil: " + results[0].formatted_address);
-      } else {
-        alert("Manzil topilmadi");
-      }
-    });
-  };
-
   return (
     <LoadScript googleMapsApiKey="AIzaSyCOoxM7bD8Eg8G0lvGlE_xJOo1D5Yj5odY" libraries={["places"]}>
       <div>
-        {/* 🔎 Qidiruv input */}
         <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceSelected}>
           <input type="text" placeholder="Dacha joyini qidiring..." style={{ width: "100%", padding: "10px", fontSize: "16px" }} />
         </Autocomplete>
 
-        <button onClick={getCurrentLocation} style={{ margin: "10px", padding: "8px", background: "blue", color: "white", border: "none", cursor: "pointer" }}>
+        <button onClick={getCurrentLocation} type="button" style={{ margin: "10px", padding: "8px", background: "blue", color: "white", border: "none", cursor: "pointer" }}>
           📍 Mening joylashuvimni olish
         </button>
 
-        {/* 🗺 Google Map */}
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={coordinates}
           zoom={14}
           onClick={(e) => {
-            setCoordinates({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-            getAddressFromCoordinates(e.latLng.lat(), e.latLng.lng());
+            const newCoordinates = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+            setCoordinates(newCoordinates);
+            onLocationSelect(newCoordinates); // 📡 Ota komponentaga jo‘natish
           }}
         >
-          {/* 📍 Drag qilib harakatlantiriladigan marker */}
           <Marker
             position={coordinates}
             draggable={true}
             onDragEnd={(e) => {
-              const lat = e.latLng.lat();
-              const lng = e.latLng.lng();
-              setCoordinates({ lat, lng });
-              getAddressFromCoordinates(lat, lng);
+              const newCoordinates = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+              setCoordinates(newCoordinates);
+              onLocationSelect(newCoordinates); // 📡 Ota komponentaga jo‘natish
             }}
           />
         </GoogleMap>

@@ -47,6 +47,10 @@ const AddNew = () => {
   const language: langKey = store.language as keyof footerLang;
   const accessAToken = safeLocalStorage.getItem('accessToken')
   const childImagesWrapper = useRef(null);
+  const [location, setLocation] = useState({
+    latitude: "",
+    longitude: ""
+  })
   const handleChange = (value) => {
     console.log('Content:', value); // Muharrirdagi matnni konsolga chiqarish
   };
@@ -70,7 +74,7 @@ const AddNew = () => {
       toast.success(
         AddNewPageLanguage.cottageSuccess[language]
       );
-      route.push('/services')
+      // route.push('/services')
     },
     onError: (err) => {
       console.log(err, "err");
@@ -120,6 +124,15 @@ const AddNew = () => {
     }
   };
 
+  const handleLocationSelect = (location) => {
+    setLocation(
+            {
+              latitude: location.lat,
+              longitude: location.lng,
+            }
+    );
+  };
+  
   const handlCottage = async (e) => {
     e.preventDefault();
 
@@ -139,10 +152,14 @@ const AddNew = () => {
       cottageType: ["c4c301b1-4719-499e-bde2-2c36715fae9e"],
       comforts: cottageComforts.response,
       description: e.target.description.value,
+      latitude: location.latitude,
+      longitude: location.longitude
     });
-
+    console.log(cottage.variables);
+    
     childImagesWrapper.current.innerHTML = "";
     e.target.reset();
+
   };
 
   const handleMainImage = async (e) => {
@@ -167,7 +184,7 @@ const AddNew = () => {
         `<Image src=${image} width="120" sizes="(min-width: 120px)" height="70" alt="child image" class="child-img-cottage !h-[70px] rounded-md"/ >`
       );
     }
-  };
+  };  
   if (!accessAToken) {
     return <Login/>
   }
@@ -192,6 +209,7 @@ const AddNew = () => {
                     name="mainImage"
                     className="h-1 z-0 opacity-0"
                     onChange={handleMainImage}
+                    required
                   />
                   <ImagePlus size={30} />
                   <p className="flex items-center justify-center text-xl md:text-2xl font-createRound">
@@ -232,6 +250,7 @@ const AddNew = () => {
             <div>
               <h3 className="mt-4 md:mt-6 text-2xl md:text-3xl font-createRound">{AddNewPageLanguage.cottageName[language]}</h3>
               <Input
+              required
                 type="text"
                 name="cottagename"
                 className="add-new-title-main md:w-[50vw] mt-2 md:mt-4 form-input bg-white dark:bg-[#161f309c]"
@@ -327,7 +346,7 @@ const AddNew = () => {
                 ))}
             </div>
             <h2 className='my-4'>Xarita qo`shish</h2>
-            <DachaMap/>
+            <DachaMap onLocationSelect={handleLocationSelect}/>
             <h3 className="text-xl md:text-2xl font-createRound mt-4 md:mt-6">
               {AddNewPageLanguage.description[language]}
             </h3>            
