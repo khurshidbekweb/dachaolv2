@@ -119,8 +119,7 @@ function authLOgin(step: number) {
                         className="w-full p-2 dark:bg-slate-100 text-xl text-black  rounded-md"
                         name="phonenumber"
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        required                        
-                        inputMode="numeric"
+                        required             
                         pattern="[0-9]*"
                     />
                     <Button
