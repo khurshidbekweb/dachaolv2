@@ -84,7 +84,7 @@ const AddNew = () => {
 
   //Region chacked
   const [choosRegion, setChoosRegion] = useState<string>('')
-  const placeByRegionId= ALL_DATA.usePlaceById(choosRegion)?.data
+  const placeByRegionId = ALL_DATA.usePlaceById(choosRegion)?.data
   
 
   // const handleChoosRegion = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -156,7 +156,7 @@ const AddNew = () => {
       longitude: location.longitude
     });
     console.log(cottage.variables);
-    
+    localStorage.setItem('dacha', JSON.stringify(cottage.variables))
     childImagesWrapper.current.innerHTML = "";
     e.target.reset();
 
