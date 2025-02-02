@@ -119,7 +119,7 @@ function authLOgin(step: number) {
                         className="w-full p-2 dark:bg-slate-100 text-xl text-black  rounded-md"
                         name="phonenumber"
                         inputMode="numeric"
-                        onChange={(e) => setPhoneNumber(e.target.value)} // Faqat raqamlar
+                        onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ""))} 
                         required
                     />
                     <Button
