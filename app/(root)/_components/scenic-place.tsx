@@ -17,6 +17,7 @@ const ScenicPlace = () => {
     const places = ALL_DATA.useCottageType();
     const { language } = useLanguageStore();
     const swiperRef = useRef<SwiperCore | null>(null); 
+    const dontsItem = ['c23f5e39-c51e-4135-9c45-9142924b008f', '9aa6de2d-42be-4465-9b1d-5d43dd49e1a0', '52b306ee-6a60-47b8-bf9a-f3de02ad7ea0', 'c4c301b1-4719-499e-bde2-2c36715fae9e']
 
     return (
         <div className="relative px-2">
@@ -46,7 +47,7 @@ const ScenicPlace = () => {
                 modules={[Keyboard, Navigation]}
             >
                 {places.data?.length &&
-                    places?.data.filter(e => e.id!=='c4c301b1-4719-499e-bde2-2c36715fae9e').map((place: place) => (
+                    places?.data.filter((item) => !dontsItem.includes(item.id)).map((place: place) => (
                         <SwiperSlide key={place.id} className="">
                             <Link href={`/cottage-type/${place.id}`} className="w-[350px] cursor-pointer overflow-hidden h-[150px] rounded-md">
                                 <Image

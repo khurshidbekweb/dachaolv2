@@ -49,52 +49,6 @@ const GlobalFilter = () => {
                                 <SearchCard key={dacha.id} dacha={dacha} />
                             ))}
                         </div>
-                        <div className='flex flex-col space-y-2 mt-4'>
-                            <div className="flex items-center gap-2">
-                                <p className='font-creteRound text-2xl text-start'>See posts by type</p>
-                                <Minus />
-                                <Link href={'/place'} className="text-blue-500 underline">
-                                    <DrawerClose>
-                                        See all
-                                    </DrawerClose>
-                                </Link>
-                            </div>
-                            <div className="flex items-center gap-x-3">
-                                    {cottageType?.slice(0,4).map((item: cottageType) => (
-                                        <Link href={`/cottage-type/${item.id}`} key={item.id}>
-                                            <DrawerClose>
-                                                <Badge variant={'secondary'}>
-                                                    {item.name}
-                                                </Badge>
-                                            </DrawerClose>
-                                        </Link>
-                                    ))}
-                            </div>
-                        </div>
-
-                        <div className='flex flex-col space-y-2 mt-4'>
-                            <div className="flex items-center gap-2">
-                                <p className='font-creteRound text-2xl text-start'>See posts by place</p>
-                                <Minus />
-                                <Link href={'/place'} className="text-blue-500 underline">
-                                    <DrawerClose>
-                                        See all
-                                    </DrawerClose>
-                                </Link>
-                            </div>
-                            <div className="flex items-center gap-x-3">
-                                    {place?.slice(0, 4)?.map((item: place) => (
-                                        <Link href={`/place/${item.id}`} key={item.id}>
-                                            <DrawerClose>
-                                                <Badge variant={'secondary'}>
-                                                    {item.name}
-                                                </Badge>
-                                            </DrawerClose>
-                                        </Link>
-                                    ))}                                
-                            </div>
-                        </div>
-
                     </div>
                 </DrawerHeader>
             </DrawerContent>
