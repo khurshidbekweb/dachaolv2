@@ -19,7 +19,7 @@ const HotelView = () => {
     const cottageType = ALL_DATA.useCottageType()?.data
     const { language } = useLanguageStore();
     const [swiperInstance, setSwiperInstance] = useState(null);
-    const hotetId = ['c23f5e39-c51e-4135-9c45-9142924b008f', '9aa6de2d-42be-4465-9b1d-5d43dd49e1a0', '52b306ee-6a60-47b8-bf9a-f3de02ad7ea0']
+    const hotetId = [ '9aa6de2d-42be-4465-9b1d-5d43dd49e1a0', '52b306ee-6a60-47b8-bf9a-f3de02ad7ea0']
     const getData = cottageType?.filter((data: { id: string; }) => hotetId.includes(data.id))
     
     return (

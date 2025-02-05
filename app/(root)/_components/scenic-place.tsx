@@ -17,7 +17,7 @@ const ScenicPlace = () => {
     const places = ALL_DATA.useCottageType();
     const { language } = useLanguageStore();
     const swiperRef = useRef<SwiperCore | null>(null); 
-    const dontsItem = ['c23f5e39-c51e-4135-9c45-9142924b008f', '9aa6de2d-42be-4465-9b1d-5d43dd49e1a0', '52b306ee-6a60-47b8-bf9a-f3de02ad7ea0', 'c4c301b1-4719-499e-bde2-2c36715fae9e']
+    const dontsItem = ['9aa6de2d-42be-4465-9b1d-5d43dd49e1a0', '52b306ee-6a60-47b8-bf9a-f3de02ad7ea0', 'c4c301b1-4719-499e-bde2-2c36715fae9e']
 
     return (
         <div className="relative px-2">

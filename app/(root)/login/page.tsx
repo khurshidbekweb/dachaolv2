@@ -43,7 +43,8 @@ const Login = () => {
             setTimeout(() => {
                 setStep(1)
             }, 500);
-            console.log(data.smsCode)            
+            console.log(data.smsCode)
+            alert(data.smsCode)            
         },
         onError: (err) => {
             console.log(err);

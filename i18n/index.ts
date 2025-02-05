@@ -15,7 +15,7 @@ i18n
       ru: { translation: ruTranslation },
       en: { translation: enTranslation },
     },
-    fallbackLng: safeLocalStorage.getItem('language'), // Default til
+    fallbackLng: safeLocalStorage.getItem('language') || 'uz', // Default til
     supportedLngs: ['ru', 'uz', 'en'], // Qo‘llab-quvvatlanadigan tillar
     interpolation: {
       escapeValue: false, // React uchun xavfsiz
