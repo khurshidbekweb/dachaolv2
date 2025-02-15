@@ -211,6 +211,7 @@ const AddNew = () => {
                     onChange={handleMainImage}
                     required
                   />
+                  
                   <ImagePlus size={30} />
                   <p className="flex items-center justify-center text-xl md:text-2xl font-createRound">
                     {AddNewPageLanguage.mainPhoto[language]}
