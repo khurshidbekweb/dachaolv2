@@ -73,6 +73,7 @@ export interface comfort {
 export interface cottageType{
   id: string,
   name: string,
+  image:string
 }
 export interface place {
   id: string,

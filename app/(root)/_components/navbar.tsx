@@ -30,7 +30,7 @@ const Navbar = () => {
         { name: t('nav_contact'), route: '/contact', icon: Contact2 },
     ]
     return (
-    <div className="md:h-[10vh] h-[8vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
+    <div className="lg:h-[10vh] h-[8vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background px-3 md:px-1">
         <div className="container max-w-6xl h-[8vh] mx-auto w-full flex items-center justify-between">
             {/* Logo */}
             <Link href={'/'}>

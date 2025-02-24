@@ -13,7 +13,7 @@ const PlaseId = () => {
     const place: place[] = ALL_DATA.useCottageType()?.data;
 
     const placeName = place?.find((e) => e.id === id)?.name;
-
+    
     return (
         <>
         <div className="max-w-6xl mx-auto px-3 md:px-1">

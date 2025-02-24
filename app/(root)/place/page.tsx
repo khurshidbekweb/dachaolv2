@@ -15,7 +15,7 @@ const Place = () => {
                 <BreacdCrambs data={[{slug: '', title:'Home'}]} page="Place"/>
                 <h2 className='text-2xl md:text-3xl font-createRound'>All Place</h2>
             </div>
-            <div className="w-full mt-5 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+            <div className="w-full mt-5 flex items-center flex-wrap gap-2 md:gap-4 justify-between px-1">
                 {places && places?.map(place => <PlaceCard key={place.id} {...place}/>)}
             </div>
         </div>

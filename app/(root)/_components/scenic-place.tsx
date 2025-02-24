@@ -37,11 +37,11 @@ const ScenicPlace = () => {
                     },
                     768: {
                         width: 768,
-                        slidesPerView: 1.5,
+                        slidesPerView: 2.5,
                     },
                     1024: {
                         width: 960,
-                        slidesPerView: 2.2,
+                        slidesPerView: 2.5,
                     }
                 }}
                 modules={[Keyboard, Navigation]}
@@ -64,13 +64,13 @@ const ScenicPlace = () => {
             </Swiper>
             <button
                 onClick={() => swiperRef.current?.slidePrev()} // Swiper instance orqali slidePrev
-                className="cursor-pointer absolute shadow-lg top-[80px] lg:top-28 bg-white text-black p-1 rounded-full ml-0 md:ml-[-10px]"
+                className="cursor-pointer absolute shadow-lg top-[80px] md:top-28 bg-white text-black p-1 rounded-full ml-0 md:ml-[-10px]"
             >
                 <ChevronLeft size={20}/>
             </button>
             <button
                 onClick={() => swiperRef.current?.slideNext()} // Swiper instance orqali slideNext
-                className="cursor-pointer absolute shadow-md top-[80px] lg:top-28 right-0 flex items-center justify-center bg-white text-black p-1 mr-2 md:mr-0 rounded-full"
+                className="cursor-pointer absolute shadow-md top-[80px] md:top-28 right-0 flex items-center justify-center bg-white text-black p-1 mr-2 md:mr-0 rounded-full"
             >
                 <ChevronRight size={20}/>
             </button>
