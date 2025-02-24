@@ -99,13 +99,13 @@ export const ALL_DATA = {
       queryKey: [QUERY_KEYS.cottageUserAllId],
       queryFn: async () => await cottageUtils.getCottageUserId(userId),
     }),
-    useSearchCottage: (search) => {
-      return useQuery({
-        queryKey: ['search_cottage', search],
-        queryFn: async () => await cottageUtils.getSearchCottage(search),
-        enabled: !!search,
-      })
-    },
+  useSearchCottage: (search) => {
+    return useQuery({
+      queryKey: ['search_cottage', search],
+      queryFn: async () => await cottageUtils.getSearchCottage(search),
+      enabled: !!search,
+    })
+  },
   useSuitableCottage: (id) =>
     useQuery({
       queryKey: [QUERY_KEYS.cottage_suitable_id, id],
@@ -207,9 +207,9 @@ export const ALL_DATA = {
       queryKey: [QUERY_KEYS.order],
       queryFn: OrderUtils.getOrder
     }),
-  usePlaceById: (id) => 
+  usePlaceById: (id) =>
     useQuery({
       queryKey: [QUERY_KEYS.place_by_id, id],
-      queryFn: async ()=> await placeUtils.getPlaceById(id) 
+      queryFn: async () => await placeUtils.getPlaceById(id)
     })
 };

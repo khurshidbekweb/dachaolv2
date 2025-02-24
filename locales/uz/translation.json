@@ -32,5 +32,8 @@
     "filtr":"Filtr",
     "serach_filtr":"Nomi boyicha qirirish...",
     "logout": "Chiqish",
-    "my_annonim":"Hozircha dacha qo'shmagansiz"
+    "my_annonim":"Hozircha dacha qo'shmagansiz",
+    "place":"Joylashuv",
+    "dacha_type":"E'lonlar turi",
+    "dacha_type_all":"Barcha e'lonlar turi"
 }
