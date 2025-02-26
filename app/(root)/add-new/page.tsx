@@ -51,9 +51,6 @@ const AddNew = () => {
     latitude: "",
     longitude: ""
   })
-  const handleChange = (value) => {
-    console.log('Content:', value); // Muharrirdagi matnni konsolga chiqarish
-  };
   const [cottageInfo, setCottageInfo] = useState({
     dachaType: [],
     response: [],
@@ -74,7 +71,6 @@ const AddNew = () => {
       toast.success(
         AddNewPageLanguage.cottageSuccess[language]
       );
-      // route.push('/services')
     },
     onError: (err) => {
       console.log(err, "err");
@@ -87,26 +83,6 @@ const AddNew = () => {
   const placeByRegionId = ALL_DATA.usePlaceById(choosRegion)?.data
   
 
-  // const handleChoosRegion = (e: React.ChangeEvent<HTMLSelectElement>) => {
-
-  // }
-
-
-  const handlChoseCottageType = (e) => {
-    const { value, checked } = e.target;
-    const { dachaType } = cottageInfo;
-    if (checked) {
-      setCottageInfo({
-        dachaType: [...dachaType, value],
-        response: [...dachaType, value],
-      });
-    } else {
-      setCottageInfo({
-        dachaType: dachaType.filter((e) => e !== value),
-        response: dachaType.filter((e) => e !== value),
-      });
-    }
-  };
 
   const handleCottageComforts = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
