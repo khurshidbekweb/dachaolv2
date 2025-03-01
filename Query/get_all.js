@@ -210,6 +210,7 @@ export const ALL_DATA = {
   usePlaceById: (id) =>
     useQuery({
       queryKey: [QUERY_KEYS.place_by_id, id],
-      queryFn: async () => await placeUtils.getPlaceById(id)
+      queryFn: async () => await placeUtils.getPlaceById(id),
+      enabled: Boolean(id)
     })
 };

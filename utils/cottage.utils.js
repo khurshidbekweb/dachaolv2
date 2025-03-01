@@ -114,23 +114,32 @@ export const cottageUtils = {
   },
   getFilter: async (filter) => {
     const queryParams = new URLSearchParams();
-  
+
     Object.entries(filter).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        queryParams.append(key, value.join('&')); // Array qiymatlarni birlashtirish
-      } else if (value !== undefined && value !== null) {
-        queryParams.append(key, value); // Oddiy qiymatlar
-      }
+        if (Array.isArray(value) && value.length > 0) {
+            value.forEach((item) => {
+                if (typeof item === "string") {
+                    queryParams.append(key, item); // ✅ Faqat ID larni qo‘shish
+                } else if (typeof item === "object" && item.id) {
+                    queryParams.append(key, item.id); // ✅ Agar obyekt bo‘lsa, faqat ID qo‘shish
+                }
+            });
+        } else if (typeof value === "string" && value.trim() !== "") {
+            queryParams.append(key, value); // ✅ Oddiy string yoki son qiymatlar
+        }
     });
-  
+
+    console.log(queryParams.toString()); // Debug uchun
+
     const { data } = await custimAxios.get(`cottage/filter/?${queryParams.toString()}`, {
-      headers: {
-        "accept-language": safeLocalStorage.getItem("language"),
-      },
+        headers: {
+            "accept-language": safeLocalStorage.getItem("language"),
+        },
     });
-  
+
     return data;
   },
+
   postCottage: async ({
     comforts,
     cottageType,

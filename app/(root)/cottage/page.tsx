@@ -27,23 +27,7 @@ const CottageAll = () => {
     const cottageTypes = ALL_DATA.useCottageType()?.data;
     const region = ALL_DATA.useRegion()?.data;
     const [choosRegion, setChoosRegion] = useState<string>('')
-    const placeByRegionId= ALL_DATA.usePlaceById(choosRegion)?.data
-    const [filter, setFilter] = useState({
-        minPrice: 10,
-        maxPrice: value,
-        placeId: '', 
-        regionId: '',
-        comforts: [],
-        cottageTypes: [],
-    })
-    const filterCottages = useQuery({
-        queryKey: ['cottage-filter', filter], // Filter qiymatlarini queryKeyga qo'shing
-        queryFn: async () => await cottageUtils.getFilter(filter),
-        enabled: !!filter, // Filter mavjud bo'lgandagina so'rov yuboriladi
-    });
-
-    console.log(filterCottages, 'filter');
-    
+    const placeByRegionId =  ALL_DATA.usePlaceById(choosRegion)?.data
     const [cottageComforts, setcottageComforts] = useState({
         comforts: [],
         response: [],
@@ -52,6 +36,25 @@ const CottageAll = () => {
         comforts: [],
         response: [],
     });
+    const [filter, setFilter] = useState({
+        minPrice: 10,
+        maxPrice: value ? value : 0,
+        placeId: '', 
+        regionId: choosRegion ? choosRegion : '',
+        comforts: JSON.stringify(cottageComforts.response), // ✅ JSON formatga o‘tkazib qo‘yish
+        cottageTypes: JSON.stringify(cottageType.comforts), // ✅ JSON formatga o‘tkazib qo‘yish
+    });
+    console.log(filter);
+    
+    const filterCottages = useQuery({
+        queryKey: ['cottage-filter', filter], // Filter qiymatlarini queryKeyga qo'shing
+        queryFn: async () => await cottageUtils.getFilter(filter),
+        enabled: !!filter, // Filter mavjud bo'lgandagina so'rov yuboriladi
+    });
+
+    console.log(filterCottages?.data, 'filter');
+    
+    
     const comforts = ALL_DATA.useComforts();
     
     const handleCottageComforts = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +88,7 @@ const CottageAll = () => {
             }
     };
 
-    const handleFilter = (e) => {
+    const handleFilter = () => {
 
     }
 
