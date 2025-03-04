@@ -45,13 +45,14 @@ const Profile = () => {
     const orders = user?.orders  
     console.log(orders);
     
-    const [userImage, setUserImage] = useState<null | File>(null);
+    const [userImage, setUserImage] = useState<null | File>(userImg);
     const {t} = useTranslation()
     
     
     const saveData = useRef(null);
     const editImage = useRef(null);
     const [edit, setEdit] = useState(true);
+    const [name, setName] = useState(user?.name)
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
@@ -82,18 +83,20 @@ const Profile = () => {
         }
     });
 
-    const handleUser = (e) => {        
-        e.preventDefault();
+    const handleUser = () => { 
         userEdit.mutate({
             id: user?.id,
-            name: e.target.name.value || "",
+            name: name,
             image: userImage,
         });
     };
 
-    const handleIsMianImage = async (e) => {
-        ismainImage.current.src = await getBase64Full(e.target.files[0]);
-        setUserImage(e.target.files[0])
+    const handleIsMianImage = async () => {
+        userEdit.mutate({
+            id: user?.id,
+            image: userImage,
+            name: name
+        });
     };
 
     return (
@@ -109,13 +112,14 @@ const Profile = () => {
                     <li onClick={() =>setActive('cottage')} className={cn('cursor-pointer p-1 px-2', active=='cottage' && 'text-white bg-gray-400 rounded-md')}>{t("profile_e'lonlarim")}</li>
                     <li onClick={() =>setActive('services')} className={cn('cursor-pointer p-1 px-2', active=='services' && 'text-white bg-gray-400 rounded-md')}>{t('foydalangan_service')}</li>
                 </ul>
-                {active==='profile' && <form onSubmit={handleUser} className='md:w-[40vw]'>
+                {active==='profile' && <div className='md:w-[40vw]'>
                     <div className="w-full flex flex-col space-y-3 items-center md:flex-row gap-2 md:gap-x-14 md:items-start">
                         <div className="!w-[120px] !h-[120px] relative flex items-center justify-center">
                             <Image
                                 className={"!w-[130px] flex justify-center items-center h-[120px] relative border border-separate rounded-full overflow-hidden"}
                                 ref={ismainImage}
-                                src={userImage && `${IMG_BASE_URL}${userImg}` || getImageSrc() || userAvatar}
+                                onChange={handleIsMianImage}
+                                src={userImg && `${IMG_BASE_URL}${userImg}` || getImageSrc() || userAvatar}
                                 alt="useImg"
                                 sizes="120px"
                                 width={120}
@@ -133,12 +137,12 @@ const Profile = () => {
                         </label>                      
                         </div>                        
                         <div className="p-1 w-full md:flex-1 space-y-3">
-                            <Input type='text' name='name' placeholder={`${t('form_name')}`} className='' defaultValue={user?.name ? user.name : ""}/>
+                            <Input type='text' onChange={(e) =>setName(e.target.value)} placeholder={`${t('form_name')}`} className='' defaultValue={user?.name ? user.name : ""}/>
                             <Input type='text' placeholder='Phone' className='' defaultValue={"+998" + user?.phone} disabled/>
-                            <Button type='submit' className='flex items-start w-[150px] hover:bg-green-700 bg-green-600 text-white'>{t('save')}</Button>
+                            <Button onClick={handleUser} type='button' className='flex items-start w-[150px] hover:bg-green-700 bg-green-600 text-white'>{t('save')}</Button>
                         </div>
                     </div>
-                </form>
+                </div>
                 }
                 {active === 'cottage' && <div>
                     <h2 className='text-xl md:text-2xl font-createRound'>Mening dachalarim</h2>
