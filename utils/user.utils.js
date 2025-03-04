@@ -24,10 +24,8 @@ export const userUtils = {
     const { data } = await custimAxios.get(`user/user-device/${userId}`);
     return data;
   },
-  editUser: async ({ id, phone, email, name, image }) => {
+  editUser: async ({ id,  name, image }) => {
     const formData = new FormData();
-    formData.append("phone", phone);
-    formData.append("email", email);
     formData.append("name", name);
     formData.append("image", image);
     const { data } = await custimAxios.patch(`user/edit/${id}`, formData, {

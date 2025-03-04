@@ -20,6 +20,7 @@ import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import userAvatar from '@/assets/user-avater.png'
+import { IMG_BASE_URL } from '@/constants/server';
 
 async function getBase64Full(file) {
     return new Promise((resolve, reject) => {
@@ -77,7 +78,6 @@ const Profile = () => {
             setEdit(true);
         },
         onError: (err) => {
-            toast.error(AddNewPageLanguage.cottageError[language]);
             console.log(err);
         }
     });
@@ -86,12 +86,8 @@ const Profile = () => {
         e.preventDefault();
         userEdit.mutate({
             id: user?.id,
-            // phone: e.target.phone.value.slice(4),
-            // email: e.target.email.value || "",
             name: e.target.name.value || "",
             image: userImage,
-            phone: undefined,
-            email: undefined
         });
     };
 
@@ -119,7 +115,7 @@ const Profile = () => {
                             <Image
                                 className={"!w-[130px] flex justify-center items-center h-[120px] relative border border-separate rounded-full overflow-hidden"}
                                 ref={ismainImage}
-                                src={userImg || getImageSrc() || userAvatar}
+                                src={userImage && `${IMG_BASE_URL}${userImg}` || getImageSrc() || userAvatar}
                                 alt="useImg"
                                 sizes="120px"
                                 width={120}
