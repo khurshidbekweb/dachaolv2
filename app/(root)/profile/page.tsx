@@ -13,7 +13,7 @@ import useLanguageStore from '@/store/language-provider';
 import { cottage, cottageTop, order } from '@/types';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import { userUtils } from '@/utils/user.utils';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ImageDown, PenIcon, PenLineIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import userAvatar from '@/assets/user-avater.png'
 import { IMG_BASE_URL } from '@/constants/server';
+import { QUERY_KEYS } from '@/Query/query-keys';
 
 async function getBase64Full(file) {
     return new Promise((resolve, reject) => {
@@ -35,6 +36,7 @@ async function getBase64Full(file) {
 type activeView = 'profile' | 'cottage' | 'services'
 
 const Profile = () => {
+    const {t} = useTranslation()
     const userData = ALL_DATA.useSingleUser();
     const user = JSON.parse(safeLocalStorage.getItem("user"));
     const { language } = useLanguageStore();
@@ -43,43 +45,20 @@ const Profile = () => {
     const [active, setActive] = useState<activeView>('profile')
     const userCottage = ALL_DATA.useCottageUser()?.data; 
     const orders = user?.orders  
-    console.log(orders);
-    
-    const [userImage, setUserImage] = useState<null | File>(userImg);
-    const {t} = useTranslation()
     
     
-    const saveData = useRef(null);
-    const editImage = useRef(null);
-    const [edit, setEdit] = useState(true);
-    const [name, setName] = useState(user?.name)
-
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files[0]) {
-          setUserImage(event.target.files[0]);
-        }
-      };
-      const getImageSrc = () => {
-        if (userImage instanceof File) {
-          return URL.createObjectURL(userImage); // Fayl uchun URL yaratish
-        }
-        return userImage; // String sifatida rasm URL ni qaytarish
-      };
     
-    console.log(userImage);
-
+    const [name, setName] = useState(user?.name)    
+    const queryClinet = useQueryClient()
     const userEdit = useMutation({
         mutationFn: userUtils.editUser,
         onSuccess: async () => {
+            queryClinet.invalidateQueries({queryKey: [QUERY_KEYS.users]})
             toast.success(signInLanguage.successLogin[language]);
             localStorage.setItem("user", JSON.stringify(userData?.data));
-            saveData.current.classList.add("hidden");
-            editImage.current.classList.add("hidden");
-            await userUtils.getSingleUser();
-            setEdit(true);
         },
         onError: (err) => {
-            console.log(err);
+            console.log(err, 'aaaa');
         }
     });
 
@@ -87,14 +66,16 @@ const Profile = () => {
         userEdit.mutate({
             id: user?.id,
             name: name,
-            image: userImage,
+            image: userImg,
         });
     };
 
-    const handleIsMianImage = async () => {
+    const handleIsMianImage = (e) => {
+        e.preventDefault()
+
         userEdit.mutate({
             id: user?.id,
-            image: userImage,
+            image: e.target.files[0],
             name: name
         });
     };
@@ -118,8 +99,7 @@ const Profile = () => {
                             <Image
                                 className={"!w-[130px] flex justify-center items-center h-[120px] relative border border-separate rounded-full overflow-hidden"}
                                 ref={ismainImage}
-                                onChange={handleIsMianImage}
-                                src={userImg && `${IMG_BASE_URL}${userImg}` || getImageSrc() || userAvatar}
+                                src={userImg && `${IMG_BASE_URL}${userImg}` || userAvatar}
                                 alt="useImg"
                                 sizes="120px"
                                 width={120}
@@ -127,7 +107,7 @@ const Profile = () => {
                             />      
                             <label className="absolute text-black bg-red-300 right-0 bottom-0 rounded-full z-20 p-[2px] cursor-pointer">
                                 <input
-                                    onChange={handleImageChange}
+                                    onChange={(e)=> handleIsMianImage(e)}
                                     type="file"
                                     accept="image/*"
                                     name="userImage"
@@ -138,7 +118,7 @@ const Profile = () => {
                         </div>                        
                         <div className="p-1 w-full md:flex-1 space-y-3">
                             <Input type='text' onChange={(e) =>setName(e.target.value)} placeholder={`${t('form_name')}`} className='' defaultValue={user?.name ? user.name : ""}/>
-                            <Input type='text' placeholder='Phone' className='' defaultValue={"+998" + user?.phone} disabled/>
+                            <Input type='tel' placeholder='Phone' className='' defaultValue={"+998" + user?.phone} disabled/>
                             <Button onClick={handleUser} type='button' className='flex items-start w-[150px] hover:bg-green-700 bg-green-600 text-white'>{t('save')}</Button>
                         </div>
                     </div>
