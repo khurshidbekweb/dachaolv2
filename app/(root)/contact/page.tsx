@@ -39,7 +39,7 @@ const Contact = () => {
 				<div>
 					<h1 className='text-4xl font-creteRound mb-2'>{t('connection')}</h1>
 					<div className='flex flex-col space-y-3'>
-						<ContactForm/>
+						{/* <ContactForm/> */}
 					</div>
 				</div>
 			</div>

@@ -14,7 +14,7 @@ import { cottage, cottageTop, order } from '@/types';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import { userUtils } from '@/utils/user.utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ImageDown, PenIcon, PenLineIcon } from 'lucide-react';
+import { PenLineIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -41,15 +41,13 @@ const Profile = () => {
     const user = JSON.parse(safeLocalStorage.getItem("user"));
     const { language } = useLanguageStore();
     const userImg = userData?.data?.image;
-    const ismainImage = useRef(null);
     const [active, setActive] = useState<activeView>('profile')
     const userCottage = ALL_DATA.useCottageUser()?.data; 
-    const orders = user?.orders  
-    
-    
-    
+    const orders = user?.orders      
     const [name, setName] = useState(user?.name)    
+    const [changeData, setChangeData] = useState(true)
     const queryClinet = useQueryClient()
+    
     const userEdit = useMutation({
         mutationFn: userUtils.editUser,
         onSuccess: async () => {
@@ -76,9 +74,9 @@ const Profile = () => {
         userEdit.mutate({
             id: user?.id,
             image: e.target.files[0],
-            name: name
+            name: name ? name : ''
         });
-    };
+    };    
 
     return (
         <>
@@ -98,8 +96,7 @@ const Profile = () => {
                         <div className="!w-[120px] !h-[120px] relative flex items-center justify-center">
                             <Image
                                 className={"!w-[130px] flex justify-center items-center h-[120px] relative border border-separate rounded-full overflow-hidden"}
-                                ref={ismainImage}
-                                src={userImg && `${IMG_BASE_URL}${userImg}` || userAvatar}
+                                src={userImg ? `${IMG_BASE_URL}${userImg}` : userAvatar}
                                 alt="useImg"
                                 sizes="120px"
                                 width={120}
@@ -117,9 +114,13 @@ const Profile = () => {
                         </label>                      
                         </div>                        
                         <div className="p-1 w-full md:flex-1 space-y-3">
-                            <Input type='text' onChange={(e) =>setName(e.target.value)} placeholder={`${t('form_name')}`} className='' defaultValue={user?.name ? user.name : ""}/>
+                            <Input  type='text' onChange={(e) =>{
+                                setName(e.target.value)
+                                setChangeData(false)
+                                }} 
+                                placeholder={`${t('form_name')}`} className='' defaultValue={user?.name ? user.name : ""}/>
                             <Input type='tel' placeholder='Phone' className='' defaultValue={"+998" + user?.phone} disabled/>
-                            <Button onClick={handleUser} type='button' className='flex items-start w-[150px] hover:bg-green-700 bg-green-600 text-white'>{t('save')}</Button>
+                            <Button disabled={changeData} onClick={handleUser} type='button' className='flex items-start w-[150px] hover:bg-green-700 bg-green-600 text-white'>{t('save')}</Button>
                         </div>
                     </div>
                 </div>
