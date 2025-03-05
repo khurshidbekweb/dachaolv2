@@ -17,6 +17,7 @@ import { IMG_BASE_URL } from "@/constants/server";
 import { Slider } from "@/components/ui/slider";
 import { cottageUtils } from "@/utils/cottage.utils";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "@/components/loading/loading";
 
 const CottageAll = () => {
     const cottages = ALL_DATA.useCottage()?.data
@@ -41,8 +42,8 @@ const CottageAll = () => {
         maxPrice: value ? value : 0,
         placeId: '', 
         regionId: choosRegion ? choosRegion : '',
-        comforts: JSON.stringify(cottageComforts.response), // ✅ JSON formatga o‘tkazib qo‘yish
-        cottageTypes: JSON.stringify(cottageType.comforts), // ✅ JSON formatga o‘tkazib qo‘yish
+        comforts: JSON.stringify(cottageComforts.response), 
+        cottageTypes: JSON.stringify(cottageType.comforts), 
     });
     console.log(filter);
     
@@ -52,8 +53,7 @@ const CottageAll = () => {
         enabled: !!filter, // Filter mavjud bo'lgandagina so'rov yuboriladi
     });
 
-    console.log(filterCottages?.data, 'filter');
-    
+    console.log(filterCottages?.data, 'filter');  
     
     const comforts = ALL_DATA.useComforts();
     
@@ -99,8 +99,8 @@ const CottageAll = () => {
                 <BreacdCrambs data={[{slug: '', title:t('nav_home')}]} page={`${t('nav_cottage')}`}/>
                 <h2 className="text-2xl">{t('nav_cottage')}</h2>
             </div>
-            <div className="w-full mt-5 flex justify-between items-start gap-x-5">
-                <div className="filter hidden md:block w-[250px] mx-auto shadow-lg">
+            <div className="w-full mt-5 flex items-start gap-x-5">
+                <div className="filter hidden md:block ml-0 w-[250px] mx-auto shadow-lg">
                     <h1 className="text-[20px] md:text-[20px] xl:text-[24px] font-workSans">{t('filtr')}</h1>
                     <Input type="text" placeholder={t('serach_filtr')}/>
                     <form onSubmit={handleFilter}>
@@ -188,11 +188,11 @@ const CottageAll = () => {
                         </div>
                     </form>
                 </div>
-                <div className="flex-1 grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
-                {cottages && cottages.map((dacha: cottage) => (
-                    <Dacha key={dacha.id} {...dacha}/>
-                ))}
-                </div>
+                {cottages ? <div className="w-full grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
+                    {cottages && cottages.map((dacha: cottage) => (
+                        <Dacha key={dacha.id} {...dacha}/>
+                    ))}
+                </div>:<Loading/>}
             </div>
         </div>
         <MiniNav/>

@@ -15,7 +15,6 @@ const Home = () => {
             <section className="hero">
                 <SwiperHero />
             </section>
-            <Loading/>
             <section className="place mt-4 md:mt-6">
                 <Place />
             </section>
