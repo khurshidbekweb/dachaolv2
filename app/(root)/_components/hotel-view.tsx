@@ -51,15 +51,15 @@ const HotelView = () => {
         >
             {getData?.length && getData.map((el) =>(
                 <SwiperSlide key={el.id} className="">
-                        <Link href={`/cottage-type/${el.id}`} className="w-[350px] cursor-pointer overflow-hidden h-[150px] rounded-md">
-                            <Image
+                    <Link href={`/cottage-type/${el.id}`} className="w-[290px] h-[110px] md:w-[350px] md:h-[140px] cursor-pointer overflow-hidden rounded-md flex justify-center items-center">
+                        <Image
                             sizes="350px"
                             width={350}
                             height={100}
-                            className="!w-full h-[110px]  md:h-[130px]  md:w-[400px] cursor-pointer rounded-md"
+                            className="w-full h-full  cursor-pointer rounded-md object-cover"
                             src={`${IMG_BASE_URL}${el.image}`}
                             alt="nature"
-                    />
+                        />
                 </Link>
             </SwiperSlide>
             ))}

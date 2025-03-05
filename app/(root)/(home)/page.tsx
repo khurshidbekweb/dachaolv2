@@ -7,6 +7,7 @@ import ScenicPlace from '../_components/scenic-place';
 import HotelView from '../_components/hotel-view';
 import CottageAll from '../cottage/page';
 import RecentlyCottage from '@/sections/recently-cottage';
+import Loading from '@/components/loading/loading';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <section className="hero">
                 <SwiperHero />
             </section>
+            <Loading/>
             <section className="place mt-4 md:mt-6">
                 <Place />
             </section>

@@ -48,14 +48,14 @@ const SwiperHero = () => {
       >
         {cottageTop && cottageTop.map((el: cottageTop) => (
           <SwiperSlide key={el.id}>
-            <div className="min-w-[80%] mx-auto relative h-[32vh] md:h-[30vh] lg:h-[50vh]">
+            <div className="min-w-[80%] mx-auto relative h-[32vh] md:h-[30vh] lg:h-[50vh] flex justify-center items-center">
               <Image
                 fill
                 src={`${IMG_BASE_URL}${
                   el.cottage.images.find((mainIm) => mainIm.isMainImage == true)?.image
                 }`}
                 alt="bgimg"
-                className="bg-img -z-10 md:rounded-md"
+                className="bg-img -z-10 md:rounded-md object-cover"
                 sizes="(min-width: 80%) 100vw, 33vw"
                 loading="lazy"
               />

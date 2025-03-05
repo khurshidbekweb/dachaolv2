@@ -17,7 +17,8 @@ import { useTranslation } from 'react-i18next';
 
 const UserDacha = (dacha: cottage) => {   
     const {t} = useTranslation()
-        
+console.log(dacha);
+
     return (
         <div className='relative max-w-[170px] mx-auto bg-[#ffff] dark:bg-[#161f309c] md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
@@ -32,7 +33,7 @@ const UserDacha = (dacha: cottage) => {
                         {
                             dacha && dacha?.images.map((img: image) => (
                                     <SwiperSlide className='!h-[140px] !md:h-[240px]' key={img.id}>
-                                        <Image className='w-full h-[140px] md:h-[210px]' sizes='(max-width: 300px)' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
+                                        <Image className='w-full h-[140px] md:h-[210px] object-cover' sizes='(max-width: 300px)' width={300} height={250} src={`${IMG_BASE_URL}${img.image}`} alt={img.id} />
                                     </SwiperSlide>
                             ))
                         }
@@ -50,9 +51,9 @@ const UserDacha = (dacha: cottage) => {
                         <Badge variant='secondary' className=''>{dacha.place.name}</Badge>
                     </div>
                     <div className="hidden md:flex md:gap-x-3 items-center mt-2">
-                        {dacha && dacha.comforts.slice(0, 7).map((com: comfort) => (
+                        {dacha?.cottageType[0].id === 'c4c301b1-4719-499e-bde2-2c36715fae9e' ? dacha.comforts.slice(0, 7).map((com: comfort) => (
                             <Image className=' bg-white rounded-md' width={20} sizes='(max-width: 20px)' height={20} key={com.id} src={`${IMG_BASE_URL}${com.image}`} alt={com.name} />
-                        ))}
+                        )):''}
                     </div>
                 </div> 
             </Link>

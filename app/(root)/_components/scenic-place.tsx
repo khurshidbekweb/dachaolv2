@@ -49,12 +49,12 @@ const ScenicPlace = () => {
                 {places.data?.length &&
                     places?.data.filter((item) => !dontsItem.includes(item.id)).map((place: place) => (
                         <SwiperSlide key={place.id} className="">
-                            <Link href={`/cottage-type/${place.id}`} className="w-[350px] cursor-pointer overflow-hidden h-[150px] rounded-md">
+                            <Link href={`/cottage-type/${place.id}`} className="w-[290px] h-[110px] md:w-[350px] md:h-[140px] cursor-pointer overflow-hidden rounded-md flex justify-center items-center">
                                 <Image
-                                    sizes="(min-width: 170px)"
-                                    width={170}
+                                    sizes="350px"
+                                    width={350}
                                     height={100}
-                                    className="w-full h-[110px] md:h-[130px] cursor-pointer rounded-md"
+                                    className="w-full h-full cursor-pointer rounded-md object-cover"
                                     src={`${IMG_BASE_URL}${place.image}`}
                                     alt="nature"
                                 />
