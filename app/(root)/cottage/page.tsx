@@ -15,14 +15,14 @@ import { Slider } from "@/components/ui/slider";
 import { cottageUtils } from "@/utils/cottage.utils";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/components/loading/loading";
-import { comfort, cottageType, place, region } from "@/types";
+import { comfort, cottage, cottageType, place, region } from "@/types";
 
 const CottageAll = () => {
     const { t } = useTranslation();
     const store = useLanguageStore();
     const language = store.language;
     
-    const [value, setValue] = useState(12000);
+    const [value, setValue] = useState(12000000);
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedPlace, setSelectedPlace] = useState("");
     const [selectedComforts, setSelectedComforts] = useState([]);
@@ -51,8 +51,8 @@ const CottageAll = () => {
             maxPrice: value,
             placeId: selectedPlace || "",
             regionId: selectedRegion || "",
-            comforts: JSON.stringify(selectedComforts),
-            cottageTypes: JSON.stringify(selectedTypes),
+            comforts: selectedComforts.toString(),
+            cottageTypes: selectedTypes.toString(),
         });
     }, [value, selectedRegion, selectedPlace, selectedComforts, selectedTypes]);
 
@@ -72,17 +72,17 @@ const CottageAll = () => {
             </div>
             <div className="w-full mt-5 flex items-start gap-x-5">
                 <div className="filter hidden md:block ml-0 w-[250px] mx-auto shadow-lg">
-                    <h1 className="text-[20px] font-workSans">{t('filtr')}</h1>
-                    <Input type="text" placeholder={t('serach_filtr')} />
+                    <h1 className="text-[22px] font-createRound">{t('filtr')}</h1>
+                    <p>Narx bo`ych</p>
                     <div className="w-[250px] flex flex-col items-center gap-6 p-4">
                         <div className="flex justify-between text-sm w-[250px]">
-                            <span>800</span>
-                            <span>{value}</span>
+                            <span>500,000 sum</span>
+                            <span>{value.toLocaleString()} sum</span>
                         </div>
                         <Slider
                             defaultValue={[value]}
-                            min={800}
-                            max={12000}
+                            min={600000}
+                            max={12000000}
                             step={1}
                             onValueChange={(val) => setValue(val[0])}
                             className="w-[250px]"
@@ -119,19 +119,21 @@ const CottageAll = () => {
                             </label>
                         ))}
                         <p className="py-2 font-medium">{t('camforts')}</p>
-                        {comforts?.map((e:comfort) => (
-                            <label key={e.id} className="flex items-center gap-2">
-                                <input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" value={e.id} onChange={(ev) => {
-                                    setSelectedComforts(prev => ev.target.checked ? [...prev, e.id] : prev.filter(id => id !== e.id));
-                                }} />
-                                <Image className="bg-white rounded-sm" width={20} height={20} src={`${IMG_BASE_URL}${e.image}`} alt={e.name} />
-                                <p>{e.name}</p>
-                            </label>
-                        ))}
+                        <div className="flex flex-col space-y-1">
+                            {comforts?.map((e:comfort) => (
+                                <label key={e.id} className="flex items-center gap-2">
+                                    <input className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox" value={e.id} onChange={(ev) => {
+                                        setSelectedComforts(prev => ev.target.checked ? [...prev, e.id] : prev.filter(id => id !== e.id));
+                                    }} />
+                                    <Image className="bg-white rounded-sm" width={20} height={20} src={`${IMG_BASE_URL}${e.image}`} alt={e.name} />
+                                    <p className="line-clamp-1">{e.name}</p>
+                                </label>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className="w-full grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
-                    {isLoading ? <Loading /> : (filteredCottages || cottages)?.map((dacha) => <Dacha key={dacha.id} {...dacha} />)}
+                    {isLoading ? <Loading /> : (filteredCottages || cottages)?.filter(((dacha:cottage) => dacha.cottageType[0].id === "c4c301b1-4719-499e-bde2-2c36715fae9e"))?.map((dacha:cottage) => <Dacha key={dacha.id} {...dacha} />)}
                 </div>
             </div>
         </div>
