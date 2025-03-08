@@ -38,7 +38,7 @@ const CropperImage = ({onImageCropped}) => {
         try {
             if (!imageSrc || !croppedAreaPixels) return;
 
-            const croppedBlob = await cropImage(imageSrc, croppedAreaPixels);
+            const croppedBlob = await cropImage(imageSrc, croppedAreaPixels) as Blob;
             const croppedImageUrl = URL.createObjectURL(croppedBlob); 
             const croppedFile = new File([croppedBlob], "cropped-image.jpg", { type: "image/jpeg" });
             setCroppedImageUrl(croppedImageUrl);
@@ -49,9 +49,9 @@ const CropperImage = ({onImageCropped}) => {
     };
 
     // Rasmni kesish va `Blob` formatida qaytarish
-    const cropImage = (imageSrc, cropAreaPixels) => {
+    const cropImage = (imageSrc, cropAreaPixels): Promise<Blob>  => {
         return new Promise((resolve, reject) => {
-            const image = new Image();
+            const image = new (globalThis as any).Image();
             image.src = imageSrc;
             image.onload = () => {
                 const canvas = document.createElement("canvas");
