@@ -194,7 +194,7 @@ const AddNew = () => {
                 </label>
                 <Image
                   ref={mainImage}
-                  className="!z-20 w-full hidden !h-[150px]"
+                  className="!z-20 w-full hidden !h-[150px] object-cover"
                   src={''}
                   alt="add"
                   sizes="(min-width: 250px)"
