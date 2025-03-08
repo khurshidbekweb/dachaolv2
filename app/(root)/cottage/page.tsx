@@ -19,6 +19,7 @@ import { comfort, cottage, cottageType, place, region } from "@/types";
 import { ChevronDown } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
+
 const CottageAll = () => {
     const { t } = useTranslation();
     
