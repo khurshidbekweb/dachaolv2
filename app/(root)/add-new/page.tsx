@@ -26,6 +26,7 @@ import Login from '../login/page';
 import { useTranslation } from 'react-i18next';
 import DachaMap from '../_components/add-map';
 import CropperImage from '@/components/modal/cropper-image';
+import ImageCropper from '@/components/modal/cropper-image';
 
 // Images transform getbase64Full
 async function getBase64Full(file: Blob) {
@@ -40,15 +41,15 @@ async function getBase64Full(file: Blob) {
 }
 
 const AddNew = () => {
-  const mainImage = useRef<HTMLImageElement | null>(null);
-  // get Language
+  const [originalImage, setOriginalImage] = useState<string | null>(null);
+  const [file, setFile] = useState<File| null>(null)
   const route = useRouter()
   const store = useLanguageStore()
   const {t} = useTranslation()
   const language: langKey = store.language as keyof footerLang;
   const accessAToken = safeLocalStorage.getItem('accessToken')
   const childImagesWrapper = useRef(null);
-  const [mainImage1, setMainIMage] = useState('')
+  const [mainImage, setMainIMage] = useState<string | null>(null)
   const [location, setLocation] = useState({
     latitude: "",
     longitude: ""
@@ -57,6 +58,14 @@ const AddNew = () => {
     comforts: [],
     response: [],
   });
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+        setOriginalImage(URL.createObjectURL(selectedFile)); 
+    }
+}
   // Query 
   const queryClient = useQueryClient();
   const region = ALL_DATA.useRegion();
@@ -117,8 +126,8 @@ const AddNew = () => {
 
     cottage.mutate({
       name: e.target.cottagename.value,
-      images: images,
-      mainImage: e.target.mainImage.files[0],
+      images: file,
+      mainImage: mainImage,
       placeId: e.target.place.value,
       regionId: e.target.region.value,
       price: +e.target.price.value,
@@ -136,16 +145,16 @@ const AddNew = () => {
 
   };
 
-  const handleMainImage = async (e) => {
-    const result = await getBase64Full(e.target.files[0]);
-    if (typeof result === 'string') { // Tekshirish
-      const mainImgUrl = result; // Endi bu 'string'
-      mainImage.current.classList.remove("hidden");
-      mainImage.current.setAttribute("src", mainImgUrl);
-    } else {
-      console.error("getBase64Full returned a non-string value.");
-    }
-  };
+  // const handleMainImage = async (e) => {
+  //   const result = await getBase64Full(e.target.files[0]);
+  //   if (typeof result === 'string') { // Tekshirish
+  //     const mainImgUrl = result; // Endi bu 'string'
+  //     mainImage.current.classList.remove("hidden");
+  //     mainImage.current.setAttribute("src", mainImgUrl);
+  //   } else {
+  //     console.error("getBase64Full returned a non-string value.");
+  //   }
+  // };
 
   const handlmultipleImg = async (e) => {
     const images = [];
@@ -175,23 +184,31 @@ const AddNew = () => {
           </h3>
           <form onSubmit={handlCottage} className='mt-2 md:mt-4'>
             <div className="addnew-imgs grid grid-cols-4 gap-2">
-                {/* <CropperImage onImageCropped={setMainIMage}/> */}
               <div className="addnew-box relative col-span-2 md:col-span-1 border overflow-hidden h-[150px] rounded-3xl">
-                <div className="cursor-pointer absolute  w-full h-full flex items-center justify-center flex-col ">
+                <label className="cursor-pointer absolute  w-full h-full flex items-center justify-center flex-col ">    
+                <Input
+                    type="file"
+                    name="image"                    
+                    accept="image/*"
+                    className="w-1 h-1 opacity-0"
+                    onChange={handleFileChange}
+                  />              
                   <ImagePlus size={30} />
                   <p className="flex items-center justify-center text-xl md:text-2xl font-createRound">
                     {AddNewPageLanguage.mainPhoto[language]}
                   </p>
-                </div>
-                <Image
-                  ref={mainImage}
-                  className="!z-20 w-full hidden !h-[150px] object-cover"
-                  src={''}
+                </label>
+                {originalImage && file && (
+                  <ImageCropper src={originalImage} onCrop={setFile} onImageUrl={setMainIMage} />
+                )}
+                {mainImage && <Image
+                  className="!z-20 w-full !h-[150px] object-cover"
+                  src={mainImage}
                   alt="add"
                   sizes="(min-width: 250px)"
                   width={250}
                   height={250}
-                />
+                />}
               </div>
               <div className="addnew-add h-[150px] col-span-2 md:col-span-1 relative border rounded-3xl cursor-pointer">
                 <label className="label-input-file absolute bg-white dark:bg-[#161f309c] rounded-3xl w-full h-full flex items-center justify-center flex-col">
