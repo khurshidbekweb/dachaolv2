@@ -202,7 +202,7 @@ const AddNew = () => {
                   <ImageCropper src={originalImage} onCrop={setFile} onImageUrl={setMainIMage} />
                 )}
                 {mainImage && <Image
-                  className="!z-20 w-full !h-[150px] object-cover"
+                  className="!z-20 w-full h-full object-cover inline"
                   src={mainImage}
                   alt="add"
                   sizes="(min-width: 250px)"
