@@ -2,11 +2,14 @@ import Image from 'next/image';
 import React, { useState, useCallback, useRef } from "react";
 import Cropper from "react-easy-crop";
 import { FaUpload } from "react-icons/fa";
+import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
+
 
 const CropperImage = ({onImageCropped}) => {
     const [imageSrc, setImageSrc] = useState(null);
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
+    const [open, setOpen] = useState(false)
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
     const fileInputRef = useRef(null);
     const [croppedImageUrl, setCroppedImageUrl] = useState(null); 
@@ -82,7 +85,7 @@ const CropperImage = ({onImageCropped}) => {
     };
 
     return (
-        <div>
+        <Dialog open={open} onOpenChange={setOpen}>
             {/* Fayl yuklash inputi */}
             <label className="file-input-label d-block w-25 text-center mb-2">
                 <input
@@ -120,7 +123,7 @@ const CropperImage = ({onImageCropped}) => {
             {croppedImageUrl && (
                     <Image src={croppedImageUrl} alt="Kesilgan rasm" style={{ width: "200px", height: "auto", border: "1px solid #ccc", borderRadius: "5px", marginTop: "10px" }} />                
             )}
-        </div>
+        </Dialog>
     );
 };
 

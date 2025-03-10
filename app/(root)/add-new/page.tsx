@@ -25,6 +25,7 @@ import { useRouter } from 'next/navigation';
 import Login from '../login/page';
 import { useTranslation } from 'react-i18next';
 import DachaMap from '../_components/add-map';
+import CropperImage from '@/components/modal/cropper-image';
 
 // Images transform getbase64Full
 async function getBase64Full(file: Blob) {
@@ -47,14 +48,11 @@ const AddNew = () => {
   const language: langKey = store.language as keyof footerLang;
   const accessAToken = safeLocalStorage.getItem('accessToken')
   const childImagesWrapper = useRef(null);
+  const [mainImage1, setMainIMage] = useState('')
   const [location, setLocation] = useState({
     latitude: "",
     longitude: ""
   })
-  const [cottageInfo, setCottageInfo] = useState({
-    dachaType: [],
-    response: [],
-  });
   const [cottageComforts, setcottageComforts] = useState({
     comforts: [],
     response: [],
@@ -177,21 +175,14 @@ const AddNew = () => {
           </h3>
           <form onSubmit={handlCottage} className='mt-2 md:mt-4'>
             <div className="addnew-imgs grid grid-cols-4 gap-2">
+                {/* <CropperImage onImageCropped={setMainIMage}/> */}
               <div className="addnew-box relative col-span-2 md:col-span-1 border overflow-hidden h-[150px] rounded-3xl">
-                <label className="label-input-file absolute  w-full h-full flex items-center justify-center flex-col ">
-                  <Input
-                    type="file"
-                    accept="image/*"
-                    name="mainImage"
-                    className="h-1 z-0 opacity-0"
-                    onChange={handleMainImage}
-                    required
-                  />
+                <div className="cursor-pointer absolute  w-full h-full flex items-center justify-center flex-col ">
                   <ImagePlus size={30} />
                   <p className="flex items-center justify-center text-xl md:text-2xl font-createRound">
                     {AddNewPageLanguage.mainPhoto[language]}
                   </p>
-                </label>
+                </div>
                 <Image
                   ref={mainImage}
                   className="!z-20 w-full hidden !h-[150px] object-cover"
