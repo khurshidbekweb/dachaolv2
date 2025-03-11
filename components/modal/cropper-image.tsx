@@ -20,6 +20,7 @@ const ImageCropper = ({ src, onCrop,onImageUrl }: ImageCropperProps) => {
     const getCroppedImage = () => {
         if (cropperRef.current && cropperRef.current.cropper) {
             const cropper = cropperRef.current.cropper;
+            
     
             cropper.getCroppedCanvas({
                 width: 800, // O‘zgarmas width

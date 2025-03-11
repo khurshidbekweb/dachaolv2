@@ -18,7 +18,7 @@ export const authUtils = {
       "Authorization"
     ] = `Bearer ${data?.accessToken}`;
     
-    return data;
+    return data;x
   },
 
   smsAuth: async ({ phone }) => {
