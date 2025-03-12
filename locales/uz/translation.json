@@ -36,5 +36,9 @@
     "place":"Joylashuv",
     "dacha_type":"E'lonlar turi",
     "dacha_type_all":"Barcha e'lonlar turi",
-    "camforts":"Qulayliklar"
+    "camforts":"Qulayliklar",
+    "result":" - naticha",
+    "search_advertes":"🔍 Izlayotgan ma'lumotingizni kiriting ",
+    "search_plesholder":"Nimani qidiryapsiz? Kiriting...",
+    "search_no_result":"Afsuski, ma'lumot topilmadi 😔"
 }

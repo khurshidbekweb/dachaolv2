@@ -82,3 +82,6 @@
 .view-p::-webkit-scrollbar{
   display: none;
 }
+.global-search::-webkit-scrollbar{
+  display: none;
+}
