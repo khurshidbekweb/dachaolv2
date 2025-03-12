@@ -11,7 +11,6 @@ import React, { ChangeEvent, useRef, useState } from 'react';
 import { ImagePlus, LogInIcon } from 'lucide-react';
 import { IMG_BASE_URL } from '@/constants/server';
 import { toast } from 'sonner';
-import { authUtils } from '@/utils/auth.utils';
 import { QUERY_KEYS } from '@/Query/query-keys';
 import { comfort, cottageType, footerLang, langKey, place, region } from '@/types';
 import { Input } from '@/components/ui/input';
@@ -20,12 +19,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import MiniNav from '@/components/shared/mini-nav';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Login from '../login/page';
 import { useTranslation } from 'react-i18next';
 import DachaMap from '../_components/add-map';
-import CropperImage from '@/components/modal/cropper-image';
 import ImageCropper from '@/components/modal/cropper-image';
 
 // Images transform getbase64Full
@@ -43,13 +40,14 @@ async function getBase64Full(file: Blob) {
 const AddNew = () => {
   const [originalImage, setOriginalImage] = useState<string | null>(null);
   const [file, setFile] = useState<File| null>(null)
+  const [mainImage, setMainIMage] = useState<File | null>(null)
+  const [mainImageUrl, setMainImageUrl] = useState<string | null>(null)
   const route = useRouter()
   const store = useLanguageStore()
   const {t} = useTranslation()
   const language: langKey = store.language as keyof footerLang;
   const accessAToken = safeLocalStorage.getItem('accessToken')
   const childImagesWrapper = useRef(null);
-  const [mainImage, setMainIMage] = useState<string | null>(null)
   const [location, setLocation] = useState({
     latitude: "",
     longitude: ""
@@ -115,6 +113,7 @@ const AddNew = () => {
             }
     );
   };
+  console.log(mainImage);
   
   const handlCottage = async (e) => {
     e.preventDefault();
@@ -144,17 +143,6 @@ const AddNew = () => {
     e.target.reset();
 
   };
-
-  // const handleMainImage = async (e) => {
-  //   const result = await getBase64Full(e.target.files[0]);
-  //   if (typeof result === 'string') { // Tekshirish
-  //     const mainImgUrl = result; // Endi bu 'string'
-  //     mainImage.current.classList.remove("hidden");
-  //     mainImage.current.setAttribute("src", mainImgUrl);
-  //   } else {
-  //     console.error("getBase64Full returned a non-string value.");
-  //   }
-  // };
 
   const handlmultipleImg = async (e) => {
     const images = [];
@@ -199,11 +187,11 @@ const AddNew = () => {
                   </p>
                 </label>
                 {originalImage && file && (
-                  <ImageCropper src={originalImage} onCrop={setFile} onImageUrl={setMainIMage} />
+                  <ImageCropper src={originalImage} onCrop={setMainIMage} onImageUrl={setMainImageUrl} />
                 )}
-                {mainImage && <Image
+                {mainImageUrl && <Image
                   className="!z-20 w-full h-full object-cover inline"
-                  src={mainImage}
+                  src={mainImageUrl}
                   alt="add"
                   sizes="(min-width: 250px)"
                   width={250}

@@ -5,6 +5,7 @@ import "cropperjs/dist/cropper.css";
 import {
     Dialog,
     DialogContent,
+    DialogTitle,
     DialogTrigger,
 } from "../ui/dialog";
 
@@ -41,6 +42,7 @@ const ImageCropper = ({ src, onCrop,onImageUrl }: ImageCropperProps) => {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger></DialogTrigger>
             <DialogContent className="flex flex-col items-center overflow-hidden">
+            <DialogTitle>Rasmni Qirqish</DialogTitle>
                 <Cropper
                     src={src}
                     style={{ height: 200, width: "100%" }} // Ko'rinadigan joy

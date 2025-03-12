@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { GoogleMap, LoadScript, Autocomplete, Marker } from "@react-google-maps/api";
-
 const mapContainerStyle = { height: "500px", width: "100%" };
 const defaultCenter = { lat: 41.2995, lng: 69.2401 }; // Toshkent koordinatalari
 
