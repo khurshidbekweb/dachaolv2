@@ -45,7 +45,7 @@ const Dacha = (dacha: cottage) => {
                 <div className="dacha-info p-2">
                     <div className="flex justify-between items-center">
                         <h2 className='text-[16px] md:text-xl font-createRound'>{dacha.name}</h2>
-                        {dacha?.cottageType[0].id === 'c4c301b1-4719-499e-bde2-2c36715fae9e' && <p className='font-createRound text-xl text-yellow-400'>{dacha.price}$</p>}
+                        {dacha?.cottageType[0].id === 'c4c301b1-4719-499e-bde2-2c36715fae9e' && <p className='font-createRound text-xl text-yellow-400'>{dacha.price.toLocaleString()} sum</p>}
                     </div>
                     <div className="flex gap-x-4 my-2 items-start space-y-2 flex-col md:flex-row md:items-center md:space-y-0">
                         <Badge variant='secondary'>{dacha.region.name}</Badge>

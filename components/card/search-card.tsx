@@ -22,9 +22,9 @@ interface propsCard{
 
 const SearchCard = ({dacha}:propsCard) => {
     return (
-        <div className='relative max-w-[110px] mx-auto md:ml-0 md:max-w-[280px] border group shadow-lg rounded-md overflow-hidden'>
+        <div className='relative w-[110px] mx-auto md:ml-0 md:w-[280px] border group shadow-lg rounded-md overflow-hidden'>
             <Link href={`/view/${dacha.id}`}>
-            <Image width={110} height={120} className='!h-[70px]' src={`${IMG_BASE_URL}${dacha.images[0].image}`} alt='image cottage'/> 
+            <Image width={110} height={120} className='!h-[110px] w-full object-cover' src={`${IMG_BASE_URL}${dacha.images[0].image}`} alt='image cottage'/> 
                 <div className="dacha-info p-2">
                     <div className="flex justify-between flex-col items-start">
                         <h2 className='text-[16px] line-clamp-1 text-start md:text-xl font-createRound'>{dacha.name}</h2>
