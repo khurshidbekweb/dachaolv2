@@ -3,7 +3,7 @@ import React from 'react';
 import loading from '@/assets/loading.gif'
 const Loading = () => {
     return (
-        <div className='flex justify-center  items-center w-full'>
+        <div className='col-span-full'>
             <Image className='md:w-[250px] mx-auto' alt='loading' src={loading} />
         </div>
     );

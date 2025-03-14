@@ -85,3 +85,6 @@
 .global-search::-webkit-scrollbar{
   display: none;
 }
+.filter-modal::-webkit-scrollbar{
+  display: none;
+}
