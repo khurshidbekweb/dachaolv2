@@ -57,14 +57,13 @@ const CottageAll = () => {
             comforts: selectedComforts.toString(),
             cottageTypes: selectedTypes.toString(),
         });
-    }, [value, selectedRegion, selectedPlace, selectedComforts, selectedTypes]);
+    }, [ value, selectedRegion, selectedPlace, selectedComforts, selectedTypes]);
 
     const { data: filteredCottages, isLoading } = useQuery({
         queryKey: ["cottage-filter", filter],
         queryFn: () => cottageUtils.getFilter(filter),
         enabled: !!(selectedRegion || selectedPlace || selectedComforts.length || selectedTypes.length || value),
     });
-    console.log(filter);
     
     return (
         <>
@@ -73,7 +72,7 @@ const CottageAll = () => {
                 <BreacdCrambs data={[{ slug: '', title: t('nav_home') }]} page={t('nav_cottage')} />
                 <div className="flex justify-between items-center w-full">
                     <h2 className="text-2xl">{t('nav_cottage')}</h2>
-                    <FilterAdvertise/>
+                    <FilterAdvertise setFilter={setFilter} isLoading={isLoading}/>
                 </div>
             </div>
             <div className="w-full mt-5 flex items-start gap-x-5">
