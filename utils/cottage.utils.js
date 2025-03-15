@@ -151,8 +151,8 @@ export const cottageUtils = {
     price,
     priceWeekend,
     regionId,
-  latitude,
-  longitude
+    latitude,
+    longitude
   }) => {
     try {
       const formData = new FormData();
@@ -174,8 +174,8 @@ export const cottageUtils = {
         },
       });
       return data;
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   },
   addCottageImage: async ({ cottageId, image, isMainImage }) => {
