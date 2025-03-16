@@ -76,6 +76,7 @@ const AddNew = () => {
       toast.success(
         AddNewPageLanguage.cottageSuccess[language]
       );
+      setMainIMage(null)
     },
     onError: (err) => {
       console.log(err, "err");
@@ -141,7 +142,6 @@ const AddNew = () => {
     localStorage.setItem('dacha', JSON.stringify(cottage.variables))
     childImagesWrapper.current.innerHTML = "";
     e.target.reset();
-
   };
 
   const handlmultipleImg = async (e) => {
