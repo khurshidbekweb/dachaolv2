@@ -126,7 +126,7 @@ const AddNew = () => {
 
     cottage.mutate({
       name: e.target.cottagename.value,
-      images: file,
+      images: images,
       mainImage: mainImage,
       placeId: e.target.place.value,
       regionId: e.target.region.value,
@@ -139,9 +139,9 @@ const AddNew = () => {
       longitude: location.longitude
     });
     console.log(cottage.variables);
-    localStorage.setItem('dacha', JSON.stringify(cottage.variables))
-    childImagesWrapper.current.innerHTML = "";
-    e.target.reset();
+    // localStorage.setItem('dacha', JSON.stringify(cottage.variables))
+    // childImagesWrapper.current.innerHTML = "";
+    // e.target.reset();
   };
 
   const handlmultipleImg = async (e) => {

@@ -175,7 +175,7 @@ export const cottageUtils = {
       });
       return data;
     } catch (err) {
-      console.log(err);
+      console.log(err, 'error');
     }
   },
   addCottageImage: async ({ cottageId, image, isMainImage }) => {

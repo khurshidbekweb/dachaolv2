@@ -29,9 +29,9 @@ const ImageCropper = ({ src, onCrop,onImageUrl }: ImageCropperProps) => {
             }).toBlob((blob: Blob | null) => {
                 if (blob) {
                     const croppedFile = new File([blob], "cropped-image.png", { type: "image/png" });    
-                    onCrop(croppedFile); // Yangi qirqilgan rasmni qaytarish
                     setOpen(false);
                     const imgURL = URL.createObjectURL(blob)
+                    onCrop(croppedFile); // Yangi qirqilgan rasmni qaytarish
                     onImageUrl(imgURL)
                     
                 }
