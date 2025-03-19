@@ -16,6 +16,7 @@ import 'swiper/css/effect-coverflow';
 // import required modules
 import { A11y, Autoplay, EffectCoverflow, Navigation, Pagination, Parallax, Scrollbar } from 'swiper/modules';
 import {cottageTop, footerLang, langKey, } from "@/types";
+import { t } from "i18next";
 
 
 const SwiperHero = () => {
@@ -61,7 +62,7 @@ const SwiperHero = () => {
               />
               <div className="flex flex-col items-center justify-center z-0 w-full h-full space-y-2 bg-black/35">
                 <h1 className="header-text font-createRound text-3xl md:text-5xl text-white"> {el.cottage.name} </h1>
-                <h2 className="text-2xl md:text-3xl text-white">${el.cottage.price}</h2>
+                <h2 className="text-2xl md:text-3xl text-white">{el.cottage.price} {t('moey_charge')}</h2>
                 <Link href={`/view/${el.cottage.id}`} className="bg-green-600 text-white text-xl md:text-2xl py-[2px] px-6 rounded-3xl font-workSans">
                   {HeaderLang[language].btn}
                 </Link>
