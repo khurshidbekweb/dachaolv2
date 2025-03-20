@@ -85,7 +85,7 @@ console.log(mapLink);
                         <h3 className="text-xl font-createRound my-4">
                             {ViewPageLanguage.aboutCottage[language]}
                         </h3>
-                        <p className="view-p max-w-6xl overflow-x-scroll scroll-smooth">{cottageView?.description}</p>
+                        <pre className="whitespace-pre-wrap break-words overflow-wrap-anywhere font-mono ">{cottageView?.description}</pre>
                     </div>
                     <div className="mb-5">
                         <p className="text-2xl md:text-3xl font-createRound my-4">

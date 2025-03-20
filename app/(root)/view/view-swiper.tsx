@@ -85,11 +85,12 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                 <div className="flex items-start gap-x-5">
                     <Link href={`/announcements/${cottageView?.user?.id}`} className="flex items-center gap-3">
                         {cottageView?.user?.image ? (
-                            <Image
+                            <Image 
+                                className="rounded-full !h-[40px] w-[40px] object-cover"
                                 src={`${IMG_BASE_URL}${cottageView?.user?.image}`}
                                 height={40}
                                 sizes="(min-width: 40px)"
-                                width={40} alt={""} />
+                                width={40} alt={"user image"} />
                         ) : (
                             <span>
                                 <FaRegUserCircle size={23} />
