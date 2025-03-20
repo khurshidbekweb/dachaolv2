@@ -84,7 +84,6 @@ const TarifActive = (props: Props) => {
       </DialogTitle>
       <DialogDescription>
       </DialogDescription>
-
         <div className="tarif-info text-light mx-auto text-center mt-3">
           {/* <p> ni <div> ga o'zgartirdim */}
           <div className="bg-slate-300 text-black text-2xl w-[50%] mx-auto p-2 text-center font-createRound rounded-full">
