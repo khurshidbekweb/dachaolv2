@@ -31,7 +31,7 @@ const Dacha = (dacha: cottage) => {
                         type: 'fraction',
                     }}
                     modules={[Pagination, Navigation, A11y]}
-                    className="swiper"
+                    className="swiper "
                 >
                     {
                         dacha && dacha?.images.map((img: image) => (
@@ -43,7 +43,7 @@ const Dacha = (dacha: cottage) => {
                     <SwiperNavBotton />
                 </Swiper> 
                 <div className="dacha-info p-2">
-                    <div className="flex justify-between items-center">
+                    <div className="flex flex-col md:flex-row justify-start md:justify-between md:items-center">
                         <h2 className='text-[16px] md:text-xl font-createRound'>{dacha.name}</h2>
                         {dacha?.cottageType[0].id === 'c4c301b1-4719-499e-bde2-2c36715fae9e' && <p className='font-createRound text-xl text-yellow-400'>{dacha.price.toLocaleString()} sum</p>}
                     </div>

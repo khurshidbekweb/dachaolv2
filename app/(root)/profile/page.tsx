@@ -14,7 +14,7 @@ import { cottage, cottageTop, order } from '@/types';
 import { safeLocalStorage } from '@/utils/safeLocalstorge';
 import { userUtils } from '@/utils/user.utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Download, PenLineIcon, Pointer } from 'lucide-react';
+import { HousePlus,  PenLineIcon, Pointer } from 'lucide-react';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -135,7 +135,7 @@ const Profile = () => {
                     <div className='border w-[370px] mt-4 border-red-400 p-2 rounded-md  bg-yellow-200 flex flex-col space-y-3'>
                         <p className="text-black">{t('my_annonim')} </p>
                         <div className="flex gap-3">
-                            <Link className='text-blue-500 underline inline-block' href={'/add-new'}>{t("profile_e'lonlar")} </Link><Download className='text-blue-500' size={20}/>
+                            <Link className='text-blue-500 underline inline-block' href={'/add-new'}>{t("profile_e'lonlar")} </Link><HousePlus className='text-blue-500' size={20}/>
                         </div>
                     </div>
                     }
@@ -145,7 +145,7 @@ const Profile = () => {
                 {active ==='services' && <div>
                     <h2>{t('foydalangan_service')}</h2>
                     <Table className='min-w-[540px] md:min-w-[720px] overflow-x-scroll'>
-                        {!orders?.length && <TableCaption className=''><Link className='text-blue-500 underline text-[18px]' href={'/service'}>{t('not_servise')} <Pointer className='text-yellow-300'/></Link> </TableCaption>}
+                        {!orders?.length && <TableCaption className=''><Link className='text-blue-500 underline text-[18px]' href={'/services'}>{t('not_servise')} <Pointer className='text-yellow-300'/></Link> </TableCaption>}
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="w-[100px]">Nomi</TableHead>
@@ -161,8 +161,7 @@ const Profile = () => {
                                     <TableCell> <p className={`${order.status=='active'?'bg-green-400':'bg-red-400'} text-white  rounded-md p-2 text-center text-ellipsis capitalize`}>{order.status}</p> </TableCell>
                                     <TableCell>
                                         <p className='text-[14px] font-workSans'>Days: {order.tariff.days} kun</p>
-                                        <p className='text-[14px] font-workSans'>Price: {order.tariff.price} so`m</p>
-                                        
+                                        <p className='text-[14px] font-workSans'>Price: {order.tariff.price} so`m</p>                                        
                                     </TableCell>
                                     <TableCell className="text-right">
                                     <p className='text-[14px] font-workSans text-green-500'>Boshlanish: {order.createdAt.slice(0,10)}</p>

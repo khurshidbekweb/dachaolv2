@@ -29,7 +29,7 @@ const MobileNav = () => {
             <SheetTrigger asChild className="md:hidden flex cursor-pointer"><Menu /></SheetTrigger>
             <SheetContent side={'left'}>
                 <Link href={'/'}>
-                    <h1 className="text-4xl font-createRound">DachaOL</h1>
+                    <h1 className="text-3xl md:text-4xl font-createRound font-bold">DachaOL</h1>
                 </Link>
                 <Separator className="my-3"/>
 
