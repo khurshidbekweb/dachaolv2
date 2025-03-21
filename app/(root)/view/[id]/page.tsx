@@ -27,7 +27,7 @@ const View = () => {
     const mapLink =
         cottageView?.latitude &&
         cottageView?.longitude &&
-        `https://www.google.com/maps/embed/v1/view?key=AIzaSyCOoxM7bD8Eg8G0lvGlE_xJOo1D5Yj5odY&center=${cottageView?.longitude},${cottageView?.latitude}&zoom=15`;
+        `https://www.google.com/maps/embed/v1/place?key=AIzaSyCOoxM7bD8Eg8G0lvGlE_xJOo1D5Yj5odY&q=${cottageView?.longitude},${cottageView?.latitude}&zoom=13`;
 console.log(mapLink);
 
     const childImage = [];
@@ -105,7 +105,6 @@ console.log(mapLink);
                                     ></iframe>
                                 </div>
                         </div>
-
                     }
                 </div>
                 <div className="mt-10">
