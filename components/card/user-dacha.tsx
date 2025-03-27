@@ -39,7 +39,6 @@ console.log(dacha);
                         }
                         <SwiperNavBotton />
                     </Swiper> 
-                    <span className={`w-full h-full absolute top-0 right-0 bg-[#1b1b1b58] justify-center items-center font-semibold ${dacha?.cottageStatus=='progress'?'flex':'hidden'}`}>{t('progress')}</span>
                 </div>
                 <div className="dacha-info p-2">
                     <div className="flex justify-between items-center">
@@ -56,6 +55,7 @@ console.log(dacha);
                         )):''}
                     </div>
                 </div> 
+            <span className={`w-full h-full absolute top-0 right-0 text-xl bg-[#3836369a] justify-center pt-4 font-semibold text-red-500 z-30 ${dacha?.cottageStatus=='progress'?'flex':'hidden'}`}>{t('progress')}...</span>
             </Link>
             <CottageEditImg id={dacha.id} images={dacha.images}/>
             <CottageEdit id={dacha.id} cottage ={dacha} />

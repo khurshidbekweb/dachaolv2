@@ -81,7 +81,7 @@ const Profile = () => {
 
     return (
         <>
-        <div className='max-w-6xl mx-auto px-3 md:px-1'>
+        <div className='max-w-6xl mx-auto px-3 md:px-1 md:min-h-[60vh]'>
             <div className="min-h-[20vh] flex flex-col justify-end items-start">
                 <BreacdCrambs data={[{ slug: '', title: t('nav_home') }]} page={`${t('nav_profile')}`} />
                 <h2 className='text-2xl md:text-3xl font-createRound'>{t('nav_profile')}</h2>

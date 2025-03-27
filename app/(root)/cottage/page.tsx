@@ -20,14 +20,12 @@ import FilterAdvertise from "@/components/modal/filter-advertise";
 
 
 const CottageAll = () => {
-    const { t } = useTranslation();
-    
+    const { t } = useTranslation();    
     const [value, setValue] = useState(12000000);
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedPlace, setSelectedPlace] = useState("");
     const [selectedComforts, setSelectedComforts] = useState([]);
     const [selectedTypes, setSelectedTypes] = useState([]);
-
     const cottages = ALL_DATA.useCottage()?.data;
     const cottageTypes = ALL_DATA.useCottageType()?.data;
     const regions = ALL_DATA.useRegion()?.data;
@@ -76,7 +74,6 @@ const CottageAll = () => {
             <div className="w-full mt-5 flex items-start gap-x-5">
                 <div className="filter hidden md:block ml-0 w-[250px] mx-auto shadow-lg">
                     <h1 className="text-[22px] font-createRound">{t('filtr')}</h1>
-                    <p>Narx bo`ych</p>
                     <div className="w-[250px] flex flex-col items-center gap-6 p-4">
                         <div className="flex justify-between text-sm w-[250px]">
                             <span>500,000 sum</span>
