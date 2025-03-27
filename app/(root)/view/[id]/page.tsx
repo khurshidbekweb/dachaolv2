@@ -24,7 +24,6 @@ const View = () => {
     const parms = useParams()
     const queryClient = useQueryClient();
     const {t} = useTranslation()
-    console.log(parms);
     const {data:cottage, isLoading} = ALL_DATA.useCottage();
     
     const suitableCottage = ALL_DATA.useSuitableCottage(parms?.id)?.data

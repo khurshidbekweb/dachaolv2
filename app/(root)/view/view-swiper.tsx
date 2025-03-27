@@ -17,6 +17,8 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import ShereLink from "../_components/shere-link";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { cottageUtils } from "@/utils/cottage.utils";
 
 
 interface Props {
@@ -25,8 +27,15 @@ interface Props {
 
 const ViewSwiper: React.FC<Props> = (props: Props) => {
     const [viewCottage, setViewCottage] = useState(null);
+    const queryClient = useQueryClient()
     const cottageView = props.cottageView
     const { language } = useLanguageStore();
+    const viewCottageFn = useMutation({
+        mutationFn: cottageUtils.addEvent,
+        onSuccess: () =>{
+            queryClient.invalidateQueries({queryKey: ['views']})
+        }
+    })
     return (
         <div className="grid grid-cols-12 gap-2 items-start" >
             <div className="col-span-12 md:col-span-9">
@@ -104,6 +113,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                     <ShereLink/>
                 </div>
                 <Link
+                    onClick={() => viewCottageFn.mutate({cottageId: cottageView.id, event: "call"})}
                     href={`tel:+998${cottageView?.user?.phone}`}
                     className="btn flex gap-3 border border-green-500 justify-center items-center p-2 rounded-md text-green-500 text-[16px] font-medium outline-green-600"
                 >
