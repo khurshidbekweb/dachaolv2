@@ -3,11 +3,9 @@
 import Dacha from "@/components/card/dacha";
 import BreacdCrambs from "@/components/shared/breacd-crambs";
 import MiniNav from "@/components/shared/mini-nav";
-import { Input } from "@/components/ui/input";
 import { ALL_DATA } from "@/Query/get_all";
 import { useTranslation } from "react-i18next";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import useLanguageStore from '@/store/language-provider';
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { IMG_BASE_URL } from "@/constants/server";

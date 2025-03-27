@@ -14,16 +14,21 @@ import MiniNav from "@/components/shared/mini-nav";
 import Dacha from "@/components/card/dacha";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { cottageUtils } from "@/utils/cottage.utils";
+import Loading from "@/components/loading/loading";
 
 
 const View = () => {
     const [isTop, setIsTop] = useState(false)
-    const cottage = ALL_DATA.useCottage();
     const parms = useParams()
+    const queryClient = useQueryClient();
     const {t} = useTranslation()
+    console.log(parms);
+    const {data:cottage, isLoading} = ALL_DATA.useCottage();
+    
     const suitableCottage = ALL_DATA.useSuitableCottage(parms?.id)?.data
-    const cottageView: cottage = cottage?.data?.find((e: cottage) => e.id === parms?.id)
-    console.log(cottageView);
+    const cottageView: cottage = cottage && cottage?.find((e: cottage) => e.id === parms?.id)
     const mapLink =
         cottageView?.latitude &&
         cottageView?.longitude &&
@@ -62,10 +67,23 @@ console.log(mapLink);
         { title: t('nav_cottage'), slug: 'cottage' }
     ]
 
+    const viewCottage = useMutation({
+        mutationFn: cottageUtils.addEvent,
+        onSuccess: () =>{
+            queryClient.invalidateQueries({queryKey: ['views']})
+        }
+    })
+
+    useEffect(() => {
+        viewCottage.mutate({
+            cottageId: parms?.id,
+            event: 'view'
+        })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
 
-
-    //   if (cottage.isLoading) return <Loader />;
+    if (isLoading) return <Loading />;
     return (
         <>
             <div className="max-w-6xl mx-auto px-3 md:px-1">

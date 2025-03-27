@@ -202,6 +202,12 @@ export const cottageUtils = {
     }) 
     return data
   },
+  addEvent: async ({cottageId, event}) => {
+    const {data} = await custimAxios.post('cottage/add/event',{
+      cottageId,event
+    })
+    return data
+  },
   patchCottageText: async ({
     id,
     comforts,
