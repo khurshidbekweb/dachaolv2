@@ -89,7 +89,7 @@ const ViewSwiper: React.FC<Props> = (props: Props) => {
                         ))}
                 </Swiper>
             </div>
-            <div className="col-span-12 md:col-span-3 md:sticky md:top-[15vh] flex-none rounded-md flex flex-col space-y-2 border p-5">
+            <div className="col-span-12 md:col-span-3 md:sticky md:top-[15vh] flex-none rounded-md flex flex-col space-y-2 border p-5 bg-[#ffff] dark:bg-[#161f309c]">
                     <p className="text-xl">{ViewPageLanguage.contactUser[language]}</p>
                 <div className="flex items-start gap-x-5">
                     <Link href={`/announcements/${cottageView?.user?.id}`} className="flex items-center gap-3">

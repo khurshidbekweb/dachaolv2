@@ -12,7 +12,7 @@ const Footer = () => {
     const language: langKey = store.language as keyof footerLang;
 
     return (
-        <div className="footer mt-4 md:mt-6 mb-[90px] md:my-10 space-y-4">
+        <div className="footer mt-4 md:mt-6 mb-[90px] md:mb-0 space-y-4 bg-[#ffff] dark:bg-[#161f309c]">
             <Separator/>
             <div className="container max-w-6xl mx-auto">
             <h3 className="text-center md:text-start footer-header font-createRound text-3xl space-y-5">DachaOL</h3>
@@ -54,7 +54,7 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-box">
-                        <h3 className="font-createRound text-xl">
+                        <h3 className="font-createRound text-[25px]">
                         {FooterHeadLeng[language].link3}
                         </h3>
 
@@ -72,7 +72,7 @@ const Footer = () => {
                     </div>
                 </div>               
 
-                <div className="block text-center md:flex justify-between  md:my-10">
+                <div className="block text-center md:flex justify-between  md:py-10">
                     <p className="footer-address mt-2 md:mt-0">{FooterMiniLang[language]}</p>
                     <div className="flex gap-5 items-center justify-center my-3 md:my-0">
                         <Link
