@@ -27,6 +27,7 @@ const Navbar = () => {
         { name: t('nav_home'), route: '/', icon: Home },
         { name: t('nav_cottage'), route: '/cottage', icon: ListCollapse },
         { name: t('nav_fovarite'), route: '/fovarite', icon: ListCollapse },
+        
         { name: t('nav_contact'), route: '/contact', icon: Contact2 },
     ]
     return (
