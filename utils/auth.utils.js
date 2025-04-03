@@ -21,8 +21,8 @@ export const authUtils = {
     return data;x
   },
 
-  smsAuth: async ({ phone }) => {
-    const { data } = await custimAxios.post("/auth/login/sms", { phone });
+  smsAuth: async ({ phone, languageCode }) => {
+    const { data } = await custimAxios.post("/auth/login/sms", { phone,languageCode });
 
     return data;
   },

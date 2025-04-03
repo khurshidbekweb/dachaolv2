@@ -18,7 +18,8 @@ const Login = () => {
     const language: langKey = store.language as keyof footerLang;
     const navigate = useRouter()
     const [phoneNumber, setPhoneNumber] = useState('')
-
+    console.log(language);
+    
     const [code, setCode] = useState(["", "", "", "", ""]);
     const inputRefs = useRef<HTMLInputElement[]| null>([]); 
     const handleChange = (index: number, value: string) => {
@@ -43,8 +44,7 @@ const Login = () => {
             setTimeout(() => {
                 setStep(1)
             }, 500);
-            console.log(data.smsCode)
-            alert(data.smsCode)            
+            console.log(data.smsCode)         
         },
         onError: (err) => {
             console.log(err);
@@ -68,6 +68,7 @@ const Login = () => {
         e.preventDefault();
         phone.mutate({
             phone: phoneNumber.replaceAll(" ", "").slice(3),
+            languageCode: language
         });        
     };
 
@@ -76,7 +77,6 @@ const Login = () => {
         const smsCode:string[] = []
         Object.values(e.target.smsCode).map((num: {value:string}) => {
             smsCode.push(num.value)
-            
         })
         const code = smsCode.join('');
         const truthCode = phone?.data?.smsCode;  
@@ -203,7 +203,7 @@ function authLOgin(step: number) {
 }
 
 return (
-    <div className="max-w-6xl mx-auto px-3 md:px-1">
+    <div className="max-w-6xl mx-auto px-3 md:px-1 h-[75vh]">
         <div className="min-h-[15vh] flex flex-col justify-end items-start p-11">
             {/* Login */}
         </div>
