@@ -2,48 +2,33 @@ import { useTranslation } from 'next-i18next';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { services } from '@/types';
+import { services, tariff } from '@/types';
 import { formatNumber } from '@/constants';
+import { useState } from 'react';
+import { ActivateTariffDialog } from './tarif-active';
 
 interface tarifProps{
   tarif: services
 }
 
+const faqItems = [
+  { id: 'visibility' },
+  { id: 'refund' },
+  { id: 'multiple' }
+];
+
+const targetItems = [
+  'quick_rental',
+  'seasonal_demand',
+  'new_owners'
+];
 
 export function TopBannerService({tarif}:tarifProps) {
-  const { t } = useTranslation();
-console.log(tarif);
+  const { t } = useTranslation()
 
-  const tariffs = [
-    {
-      id: '1_day',
-      features: ['short_term', 'new_cottages', 'promotions']
-    },
-    {
-      id: '3_days',
-      features: ['weekend_promo', 'continuous_visibility']
-    },
-    {
-      id: '1_week',
-      features: ['long_term', 'daily_clients', 'cost_effective']
-    },
-    {
-      id: '1_month',
-      features: ['most_effective', 'low_daily_cost', 'special_bonus']
-    }
-  ];
-
-  const faqItems = [
-    { id: 'visibility' },
-    { id: 'refund' },
-    { id: 'multiple' }
-  ];
-
-  const targetItems = [
-    'quick_rental',
-    'seasonal_demand',
-    'new_owners'
-  ];
+  const [open,setOpen] = useState(false)
+  const [curTariff, setCurTariff] = useState<tariff | null>(null)
+  
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -78,7 +63,10 @@ console.log(tarif);
                   </li>
                 ))}                          
               </ul>
-              <Button className="w-full">
+              <Button className="w-full" onClick={() => {
+                setOpen(true)
+                setCurTariff(tariff)
+              }}>
                 {t('select_button')}
               </Button>
             </CardContent>
@@ -136,6 +124,11 @@ console.log(tarif);
         <p>{t('contact_email')}</p>
         <p>{t('contact_phone')}</p>
       </div>
+      <ActivateTariffDialog
+        open={open}
+        onOpenChange={setOpen}
+        tariff={curTariff}
+      />
     </div>
   );
 }

@@ -44,7 +44,6 @@
     "not_servise": "Mavjud tariflardan foydalanish ",
     "moey_charge": "so'm",
     "add": "qo'shish",
-      
     "faq_title": "Tez-tez Beriladigan Savollar",
     "faq_visibility_question": "Bannerda necha marta ko'rinadi?",
     "faq_visibility_answer": "Dachangiz har bir foydalanuvchi saytga kirganida ko'rinadi",
@@ -52,20 +51,17 @@
     "faq_refund_answer": "Yo'q, to'lov qaytarilmaydi, lekin tanlangan muddat tugaguncha foydalanishingiz mumkin",
     "faq_multiple_question": "Boshqa dachalar bilan bir vaqtda chiqadimi?",
     "faq_multiple_answer": "Ha, lekin har bir dacha alohida tarif asosida ko'rsatiladi",
-  
     "target_title": "Bu Xizmat Kimlar Uchun?",
     "target_quick_rental": "Tez ijara qilmoqchi bo'lganlar",
     "target_seasonal_demand": "Mavsumiy talab yuqori bo'lgan paytda",
     "target_new_owners": "Yangi dacha egasi",
-  
     "promo_title": "Ajoyib Taklif!",
     "promo_description": "1 Oylik tarifni sotib olganlarga 5 kun bepul!",
-  
     "cta_button": "Hoziroq Tarifni Tanlang!",
     "select_button": "Tanlash",
     "contact_title": "Bog'lanish",
     "contact_email": "Email: info@dacha.uz",
     "contact_phone": "Telefon: +998 97 108 20 04",
-    "currency": "so'm"
-  
+    "currency": "so'm",
+    "success": "Muvaffaqiyat"
 }

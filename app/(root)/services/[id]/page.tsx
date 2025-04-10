@@ -7,13 +7,13 @@ import useLanguageStore from '@/store/language-provider';
 import { langKey, services, tariff } from '@/types';
 import { useParams } from 'next/navigation';
 import React from 'react';
-import TarifCard from './tarif-card';
 import MiniNav from '@/components/shared/mini-nav';
 import { TopBannerService } from '../tarif-intro';
+import Loading from '@/components/loading/loading';
 
 const Tariff = () => {
     const params = useParams()
-    const tariffs:services = ALL_DATA.useTarifId(params?.id)?.data;
+    const { isLoading, data: tariffs,} = ALL_DATA.useTarifId(params?.id);
     const store = useLanguageStore()
     const language = store.language as keyof langKey
     
@@ -24,12 +24,7 @@ const Tariff = () => {
                 <BreacdCrambs data={[{ slug: '', title: 'Home' },{ slug: 'services', title: 'Services' }]} page="Tarif" />
                 <h2 className='text-xl md:text-2xl font-createRound'>{TariffPageLanguage.mainTitle[language]}</h2>
             </div>  
-            {/* <div className="flex flex-col items-center justify-center md:flex-row md:items-start md:justify-start gap-4">
-                {tariff?.tariffs && tariff.tariffs.map((tar: tariff) =>(
-                    <TarifCard key={tar.id} tarif={tar} serviceCode={tariff.serviceCode}/>
-                ))}
-            </div> */}
-            <TopBannerService tarif={tariffs}/>
+            {isLoading ? <Loading/>: <TopBannerService tarif={tariffs}/>}
         </div>
         <MiniNav/>
         </>
