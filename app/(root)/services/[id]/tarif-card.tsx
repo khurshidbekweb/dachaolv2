@@ -12,13 +12,14 @@ const TarifCard = (props: Props) => {
     const store = useLanguageStore()
     const language = store.language as keyof langKey
     return (
-        <div className="border w-full md:max-w-[350px] h-[350px] relative mt-4 flex flex-col justify-start items-center rounded-md">
+        <div className="border w-full md:max-w-[400px] h-[600px] relative mt-4 flex flex-col justify-start items-center rounded-md">
             <p className="tarif-name capitalize text-xl text-center my-3">{props.serviceCode}</p>
-            <div className="w-[100px] h-[100px] mx-auto rounded-full flex flex-col items-center bg-secondary justify-center gap-3">
-                <p className="text-4xl font-createRound">{props.tarif.days}</p>
+            <div className="w-[100px] h-[100px] mx-auto rounded-full flex flex-col items-center dark:bg-secondary bg-gray-500 justify-center gap-3 text-white">
+                <p className="text-4xl font-createRound ">{props.tarif.days}</p>
                 {TariffPageLanguage.day[language]}
             </div>
-            <p className="line-clamp-3">{props.tarif.description}</p>
+            <h3 className="text-xl font-workSans font-semibold px-3 text-start">{props?.tarif?.type}</h3>
+            <pre className="w-full whitespace-pre-wrap break-words overflow-wrap-anywhere font-workSans px-2 tracking-wide">{props.tarif.description}</pre>
             <TarifActive tariff={props.tarif} id={props.tarif.id} />
         </div>
     );

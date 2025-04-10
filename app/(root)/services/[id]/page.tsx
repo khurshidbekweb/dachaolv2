@@ -9,6 +9,7 @@ import { useParams } from 'next/navigation';
 import React from 'react';
 import TarifCard from './tarif-card';
 import MiniNav from '@/components/shared/mini-nav';
+import { TopBannerService } from '../tarif-intro';
 
 const Tariff = () => {
     const params = useParams()
@@ -23,11 +24,12 @@ const Tariff = () => {
                 <BreacdCrambs data={[{ slug: '', title: 'Home' },{ slug: 'services', title: 'Services' }]} page="Tarif" />
                 <h2 className='text-xl md:text-2xl font-createRound'>{TariffPageLanguage.mainTitle[language]}</h2>
             </div>  
-            <div className="flex flex-col items-center justify-center md:flex-row md:items-start md:justify-start gap-4">
+            {/* <div className="flex flex-col items-center justify-center md:flex-row md:items-start md:justify-start gap-4">
                 {tariff?.tariffs && tariff.tariffs.map((tar: tariff) =>(
                     <TarifCard key={tar.id} tarif={tar} serviceCode={tariff.serviceCode}/>
                 ))}
-            </div>
+            </div> */}
+            <TopBannerService/>
         </div>
         <MiniNav/>
         </>

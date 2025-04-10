@@ -30,7 +30,8 @@ export const authUtils = {
   refreshAuth: async () => {
     const { data } = await custimAxios.post(
       "/auth/refresh",
-      {
+      { 
+        id:'3c3afb5f-0e8f-466e-b65e-f1cd6da2080d',
         userAgent: window.navigator.userAgent,
       },
       {
