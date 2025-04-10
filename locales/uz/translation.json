@@ -44,38 +44,7 @@
     "not_servise": "Mavjud tariflardan foydalanish ",
     "moey_charge": "so'm",
     "add": "qo'shish",
-
-    "topBanner_title": "Dachani Top Banner Qilish Xizmati",
-    "topBanner_description": "Dachangiz saytimizning asosiy bannerida ko'rinadi va ko'proq mijozlarni jalb qiladi",
-    
-    "tariff_1_day_title": "1 Kunlik Tarif",
-    "tariff_1_day_price": "50 000 so'm",
-    "tariff_1_day_duration": "24 soat",
-    "tariff_1_day_feature1": "Qisqa muddatli, samarali",
-    "tariff_1_day_feature2": "Yangi dachalar uchun ideal",
-    "tariff_1_day_feature3": "Aksiyalar uchun ajoyib",
-  
-    "tariff_3_days_title": "3 Kunlik Tarif",
-    "tariff_3_days_price": "120 000 so'm", 
-    "tariff_3_days_duration": "3 kun (72 soat)",
-    "tariff_3_days_feature1": "Hafta oxiri uchun ajoyib",
-    "tariff_3_days_feature2": "Doimiy ko'rinish",
-    "tariff_3_days_feature3": "1 kunlik tarifdan arzonroq",
-  
-    "tariff_1_week_title": "1 Haftalik Tarif",
-    "tariff_1_week_price": "250 000 so'm",
-    "tariff_1_week_duration": "7 kun",
-    "tariff_1_week_feature1": "Uzoq muddatli reklama",
-    "tariff_1_week_feature2": "Har kuni yangi mijozlar",
-    "tariff_1_week_feature3": "Oylik tarifdan tejamkor",
-  
-    "tariff_1_month_title": "1 Oylik Tarif",
-    "tariff_1_month_price": "800 000 so'm",
-    "tariff_1_month_duration": "30 kun",
-    "tariff_1_month_feature1": "Eng samarali tarif",
-    "tariff_1_month_feature2": "Kuniga atigi 26,600 so'm",
-    "tariff_1_month_feature3": "5 kun qo'shimcha bepul",
-  
+      
     "faq_title": "Tez-tez Beriladigan Savollar",
     "faq_visibility_question": "Bannerda necha marta ko'rinadi?",
     "faq_visibility_answer": "Dachangiz har bir foydalanuvchi saytga kirganida ko'rinadi",

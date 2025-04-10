@@ -13,7 +13,7 @@ import { TopBannerService } from '../tarif-intro';
 
 const Tariff = () => {
     const params = useParams()
-    const tariff:services = ALL_DATA.useTarifId(params?.id)?.data;
+    const tariffs:services = ALL_DATA.useTarifId(params?.id)?.data;
     const store = useLanguageStore()
     const language = store.language as keyof langKey
     
@@ -29,7 +29,7 @@ const Tariff = () => {
                     <TarifCard key={tar.id} tarif={tar} serviceCode={tariff.serviceCode}/>
                 ))}
             </div> */}
-            <TopBannerService/>
+            <TopBannerService tarif={tariffs}/>
         </div>
         <MiniNav/>
         </>

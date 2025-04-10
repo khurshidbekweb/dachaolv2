@@ -2,9 +2,17 @@ import { useTranslation } from 'next-i18next';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
+import { services } from '@/types';
+import { formatNumber } from '@/constants';
 
-export function TopBannerService() {
+interface tarifProps{
+  tarif: services
+}
+
+
+export function TopBannerService({tarif}:tarifProps) {
   const { t } = useTranslation();
+console.log(tarif);
 
   const tariffs = [
     {
@@ -40,42 +48,35 @@ export function TopBannerService() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-3xl font-bold mb-4">{t('topBanner_title')}</h1>
+        <h1 className="text-3xl font-bold mb-4">{tarif?.name}</h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          {t('topBanner_description')}
+          {tarif?.description}
         </p>
       </div>
 
       <Separator className="my-8" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        {tariffs.map((tariff) => (
+        {tarif?.tariffs?.length && tarif.tariffs.map((tariff) => (
           <Card key={tariff.id} className="hover:shadow-lg transition-shadow">
             <CardHeader>
               <CardTitle className="text-2xl">
-                {t(`tariff_${tariff.id}_title`)}
+                {tariff.type.split("\n")[0]}
               </CardTitle>
               <CardDescription>
-                {t(`tariff_${tariff.id}_duration`)}
+              {tariff.type.split("\n")[1]}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold mb-4">
-                {t(`tariff_${tariff.id}_price`)}
+                {formatNumber(Number(tariff.price))} {t('currency')}
               </div>
-              <ul className="space-y-2 mb-6">                
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
-                    <span>{t(`tariff_${tariff.id}_feature1`)}</span>
-                  </li>     
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
-                    <span>{t(`tariff_${tariff.id}_feature2`)}</span>
-                  </li> 
-                  <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
-                    <span>{t(`tariff_${tariff.id}_feature3`)}</span>
-                  </li>            
+              <ul className="space-y-2 mb-6 list-disc"> 
+                {tariff.description?.split("\n").map((line, index) => (
+                  <li className="flex items-start" key={index}>
+                    {line}
+                  </li>
+                ))}                          
               </ul>
               <Button className="w-full">
                 {t('select_button')}
