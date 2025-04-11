@@ -154,7 +154,6 @@ export const cottageUtils = {
     latitude,
     longitude
   }) => {
-    try {
       const formData = new FormData();
       comforts.forEach((el) => formData.append("comforts", el));
       cottageType.forEach((el) => formData.append("cottageType", el));
@@ -174,9 +173,6 @@ export const cottageUtils = {
         },
       });
       return data;
-    } catch (err) {
-      console.log(err, 'error');
-    }
   },
   addCottageImage: async ({ cottageId, image, isMainImage }) => {
     const formData = new FormData();

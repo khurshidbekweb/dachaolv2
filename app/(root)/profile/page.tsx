@@ -42,7 +42,7 @@ const Profile = () => {
     const user = JSON.parse(safeLocalStorage.getItem("user"));
     const { language } = useLanguageStore();
     const userImg = userData?.data?.image;
-    const [active, setActive] = useState<activeView>('profile')
+    const [active, setActive] = useState<activeView>('cottage')
     const userCottage = ALL_DATA.useCottageUser()?.data; 
     const orders = user?.orders      
     const [name, setName] = useState(user?.name)    
