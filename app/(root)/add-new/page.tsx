@@ -73,7 +73,7 @@ const AddNew = () => {
     mutationFn: cottageUtils.postCottage,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.cottages] });
-      toast.success('epladik');
+      toast.success(t('add_cottage'));
       setMainIMage(null);
       route.push('/profile')
     },

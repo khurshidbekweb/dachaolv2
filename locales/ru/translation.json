@@ -67,5 +67,6 @@
     "contact_email": "Email: info@dacha.uz",
     "contact_phone": "Телефон: +998 97 108 20 04",
     "currency": "сум",
-    "success": "Успех"
+    "success": "Успех",
+    "add_cottage":"Ваше объявление появится на сайте после проверки модератора"
 }
