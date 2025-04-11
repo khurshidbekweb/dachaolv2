@@ -48,10 +48,10 @@ const AddNew = () => {
   const language: langKey = store.language as keyof footerLang;
   const accessAToken = safeLocalStorage.getItem('accessToken')
   const childImagesWrapper = useRef(null);
-  // const [location, setLocation] = useState({
-  //   latitude: "",
-  //   longitude: ""
-  // })
+  const [location, setLocation] = useState({
+    latitude: "",
+    longitude: ""
+  })
   const [cottageComforts, setcottageComforts] = useState({
     comforts: [],
     response: [],
@@ -105,14 +105,14 @@ const AddNew = () => {
     }
   };
 
-  // const handleLocationSelect = (location) => {
-  //   setLocation(
-  //           {
-  //             latitude: location.lat,
-  //             longitude: location.lng,
-  //           }
-  //   );
-  // };
+  const handleLocationSelect = (location) => {
+    setLocation(
+            {
+              latitude: location.lat,
+              longitude: location.lng,
+            }
+    );
+  };
   console.log(mainImage);
   
   const handlCottage = async (e) => {
@@ -316,8 +316,8 @@ const AddNew = () => {
                   </label>
                 ))}
             </div>
-            {/* <h2 className='my-4'>Xarita qo`shish</h2>
-            <DachaMap onLocationSelect={handleLocationSelect}/> */}
+            <h2 className='my-4'>Xarita qo`shish</h2>
+            <DachaMap onLocationSelect={handleLocationSelect}/>
             <h3 className="text-xl md:text-2xl font-createRound mt-4 md:mt-6">
               {AddNewPageLanguage.description[language]}
             </h3>            
