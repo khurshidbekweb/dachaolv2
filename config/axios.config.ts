@@ -11,7 +11,7 @@ const custimAxios = axios.create({
 custimAxios.interceptors.response.use(
   (res) => res,
   async (err) => {
-    if (err?.response?.status === 406) {
+    if (err?.response?.status === 403) {
       try {
         await authUtils.refreshAuth();
         window.location.reload(); // Refresh muvaffaqiyatli bo'lsa qayta yuklash

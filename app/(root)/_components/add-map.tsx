@@ -1,12 +1,13 @@
 import { useState, useRef } from "react";
 import { GoogleMap, LoadScript, Autocomplete, Marker } from "@react-google-maps/api";
-const mapContainerStyle = { height: "500px", width: "100%" };
+import { useTranslation } from "react-i18next";
+const mapContainerStyle = { height: "300px", width: "100%" };
 const defaultCenter = { lat: 41.2995, lng: 69.2401 }; // Toshkent koordinatalari
 
 const DachaMap = ({ onLocationSelect }) => {
   const [coordinates, setCoordinates] = useState(defaultCenter);
   const autocompleteRef = useRef(null);
-
+  const {t} = useTranslation()
   // Foydalanuvchi joy tanlaganda
   const onPlaceSelected = () => {
     if (autocompleteRef.current) {
@@ -49,7 +50,7 @@ const DachaMap = ({ onLocationSelect }) => {
         </Autocomplete>
 
         <button onClick={getCurrentLocation} type="button" style={{ margin: "10px", padding: "8px", background: "blue", color: "white", border: "none", cursor: "pointer" }}>
-          📍 Mening joylashuvimni olish
+          📍 {t('my_location')}
         </button>
 
         <GoogleMap

@@ -64,5 +64,9 @@
     "contact_phone": "Telefon: +998 97 108 20 04",
     "currency": "so'm",
     "success": "Muvaffaqiyat",
-    "add_cottage":"Eloningiz moderatsiyadan o‘tganidan keyin saytimizda ko‘rinadi"
+    "add_cottage":"Eloningiz moderatsiyadan o‘tganidan keyin saytimizda ko‘rinadi",
+    "crop_image":"Rasmni kerakli qismini olish!",
+    "crop_image_btn":"Rasmni kesish",
+    "map_plase":"Xarita qo`shish",
+    "my_location":"Mening joylashuvim"
 }

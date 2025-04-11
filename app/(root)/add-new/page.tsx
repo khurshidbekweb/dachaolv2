@@ -113,7 +113,6 @@ const AddNew = () => {
             }
     );
   };
-  console.log(mainImage);
   
   const handlCottage = async (e) => {
     e.preventDefault();
@@ -315,17 +314,17 @@ const AddNew = () => {
                     <p className="text-lg">{e.name}</p>
                   </label>
                 ))}
-            </div>
-            <h2 className='my-4'>Xarita qo`shish</h2>
-            <DachaMap onLocationSelect={handleLocationSelect}/>
+            </div>            
             <h3 className="text-xl md:text-2xl font-createRound mt-4 md:mt-6">
               {AddNewPageLanguage.description[language]}
             </h3>            
             <Textarea
               name="description"
-              className="w-full md:w-[70%] h-[150px] md:h-[250px]  bg-white mt-2 md:mt-4 dark:bg-[#161f309c]"
+              className="w-full md:w-[90%] h-[150px] md:h-[250px]  bg-white mt-2 md:mt-4 dark:bg-[#161f309c]"
               placeholder={AddNewPageLanguage.shortDescription[language]}
             />
+            <h2 className='text-xl md:text-2xl font-createRound mt-4 md:mt-6'>{t('map_plase')}</h2>
+            <DachaMap onLocationSelect={handleLocationSelect}/>
             <Button type="submit" className=" p-2 w-full hover:bg-green-500 dark:text-white bg-green-600 md:w-[200px] text-lg mt-5 rounded-lg">
               {AddNewPageLanguage.save[language]}
             </Button>

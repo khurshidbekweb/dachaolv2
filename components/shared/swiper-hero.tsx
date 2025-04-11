@@ -26,7 +26,7 @@ const SwiperHero = () => {
     
     return (
       <Swiper
-      className="swiper mx-auto h-[32vh] md:h-[30vh] lg:h-[50vh] mt-[9vh]"
+      className="swiper mx-auto h-[32vh] md:h-[30vh] lg:h-[50vh] mt-[8vh] md:mt-[9vh]"
       modules={[Navigation, A11y, Scrollbar, Autoplay, Parallax, Pagination, EffectCoverflow]}
       spaceBetween={10}
       effect={'coverflow'}
