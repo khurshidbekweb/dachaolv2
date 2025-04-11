@@ -134,8 +134,8 @@ const AddNew = () => {
       cottageType: ["c4c301b1-4719-499e-bde2-2c36715fae9e"],
       comforts: cottageComforts.response,
       description: e.target.description.value,
-      latitude: "",
-      longitude: ""
+      latitude: location.latitude,
+      longitude: location.longitude
     });
     console.log(cottage.variables);
     // localStorage.setItem('dacha', JSON.stringify(cottage.variables))
