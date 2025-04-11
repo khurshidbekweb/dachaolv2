@@ -11,7 +11,7 @@ import Loading from '@/components/loading/loading';
 
 const Home = () => {
     return (
-        <div className='max-w-7xl min-h-[40vh] mx-auto'>
+        <div className='max-w-6xl min-h-[40vh] mx-auto'>
             <section className="hero">
                 <SwiperHero />
             </section>
